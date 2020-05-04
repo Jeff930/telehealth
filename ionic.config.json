@@ -1,0 +1,7 @@
+{
+  "name": "JournalApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
