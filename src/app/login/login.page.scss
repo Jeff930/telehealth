@@ -1,129 +1,40 @@
-
-  .logo{
-    padding:50px 50px 0;
-  }
-
-  .form{
-
-    -webkit-box-shadow: -1px 1px 5px 1px rgba(5,5,5,0.14);
-    -moz-box-shadow: -1px 1px 5px 1px rgba(5,5,5,0.14);
-    box-shadow: -1px 0px 5px 1px rgba(5,5,5,0.14);
-  }
-
-  .lightest{
-    background-color: #fff;
-  }
-
-  p.p-grey{
-    color : #b4b4b4;
-  }
-
-  
-
-  ion-header {
-  .toolbar {
-    position: absolute;
-    min-height: 100px;
-    padding: 0 5%;
-
-    button[color="light"]{
-      border:none;
-    }
-      img{
-        height : 60px;
-      }
-      .toolbar-background {
-        background: transparent;
-      }
-     
-    }
-  }
-
-  .signup-button{
-    color: #fff;
-    background-color: #488aff;
-    padding: 22px;
-    border-radius: 30px;
-  }
-
-
-.login-form{
-  margin-top: 10em;
-  h3,p{
-      color : #fff;
-      
-  }
-  .login-button{
-    margin-top: 2em;
-  }
-  p[margin-bottom]{
-      margin-bottom : 50px;
-  }
+ion-content{
+  --ion-background-color: #1ABC9E;
 }
 
-button[color="light"]{
-  background:none;
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
 }
 
-.form-input{
-  background : none;
- margin-top:2em;
-    input{
-      color: grey;
-    }
-  
+.login-content{
+  margin-top:50px;
+  background-color:#EDEFF1 !important;
+  padding:50px;
+  border-radius:5%;
 }
 
-.login {
-  max-width: 360px;
-  margin: 0 auto;
-}
-.hidden-xs-up{
-     display: none !important;
-}
-.form-controll {
-  padding: 0px 5px 0px 10px;
-}
-.hidden-md-up{
-     display: none !important;
+ion-item{
+  --background:white;
+  --color: #818181;
+  margin:10px 0px;
 }
 
-.hidden-sm-down{
-     display: block !important;
+.login-button{
+  --background:#1ABC9E;
+  margin-top:20px;
+}
+
+.signup-button{
+  --background:#FF645F;
+  margin-top:40px;
 }
 
 
-
-
-@media (max-width: 1024px) {
-.loginNavbar {
-    display: block !important;
-  }
-  .hidden-sm-down {
-    display: none !important;
-  }
+.right{
+  margin-left:150px;
 }
 
-
-@media (min-width: 1025px) {
-  .loginNavbar {
-    display: none !important;
-  }
-  .hidden-sm-down {
-    display: block !important;
-  }
-}
-
-.loginNavbar {
-  ion-navbar {
-   background-color: rgba(45, 52, 54,1.0) !important;
-   button {
-     color: white;
-   }
-   ion-title {
-     img {
-       
-     }
-   }
-  }
+.grey{
+  color: #818181; 
 }
