@@ -1,34 +1,32 @@
-<ion-header class="hidden-sm-down"> 
-	<ion-grid >
-      <ion-row start>
-        <ion-col  col-md-3 col-lg-3 col-xl-3>
-           <img src="assets/img/logo.jpg"> 
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-</ion-header>
-
-<ion-content padding  class="login-cover" >
+<ion-content fullscreen>
 	<form  [formGroup]="login_form" >
 		<ion-grid class="login-form" >
+			
   			<ion-row>
-    			<ion-col col-xs-12 col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 text-center  class="login" >
-        			<h3>Keep life moments and ideas always with you.</h3>
-        
+    			<ion-col size-sm="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3" size-xl="4" offset-xl="4" text-center  class="login-content" >
+    				<img src="assets/imgs/logo.svg"> 
+        		      
      				<ion-item class="form-input">
-            			<ion-label color="primary"> <ion-icon name="ios-person-outline" color="light"></ion-icon> </ion-label>
-            			<ion-input type="text" placeholder="Email Address" formControlName="email" class="form-controll" required></ion-input>
+            			<ion-label></ion-label> <ion-icon name="person-outline"></ion-icon> 
+            			<ion-input type="text" placeholder="Email Address" formControlName="email" class="form-control" required></ion-input>
       				</ion-item>
 
-      				<ion-item class="form-input" class="form-input">
-         				<ion-label color="primary"> <ion-icon color="light" name="ios-lock-outline"></ion-icon> </ion-label>
-        				<ion-input placeholder="Password" type="password" formControlName="password" class="form-controll" required></ion-input>
+      				<ion-item class="form-input">
+         				<ion-label> </ion-label> <ion-icon name="lock-closed-outline"></ion-icon> 
+        				<ion-input placeholder="Password" type="password" formControlName="password" class="form-control" required></ion-input>
       				</ion-item>
+
+      				<ion-button class="login-button" expand="full" (click)="login(login_form.value)" [disabled]="!login_form.valid" type="submit">LOGIN</ion-button>
       				
-      				<button ion-button clear class="p-grey" text-center (click)="recover()">Forgot your password?</button>
-      				<button col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2 class="login-button" round (click)="login(login_form.value)" ion-button full class="login-button" [disabled]="!login_form.valid" type="submit">LOGIN</button>
+      				<button class="grey" text-center (click)="recover()">Forgot your password?</button>
+
+      				<ion-button class="signup-button" expand="full">SIGN UP</ion-button>
+      				
+      				<p class="grey" text-center>Don't have an account? Get one here!</p>
+
 				</ion-col>
   			</ion-row>
+
     	</ion-grid>
 	</form>
 </ion-content>
