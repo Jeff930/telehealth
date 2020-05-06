@@ -30,17 +30,18 @@ export class LoginPage implements OnInit {
         this.menuCtrl.enable(false, 'loginMenu');
       }
       this.menuCtrl.enable(false, 'myMenu');  
-    }
 
-    ngOnInit(){}
-    
-  ionViewWillLoad() {
-    this.login_form = this.formBuilder.group({
+      this.login_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required
       ])),
       password: new FormControl('', Validators.required),
     });
-  }
+    }
+
+    ngOnInit(){}
+    
+  ionViewWillLoad() {}
+    
 
 }
