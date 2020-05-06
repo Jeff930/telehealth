@@ -30,3 +30,5 @@ npm-debug.log*
 /plugins
 /resources
 /www
+
+src/assets/imgs/
