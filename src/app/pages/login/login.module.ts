@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { IonicModule } from '@ionic/angular';
 
 import { LoginPageRoutingModule } from './login-routing.module';
@@ -17,8 +16,7 @@ import { LoginPage } from './login.page';
     ReactiveFormsModule,
     HttpClientModule,
     IonicModule,
-    LoginPageRoutingModule,
-
+    LoginPageRoutingModule
   ],
   declarations: [LoginPage]
 })
