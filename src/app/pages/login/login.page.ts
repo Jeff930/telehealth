@@ -3,6 +3,7 @@ import { LoadingController , AlertController, MenuController , Platform  } from 
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +21,11 @@ export class LoginPage implements OnInit {
     public alertCtrl : AlertController,
     public menuCtrl : MenuController,
     public platform : Platform,
-    public http : HttpClient) {
+    public http : HttpClient,
+    public userService : UserService) {
       console.log("cordova " + this.platform.is('cordova'));
       console.log("android " + this.platform.is('android'));
-      this.menuCtrl.enable(false,'main-content');
+      this.userService.showSidebar = false;
       // if (this.platform.is('android') && this.platform.is('cordova')) {
       //   console.log("Nav enabled");
       //   this.menuCtrl.enable(true, 'loginMenu');
