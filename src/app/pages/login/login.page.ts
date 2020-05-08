@@ -39,6 +39,10 @@ export class LoginPage implements OnInit {
 
     ngOnInit(){}
 
+    login(formData){
+      this.navCtrl.navigateForward('/home');
+    }
+
     signup(){
       this.navCtrl.navigateForward('/signup');
     }
