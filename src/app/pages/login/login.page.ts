@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {  NavController, LoadingController , AlertController, MenuController , Platform  } from '@ionic/angular';
+import { LoadingController , AlertController, MenuController , Platform  } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginPage implements OnInit {
   login_form: FormGroup;
 
   constructor(
-    public navCtrl: NavController,
+    private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
     public alertCtrl : AlertController,
@@ -40,11 +41,11 @@ export class LoginPage implements OnInit {
     ngOnInit(){}
 
     login(formData){
-      this.navCtrl.navigateForward('/home');
+      this.router.navigateByUrl('/home');
     }
 
     signup(){
-      this.navCtrl.navigateForward('/signup');
+      this.router.navigateByUrl('/signup');
     }
 
 }
