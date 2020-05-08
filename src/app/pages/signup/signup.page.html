@@ -31,11 +31,11 @@
         				<ion-input placeholder="Retype Password" type="password" formControlName="confirmpassword" required></ion-input>
       				</ion-item>
 
-      				<ion-button class="signup-button" expand="full" (click)="login(signup_form.value)" [disabled]="!signup_form.valid" type="submit">CREATE ACCOUNT</ion-button>
+      				<ion-button class="signup-button" expand="full" (click)="signup(signup_form.value)" [disabled]="!signup_form.valid" type="submit">CREATE ACCOUNT</ion-button>
 
       				<p class="grey margin-top" text-center>Already have an account? Login here!</p>
 
-      				<ion-button class="login-button" expand="full">LOGIN</ion-button>     				
+      				<ion-button class="login-button" expand="full" (click)="login()" >LOGIN</ion-button>     				
 
 				</ion-col>
   			</ion-row>
