@@ -43,6 +43,7 @@ export class LoginPage implements OnInit {
     ngOnInit(){}
 
     login(formData){
+      this.userService.showSidebar = true;
       this.router.navigateByUrl('/home');
     }
 
