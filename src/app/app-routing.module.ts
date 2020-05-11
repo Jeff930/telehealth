@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'create-entry',
     loadChildren: () => import('./pages/create-entry/create-entry.module').then( m => m.CreateEntryPageModule)
+  },
+  {
+    path: 'setup-profile',
+    loadChildren: () => import('./pages/setup-profile/setup-profile.module').then( m => m.SetupProfilePageModule)
   }
 ];
 
