@@ -30,6 +30,14 @@ const routes: Routes = [
   {
     path: 'setup-profile',
     loadChildren: () => import('./pages/setup-profile/setup-profile.module').then( m => m.SetupProfilePageModule)
+  },
+  {
+    path: 'view-entry',
+    loadChildren: () => import('./pages/view-entry/view-entry.module').then( m => m.ViewEntryPageModule)
+  },
+  {
+    path: 'view-entries',
+    loadChildren: () => import('./pages/view-entries/view-entries.module').then( m => m.ViewEntriesPageModule)
   }
 ];
 
