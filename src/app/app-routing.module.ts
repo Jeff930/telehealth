@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'view-entries',
     loadChildren: () => import('./pages/view-entries/view-entries.module').then( m => m.ViewEntriesPageModule)
+  },
+  {
+    path: 'search-entries',
+    loadChildren: () => import('./pages/search-entries/search-entries.module').then( m => m.SearchEntriesPageModule)
   }
 ];
 
