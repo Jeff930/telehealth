@@ -1,3 +1,25 @@
-<ion-content scrollY="false">
-	<app-journal-entries></app-journal-entries>
+<ion-header class="main-header">
+  <ion-toolbar>
+    <ion-title>
+      My Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-grid>
+		<ion-row>
+			<ion-col size="12">
+				<app-quote-card></app-quote-card>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col size="6">
+				<app-journal-card></app-journal-card>
+			</ion-col>
+			<ion-col size="6">
+				<app-journal-card></app-journal-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>
