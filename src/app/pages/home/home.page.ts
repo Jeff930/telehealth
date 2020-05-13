@@ -28,8 +28,4 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
-  viewEntries(){
-    this.router.navigateByUrl('/view-entries');
-  }
-
 }
