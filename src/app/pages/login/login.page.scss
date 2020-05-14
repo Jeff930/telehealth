@@ -1,17 +1,16 @@
 ion-content{
-  --ion-background-color: #1ABC9E;
+  --ion-background-color: #F5E6AA;
 }
 
 ion-toolbar {
   --background: transparent;
-  --ion-color-base: transparent !important;
+  --ion-color-base: transparent;
 }
 
 .login-content{
   margin-top:50px;
-  background-color:#EDEFF1 !important;
+  background-color:#2C3E50;
   padding:50px;
-  border-radius:5%;
 }
 
 ion-item{
@@ -21,16 +20,19 @@ ion-item{
 }
 
 .login-button{
-  --background:#1ABC9E;
+  --background:#E74C3C;
   margin-top:20px;
+  color: #ffffff;
+  font-weight:bolder;
 }
 
 .signup-button{
   --background:#FF645F;
 }
 
-.grey{
-  color: #818181; 
+.white{
+  color: #ffffff; 
+  background:transparent;
 }
 
 .margin-top{
