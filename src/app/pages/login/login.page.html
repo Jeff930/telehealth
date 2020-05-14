@@ -16,13 +16,13 @@
         				<ion-input placeholder="Password" type="password" formControlName="password" required></ion-input>
       				</ion-item>
 
-      				<ion-button class="login-button" expand="full" (click)="login(login_form.value)" [disabled]="!login_form.valid" type="submit">LOGIN</ion-button>
+      				<ion-button expand="full" (click)="login(login_form.value)" [disabled]="!login_form.valid" type="submit">LOGIN</ion-button>
       				
       				<button class="white" text-center (click)="recover()">Forgot your password?</button>
 
       				<p class="white margin-top" text-center>Don't have an account? Get one here!</p>
 
-      				<ion-button class="login-button" expand="full" (click)="signup()">SIGN UP</ion-button>     				
+      				<ion-button expand="full" (click)="signup()">SIGN UP</ion-button>     				
 
 				</ion-col>
   			</ion-row>
