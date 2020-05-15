@@ -1,0 +1,48 @@
+.create-entry{
+  --background:#E74C3C;	
+  margin: 0px 20px;
+}
+
+ion-content{
+	 --ion-background-color:#EDEFF1;
+}
+
+ion-card-title{
+	font-size: 25px;
+}
+
+ion-card-subtitle{
+	font-size: 20px;
+}
+
+.view-all-button{
+	--background:transparent;
+	--color:#0a947a;
+	--border-color:transparent;
+	font-weight:bolder;
+	float:right;
+}
+
+ion-card{
+	--background:#ffffff;
+	margin:20px 10px 20px 20px;
+}
+
+.card-image{
+	width:100%;
+	height:450px;
+}
+
+p{
+	font-size: 20px;
+	margin: 30px 10px;
+}
+
+.journal-content{
+	font-size: 20px;
+}
+
+.util-icon{
+	padding:5px;
+}
+
