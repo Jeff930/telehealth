@@ -1,0 +1,17 @@
+.create-entry {
+  --background:#0a947a;
+  margin: 0px 20px;
+}
+
+ion-content {
+  --ion-background-color:#EDEFF1;
+}
+
+.view-all-button {
+  --background:transparent;
+  --color:#0a947a;
+  --border-color:transparent;
+  font-weight: bolder;
+  float: right;
+}
+/*# sourceMappingURL=home.page.css.map */

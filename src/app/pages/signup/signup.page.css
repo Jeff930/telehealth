@@ -1,0 +1,43 @@
+ion-content {
+  --ion-background-color: #1ABC9E;
+}
+
+ion-toolbar {
+  --background: transparent;
+  --ion-color-base: transparent !important;
+}
+
+.signup-content {
+  margin-top: 50px;
+  background-color: #EDEFF1 !important;
+  padding: 50px;
+  border-radius: 5%;
+}
+
+ion-item {
+  --background:white;
+  --color: #818181;
+  margin: 10px 0px;
+}
+
+.signup-button {
+  --background:#1ABC9E;
+  margin-top: 20px;
+}
+
+.login-button {
+  --background:#FF645F;
+}
+
+.grey {
+  color: #818181;
+}
+
+.margin-top {
+  margin-top: 40px;
+}
+
+.logo {
+  padding: 40px;
+}
+/*# sourceMappingURL=signup.page.css.map */

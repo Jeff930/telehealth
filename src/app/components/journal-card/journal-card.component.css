@@ -1,0 +1,9 @@
+ion-card {
+  --background:#ffffff;
+}
+
+.card-image {
+  width: 100%;
+  height: 300px;
+}
+/*# sourceMappingURL=journal-card.component.css.map */
