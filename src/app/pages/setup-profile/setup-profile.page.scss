@@ -1,0 +1,59 @@
+ion-content {
+    --ion-background-color: #edeff1;
+}
+
+ion-card-title{
+    color: white;
+    font-weight: bolder;
+}
+
+ion-item{
+    --background:white;
+    --color: #818181;
+    margin:10px 0px;
+}
+
+ion-card-subtitle{
+    color: white;
+}
+
+.banner {
+    --background: linear-gradient(197deg, #fffae6 0%, #f9f0cd 13.5%, #f7edc4 28.33%, #f5e6aa 100%) !important;
+}
+
+.profile-form {
+    --background: #2C3E50;
+}
+
+.life-verse-card {
+    --background: #2C3E50;
+    color: white;
+}
+
+.input {
+    --background: transparent;
+}
+
+.profile {
+    height: 170px;
+    margin-top: 12px;
+}
+
+.profile-image {
+    height: 200px;
+    width: auto;
+    margin: auto;
+    display: block;
+    border-radius: 50%;
+}
+
+.btn-save{
+    float: right;
+    --background:#E74C3C;
+    color: #ffffff;
+    font-weight:bolder;
+}
+
+.ripple-style{
+    --ripple-color: #ffffff;
+}
