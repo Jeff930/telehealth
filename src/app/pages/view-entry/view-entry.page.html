@@ -3,7 +3,8 @@
     <ion-title>
       My Entry
     </ion-title>
-    <ion-button class="create-entry" slot="end"><ion-icon name="create-outline" class="util-icon"></ion-icon> EDIT ENTRY </ion-button>
+    <ion-button (click)="editEntry()" class="create-entry" slot="end"><ion-icon name="create-outline" class="util-icon"></ion-icon> EDIT ENTRY </ion-button>
+    <ion-button (click)="deleteEntry()" class="create-entry" slot="end"><ion-icon name="close-circle-outline" class="util-icon"></ion-icon> DELETE ENTRY </ion-button>
   </ion-toolbar>
 </ion-header>
 
