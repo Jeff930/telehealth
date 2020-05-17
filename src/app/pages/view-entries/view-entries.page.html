@@ -3,40 +3,15 @@
     <ion-title>
       My Entries
     </ion-title>
-    <!-- <ion-button class="create-entry" slot="end"><ion-icon name="search-outline" class="util-icon"></ion-icon> SEARCH ENTRY </ion-button>
-    <ion-button class="create-entry" slot="end"><ion-icon name="funnel-outline" class="util-icon"></ion-icon> SORT ENTRIES </ion-button>
+    <ion-button class="create-entry" slot="end"><ion-icon name="settings-outline" class="util-icon"></ion-icon> OPTIONS </ion-button>
+    <!-- <ion-button class="create-entry" slot="end"><ion-icon name="funnel-outline" class="util-icon"></ion-icon> SORT ENTRIES </ion-button>
     <ion-button class="create-entry" slot="end"><ion-icon name="filter-outline" class="util-icon"></ion-icon> FILTER ENTRIES </ion-button> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 	
-		<ion-card >
-			<ion-card-content class="filter">
-				<ion-grid>
-				<ion-row>
-					<ion-col size="5">
-						<ion-text>SEARCH</ion-text>
-						<ion-searchbar class="searchbar" showCancelButton="focus" cancelButtonText="Custom Cancel" placeholder=""></ion-searchbar>  	
-					</ion-col>
-					<ion-col size="4">
-						<ion-text>SORT</ion-text>
-						<ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Newest to Oldest" class="sort">
-      <ion-select-option>Newest to Oldest</ion-select-option>
-      <ion-select-option>Oldest to Newest</ion-select-option>
-    </ion-select>
-					</ion-col>	
-					<ion-col size="3">
-						<ion-text>FILTER BY DATE</ion-text>
-						<ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="May 14,2020" class="sort">
-      <ion-select-option>Newest to Oldest</ion-select-option>
-      <ion-select-option>Oldest to Newest</ion-select-option>
-    </ion-select>
-					</ion-col>	
-				</ion-row>	
-			</ion-grid>
-   			</ion-card-content>
-   		</ion-card>
+		
    	<ion-grid>
 		<ion-row>
 			<ion-col size="6">
