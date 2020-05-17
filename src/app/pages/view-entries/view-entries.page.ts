@@ -12,6 +12,8 @@ import { UserService } from '../../services/user.service';
 })
 export class ViewEntriesPage implements OnInit {
 
+  option = 0;
+
   constructor(public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
     public alertCtrl : AlertController,
@@ -25,6 +27,20 @@ export class ViewEntriesPage implements OnInit {
     }
 
   ngOnInit() {
+  }
+
+  showSearch(){
+    if (this.option == 1)
+      this.option = 0;
+    else
+      this.option = 1;
+  }
+
+  showSort(){
+    if (this.option == 2)
+      this.option = 0;
+    else
+      this.option = 2;
   }
 
 }
