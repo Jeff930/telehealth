@@ -28,4 +28,11 @@ export class ViewEntryPage implements OnInit {
   ngOnInit() {
   }
 
+  editEntry(){
+    this.router.navigateByUrl('/edit-entry');
+  }
+  
+  deleteEntry(){
+    this.router.navigateByUrl('/view-entries');
+  }
 }
