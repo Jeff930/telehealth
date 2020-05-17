@@ -28,4 +28,12 @@ export class CreateEntryPage implements OnInit {
   ngOnInit() {
   }
 
+  saveEntry(){
+    this.router.navigateByUrl('/view-entry');
+  }
+
+  cancelEntry(){
+    this.router.navigateByUrl('/view-entries');
+  }
+
 }
