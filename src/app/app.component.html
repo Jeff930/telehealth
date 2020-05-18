@@ -1,8 +1,9 @@
 
 <ion-app>
 
-<ion-header class="main-header" *ngIf="userService.showSidebar">
+<ion-header class="main-header" *ngIf="userService.showMenubar">
   <ion-toolbar>
+    <ion-button class="logout" fill="clear" slot="start" (click)="toggleSideBar()"><ion-icon  name="menu-outline"></ion-icon></ion-button>
     <ion-title>
       <img class="logo" src="assets/imgs/logo.png">
     </ion-title>
