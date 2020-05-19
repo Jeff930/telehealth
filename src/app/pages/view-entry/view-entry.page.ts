@@ -35,4 +35,14 @@ export class ViewEntryPage implements OnInit {
   deleteEntry(){
     this.router.navigateByUrl('/view-entries');
   }
+
+  ionViewWillEnter(){
+    this.userService.showMenubar = true;
+    if (this.platform.is('desktop')) {
+      this.userService.showSidebar = true;
+    } else {
+      this.userService.showSidebar = false;
+    }
+    console.log(this.userService.showMenubar,this.userService.showSidebar);
+  }
 }
