@@ -23,18 +23,7 @@ export class LoginPage implements OnInit {
     public platform : Platform,
     public http : HttpClient,
     public userService : UserService) {
-      console.log("cordova " + this.platform.is('cordova'));
-      console.log("android " + this.platform.is('android'));
-      this.userService.showSidebar = false;
-      // if (this.platform.is('android') && this.platform.is('cordova')) {
-      //   console.log("Nav enabled");
-      //   this.menuCtrl.enable(true, 'loginMenu');
-      // } else {
-      //   this.menuCtrl.enable(false, 'loginMenu');
-      // }
-      // this.menuCtrl.enable(false, 'myMenu');  
-
-      this.login_form = this.formBuilder.group({
+     this.login_form = this.formBuilder.group({
         email: new FormControl('', Validators.compose([Validators.required])),
         password: new FormControl('', Validators.required),
     });
@@ -51,4 +40,9 @@ export class LoginPage implements OnInit {
       this.router.navigateByUrl('/signup');
     }
 
+    ionViewWillEnter(){
+      this.userService.showMenubar = false;
+      this.userService.showSidebar = false;
+      console.log(this.userService.showMenubar,this.userService.showSidebar);
+    }
 }
