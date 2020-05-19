@@ -7,6 +7,7 @@ import { SetupProfileComponent } from './setup-profile/setup-profile.component';
 import { ViewEntryComponent} from './view-entry/view-entry.component';
 import { JournalCardComponent } from './journal-card/journal-card.component';
 import { QuoteCardComponent } from './quote-card/quote-card.component';
+import { JournalConstructComponent} from './journal-construct/journal-construct.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { QuoteCardComponent } from './quote-card/quote-card.component';
     ViewEntryComponent,
     JournalEntriesComponent,
     QuoteCardComponent,
-    JournalCardComponent
+    JournalCardComponent,
+    JournalConstructComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { QuoteCardComponent } from './quote-card/quote-card.component';
     ViewEntryComponent,
     JournalEntriesComponent,
     QuoteCardComponent,
-    JournalCardComponent
+    JournalCardComponent,
+    JournalConstructComponent
   ]
 })
 export class ComponentsModule { }

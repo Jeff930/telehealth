@@ -3,7 +3,7 @@ import { LoadingController , AlertController, MenuController , Platform  } from 
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -21,19 +21,9 @@ export class SignupPage implements OnInit {
     public alertCtrl : AlertController,
     public menuCtrl : MenuController,
     public platform : Platform,
-    public http : HttpClient) {
-      console.log("cordova " + this.platform.is('cordova'));
-      console.log("android " + this.platform.is('android'));
-      this.menuCtrl.enable(false,'main-content');
-      // if (this.platform.is('android') && this.platform.is('cordova')) {
-      //   console.log("Nav enabled");
-      //   this.menuCtrl.enable(true, 'loginMenu');
-      // } else {
-      //   this.menuCtrl.enable(false, 'loginMenu');
-      // }
-      // this.menuCtrl.enable(false, 'myMenu');  
-
-      this.signup_form = this.formBuilder.group({
+    public http : HttpClient,
+    public userService : UserService) {
+     this.signup_form = this.formBuilder.group({
         firstname: new FormControl('', Validators.compose([Validators.required])),
         lastname: new FormControl('', Validators.compose([Validators.required])),
         email: new FormControl('', Validators.compose([Validators.required])),
@@ -46,6 +36,12 @@ export class SignupPage implements OnInit {
 
     login(){
       this.router.navigate(['/login']);
+    }
+
+    ionViewWillEnter(){
+      this.userService.showMenubar = false;
+      this.userService.showSidebar = false;
+      console.log(this.userService.showMenubar,this.userService.showSidebar);
     }
 
 }

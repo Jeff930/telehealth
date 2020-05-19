@@ -6,41 +6,30 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-view-entries',
-  templateUrl: './view-entries.page.html',
-  styleUrls: ['./view-entries.page.scss'],
+  selector: 'app-edit-entry',
+  templateUrl: './edit-entry.page.html',
+  styleUrls: ['./edit-entry.page.scss'],
 })
-export class ViewEntriesPage implements OnInit {
+export class EditEntryPage implements OnInit {
 
-  option = 0;
-
-  constructor(public loadingCtrl: LoadingController,
+  constructor(private router: Router,
+    public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
     public alertCtrl : AlertController,
     public menuCtrl : MenuController,
     public platform : Platform,
     public http : HttpClient,
-    public userService : UserService) {
-      console.log("cordova " + this.platform.is('cordova'));
-      console.log("android " + this.platform.is('android'));
-      this.userService.showSidebar = true;
-    }
+    public userService : UserService) { }
 
   ngOnInit() {
   }
 
-  showSearch(){
-    if (this.option == 1)
-      this.option = 0;
-    else
-      this.option = 1;
+  saveChanges(){
+    this.router.navigateByUrl('/view-entry');
   }
 
-  showSort(){
-    if (this.option == 2)
-      this.option = 0;
-    else
-      this.option = 2;
+  cancelEdit(){
+    this.router.navigateByUrl('/view-entry')
   }
 
   ionViewWillEnter(){

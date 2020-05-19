@@ -1,8 +1,9 @@
 
 <ion-app>
 
-<ion-header class="main-header" *ngIf="userService.showSidebar">
+<ion-header class="main-header" *ngIf="userService.showMenubar">
   <ion-toolbar>
+    <ion-button class="logout" fill="clear" slot="start" (click)="toggleSideBar()"><ion-icon  name="menu-outline"></ion-icon></ion-button>
     <ion-title>
       <img class="logo" src="assets/imgs/logo.png">
     </ion-title>
@@ -12,7 +13,7 @@
 
 <ion-content>
   <ion-split-pane contentId="main-content" [when]="userService.showSidebar==true">
-    <ion-menu contentId="main-content" type="push">
+    <ion-menu contentId="main-content" type="push" *ngIf="userService.showMenubar">
       <ion-content >
         <div class="profile">
           <img class="profile-image" src="assets/imgs/profile.jpg">
@@ -34,14 +35,6 @@
 
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
-
-
-
-
-
-</ion-content>
-
-
-    
+</ion-content> 
 
 </ion-app>

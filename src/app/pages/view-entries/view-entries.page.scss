@@ -20,7 +20,7 @@ ion-content{
 }
 
 .filter{
-	padding:0px;
+	padding:0px 30px;
 }
 
 ion-card{
@@ -28,13 +28,19 @@ ion-card{
 }
 
 .searchbar{
-	padding:0px;
+	padding:5px 10px;
 	--background:#ffffff;
+}
+
+.datetime{
+	padding:5px 10px;
+	background-color:#ffffff;
 }
 
 .sort{
 	background:#ffffff;
 	border-radius:2px;
+	margin:5px 10px;
 }
 
 ion-text{

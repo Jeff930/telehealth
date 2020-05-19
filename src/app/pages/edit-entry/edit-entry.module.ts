@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CreateEntryPageRoutingModule } from './create-entry-routing.module';
+import { EditEntryPageRoutingModule } from './edit-entry-routing.module';
 
-import { CreateEntryPage } from './create-entry.page';
+import { EditEntryPage } from './edit-entry.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -15,8 +15,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     ComponentsModule,
-    CreateEntryPageRoutingModule
+    EditEntryPageRoutingModule
   ],
-  declarations: [CreateEntryPage]
+  declarations: [EditEntryPage]
 })
-export class CreateEntryPageModule {}
+export class EditEntryPageModule {}

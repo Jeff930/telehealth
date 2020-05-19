@@ -1,0 +1,13 @@
+<ion-header class="main-header">
+  <ion-toolbar>
+    <ion-title>
+      Edit Entry
+    </ion-title>
+    <ion-button (click)="saveChanges()" class="create-entry" slot="end"><ion-icon name="save-outline" class="util-icon"></ion-icon> SAVE ENTRY </ion-button>
+    <ion-button (click)="cancelEdit()" class="create-entry" slot="end"><ion-icon name="close-circle-outline" class="util-icon"></ion-icon> CANCEL EDIT </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-journal-construct></app-journal-construct>
+</ion-content>

@@ -20,12 +20,27 @@ export class CreateEntryPage implements OnInit {
     public platform : Platform,
     public http : HttpClient,
     public userService : UserService) {
-      console.log("cordova " + this.platform.is('cordova'));
-      console.log("android " + this.platform.is('android'));
-      this.userService.showSidebar = true;
     }
 
   ngOnInit() {
+  }
+
+  saveEntry(){
+    this.router.navigateByUrl('/view-entry');
+  }
+
+  cancelEntry(){
+    this.router.navigateByUrl('/view-entries');
+  }
+
+  ionViewWillEnter(){
+    this.userService.showMenubar = true;
+    if (this.platform.is('desktop')) {
+      this.userService.showSidebar = true;
+    } else {
+      this.userService.showSidebar = false;
+    }
+    console.log(this.userService.showMenubar,this.userService.showSidebar);
   }
 
 }

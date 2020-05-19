@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'search-entries',
     loadChildren: () => import('./pages/search-entries/search-entries.module').then( m => m.SearchEntriesPageModule)
+  },
+  {
+    path: 'edit-entry',
+    loadChildren: () => import('./pages/edit-entry/edit-entry.module').then( m => m.EditEntryPageModule)
   }
 ];
 

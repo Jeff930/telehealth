@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  showSidebar;
   public selectedIndex = 0;
   public appPages = [
     {
@@ -38,7 +37,6 @@ export class AppComponent implements OnInit {
     }
    
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,
@@ -62,10 +60,19 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
-    this.showSidebar = this.userService.showSidebar;
   }
 
   logout(){
+    this.userService.showSidebar = false;
+    this.userService.showMenubar = false;
     this.router.navigateByUrl('/login');
+  }
+
+  toggleSideBar(){
+    if (this.userService.showSidebar)
+      this.userService.showSidebar = false;
+    else
+    this.userService.showSidebar = true;
+
   }
 }
