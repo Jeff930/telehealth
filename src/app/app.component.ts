@@ -34,6 +34,11 @@ export class AppComponent implements OnInit {
       title: 'Create Entry',
       url: '/create-entry',
       icon: 'add-circle'
+    },
+    {
+      title: 'Logout',
+      url: '/login',
+      icon: 'log-out'
     }
    
   ];
