@@ -67,4 +67,12 @@ export class AppComponent implements OnInit {
     this.userService.showMenubar = false;
     this.router.navigateByUrl('/login');
   }
+
+  toggleSideBar(){
+    if (this.userService.showSidebar)
+      this.userService.showSidebar = false;
+    else
+    this.userService.showSidebar = true;
+
+  }
 }
