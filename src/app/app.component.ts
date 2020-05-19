@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from './services/user.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -43,7 +44,8 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {
     this.initializeApp();
   }
@@ -52,6 +54,14 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.authenticationService.authState.subscribe(state => {
+        if (state) {
+          this.router.navigateByUrl('/home');
+        } else {
+          this.router.navigateByUrl('/login');
+        }
+      });
     });
   }
 
@@ -63,9 +73,10 @@ export class AppComponent implements OnInit {
   }
 
   logout(){
-    this.userService.showSidebar = false;
-    this.userService.showMenubar = false;
-    this.router.navigateByUrl('/login');
+    // this.userService.showSidebar = false;
+    // this.userService.showMenubar = false;
+    // this.router.navigateByUrl('/login');
+    this.authenticationService.logout();
   }
 
   toggleSideBar(){

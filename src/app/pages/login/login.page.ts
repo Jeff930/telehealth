@@ -4,6 +4,8 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { ToastController } from '@ionic/angular';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -22,18 +24,22 @@ export class LoginPage implements OnInit {
     public menuCtrl : MenuController,
     public platform : Platform,
     public http : HttpClient,
-    public userService : UserService) {
+    public userService : UserService,
+    private authService: AuthenticationService) {
      this.login_form = this.formBuilder.group({
         email: new FormControl('', Validators.compose([Validators.required])),
         password: new FormControl('', Validators.required),
     });
     }
 
-    ngOnInit(){}
+    ngOnInit(){
+    }
 
     login(formData){
+      // localStorage.setItem('authenticated' , JSON.stringify(formData)); 
+      // this.router.navigateByUrl('/home');
       this.userService.showSidebar = true;
-      this.router.navigateByUrl('/home');
+      this.authService.login(formData);
     }
 
     signup(){
