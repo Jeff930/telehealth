@@ -13,7 +13,7 @@
 
 <ion-content>
   <ion-split-pane contentId="main-content" [when]="userService.showSidebar==true">
-    <ion-menu contentId="main-content" type="push">
+    <ion-menu contentId="main-content" type="push" *ngIf="userService.showMenubar">
       <ion-content >
         <div class="profile">
           <img class="profile-image" src="assets/imgs/profile.jpg">
