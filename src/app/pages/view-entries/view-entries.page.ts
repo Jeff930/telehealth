@@ -21,9 +21,6 @@ export class ViewEntriesPage implements OnInit {
     public platform : Platform,
     public http : HttpClient,
     public userService : UserService) {
-      console.log("cordova " + this.platform.is('cordova'));
-      console.log("android " + this.platform.is('android'));
-      this.userService.showSidebar = true;
     }
 
   ngOnInit() {
