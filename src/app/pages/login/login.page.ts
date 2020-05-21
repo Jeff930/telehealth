@@ -33,6 +33,7 @@ export class LoginPage implements OnInit {
     }
 
     ngOnInit(){
+      this.clearAuthenticatedUser();
     }
 
     login(formData){
@@ -50,5 +51,10 @@ export class LoginPage implements OnInit {
       this.userService.showMenubar = false;
       this.userService.showSidebar = false;
       console.log(this.userService.showMenubar,this.userService.showSidebar);
+    }
+
+    clearAuthenticatedUser(){
+      this.authService.logout();
+      this.login_form.reset();
     }
 }

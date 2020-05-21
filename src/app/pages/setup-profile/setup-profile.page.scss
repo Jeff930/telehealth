@@ -7,10 +7,13 @@ ion-card-title{
     font-weight: bolder;
 }
 
-ion-item{
-    --background:white;
+.input_editmode{
     --color: #818181;
-    margin:10px 0px;
+}
+
+.input_romode{
+    --background: #2C3E50;
+    color: white;
 }
 
 ion-card-subtitle{
@@ -48,12 +51,17 @@ ion-card-subtitle{
 }
 
 .btn-save{
-    float: right;
+    // float: right;
     --background:#E74C3C;
     color: #ffffff;
     font-weight:bolder;
+    margin: 0px 20px;
 }
 
 .ripple-style{
     --ripple-color: #ffffff;
+}
+
+.icon-label{
+    color: white;
 }

@@ -12,6 +12,8 @@ import { UserService } from '../../services/user.service';
 })
 export class SetupProfilePage implements OnInit {
 
+  formStatus: boolean =  true;
+  profile_form: FormGroup;
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -20,11 +22,19 @@ export class SetupProfilePage implements OnInit {
     public platform : Platform,
     public http : HttpClient,
     public userService : UserService) {
+      this.profile_form = this.formBuilder.group({
+        verseTitle: new FormControl('', Validators.required),
+        verseContent: new FormControl('', Validators.required),
+        firstname: new FormControl('', Validators.required),
+        lastname: new FormControl('', Validators.required),
+        email: new FormControl('', Validators.compose([Validators.required])),
+        date: new FormControl('', Validators.required)
+    });
     }
 
   ngOnInit() {
   }
-
+s
   ionViewWillEnter(){
     this.userService.showMenubar = true;
     if (this.platform.is('desktop')) {
@@ -35,4 +45,13 @@ export class SetupProfilePage implements OnInit {
     console.log(this.userService.showMenubar,this.userService.showSidebar);
   }
 
+  editForm(){
+    this.formStatus = false;
+    console.log(this.formStatus );
+  }
+
+  saveFormChanges(){
+    this.formStatus = true;
+    console.log(this.formStatus );
+  }
 }
