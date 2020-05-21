@@ -57,4 +57,8 @@ export class LoginPage implements OnInit {
       this.authService.logout();
       this.login_form.reset();
     }
+
+    recover(){
+      this.router.navigateByUrl('/forgot-password');
+    }
 }

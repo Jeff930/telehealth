@@ -40,7 +40,12 @@ const routes: Routes = [
   {
     path: 'edit-entry',
     loadChildren: () => import('./pages/edit-entry/edit-entry.module').then( m => m.EditEntryPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   }
+
 ];
 
 @NgModule({
