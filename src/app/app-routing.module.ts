@@ -9,10 +9,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  },
-  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
@@ -40,10 +36,6 @@ const routes: Routes = [
   {
     path: 'view-entries',
     loadChildren: () => import('./pages/view-entries/view-entries.module').then( m => m.ViewEntriesPageModule)
-  },
-  {
-    path: 'search-entries',
-    loadChildren: () => import('./pages/search-entries/search-entries.module').then( m => m.SearchEntriesPageModule)
   },
   {
     path: 'edit-entry',
