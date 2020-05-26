@@ -33,6 +33,20 @@ export class QuoteCardComponent implements OnInit {
       {"chapter": "2 Timothy 4:17", "verse": "But the Lord stood with me and gave me strength. "},
       {"chapter": "Jeremiah 29:11", "verse": "For I know the plans I have for you … plans to prosper you and not to harm you, plans to give you hope and a future."},
       {"chapter": "Psalm 138:3", "verse": "On the day I called, you answered me: my strength of soul you increased."},
+      {"chapter": "Psalm 46:1", "verse": "God is our refuge and strength, an ever-present help in trouble. Therefore we will not fear."},
+      {"chapter": "James 1:5", "verse": "Any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you."},
+      {"chapter": "Psalm 31:25", "verse": "Be strong and take heart, all who hope in the Lord."},
+      {"chapter": "Matthew 13:43", "verse": "Then shall the righteous shine forth as the sun in the kingdom of the Father."},
+      {"chapter": "Psalm 5:3", "verse": "In the morning, Lord, you hear my voice; in the morning  I lay my requests before you and wait expectantly. "},
+      {"chapter": "1 Peter 4:8", "verse": "And above all things have fervent love for one another, for love will cover a multitude of sins."},
+      {"chapter": "Psalm 34:10b", "verse": "Those who seek the Lord lack no good thing."},
+      {"chapter": "1 Chronicles 16:11", "verse": "Seek the lord and his strength: seek his presence continually!"},
+      {"chapter": "Corinthians 13:13", "verse": "And now these three remain: faith, hope, and love. But the greatest of these is love."},
+      {"chapter": "Galatians 5:22-23", "verse": "The fruit of the spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness, and self-control."},
+      {"chapter": "Psalm 143:8", "verse": "Let the morning bring me word of your unfailing love, for I have put my trust in you. Show me the way I should go, for to you I entrust my life. "},
+      {"chapter": "Matthew 11:28", "verse": "Come to me, all who labor and are heavy laden, and I will give you rest. "},
+      {"chapter": "Isaiah 61:11", "verse": "His righteousness will be like a garden in early spring, with plants springing up everywhere."},
+      {"chapter": "Ecclesiastes 4:9-10", "verse": "Two are better than one … for if they fall, one will lift up the other."},
     ];
 
     this.getBibleVerseDay();
