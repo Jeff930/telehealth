@@ -5,6 +5,8 @@
     			<ion-col size-sm="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3" size-xl="4" offset-xl="4" text-center  class="login-content" >
     				<img class="logo" src="assets/imgs/logo-white.png"> 
         		      
+        		    <p *ngIf="showError" class="error" text-center>Invalid credentials. Please try again.</p>
+
      				<ion-item>
             			<ion-label></ion-label> <ion-icon name="mail"></ion-icon> 
             			<ion-input type="text" placeholder="Email Address" formControlName="email" required></ion-input>
