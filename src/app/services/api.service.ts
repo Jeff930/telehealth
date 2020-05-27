@@ -8,10 +8,10 @@ export class ApiService {
 
   constructor(public http: HttpClient) { }
 
-  loginUser(email, password) {
+  loginUser(formData) {
     var form = {
-        email:email,
-        password:password,
+        email:formData.email,
+        password:formData.password,
     }
     console.log(JSON.stringify(form));
     return this.http.get<any>('http://localhost:5000/user-login/'+JSON.stringify(form));

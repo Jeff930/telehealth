@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
     }
 
     login(formData) {  
-        this.apiService.loginUser(formData.email,formData.password).subscribe(res => {
+        this.apiService.loginUser(formData).subscribe(res => {
           console.log(res);
           console.log(res[0]);
           if (res[0]!=undefined){
