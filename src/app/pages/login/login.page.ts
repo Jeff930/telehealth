@@ -16,6 +16,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class LoginPage implements OnInit {
 
   login_form: FormGroup;
+  showError= false;
 
   constructor(
     private router: Router,
@@ -49,14 +50,7 @@ export class LoginPage implements OnInit {
         this.apiService.loginUser(formData.email,formData.password).subscribe(res => {
           console.log(res);
           console.log(res[0]);
-          // if (res[0]!=undefined){
-          //   console.log("true");
-          //   localStorage.setItem('customer',JSON.stringify(res));
-          //   this.router.navigateByUrl(this.return);
-          // }else{
-          //   console.log("false");
-          //   this.alert.setMessage('No matching accounts found.','error');
-          // }
+          
         });
       }
 

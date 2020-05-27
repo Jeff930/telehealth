@@ -25,7 +25,6 @@ export class AuthenticationService {
     }
   }
 
-
   login(user_creds) {
     localStorage.setItem('authenticated' , JSON.stringify(user_creds));
     this.authState.next(true);
