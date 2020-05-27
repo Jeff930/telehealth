@@ -50,7 +50,21 @@ export class LoginPage implements OnInit {
         this.apiService.loginUser(formData.email,formData.password).subscribe(res => {
           console.log(res);
           console.log(res[0]);
-          
+          if (res[0]!=undefined){
+            if (res[0].UserId!=undefined){
+              console.log("true");
+              this.showError=false;
+              this.userService.showSidebar = true;
+              this.authService.login(formData);
+              this.login_form.reset()
+            }else{
+              console.log("false");
+              this.showError=true;
+            }
+          }else{
+            console.log("false");
+            this.showError=true;
+          }
         });
       }
 
