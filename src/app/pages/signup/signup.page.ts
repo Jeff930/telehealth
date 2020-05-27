@@ -51,20 +51,17 @@ export class SignupPage implements OnInit {
         } else {
           this.apiService.signupUser(formData).subscribe( res => {
             console.log(res);
-            // if (res[0]!=undefined){
-            //   if (res[0].UserId!=undefined){
-            //     console.log("true");
-            //     this.showError=false;
-            //     this.userService.showSidebar = true;
-            //     this.login_form.reset()
-            //   }else{
-            //     console.log("false");
-            //     this.showError=true;
-            //   }
-            // }else{
-            //   console.log("false");
-            //   this.showError=true;
-            // }
+            if (res.affectedRows==1){
+              this.showSuccess = true;
+              this.showShortPassword = false;
+              this.showError = false;
+              this.showPasswordMismatch = false;
+            }else{
+              this.showSuccess = false;
+              this.showShortPassword = false;
+              this.showError = true;
+              this.showPasswordMismatch = false;
+            }
           });
         }
       } else {
