@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { ToastController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginPage implements OnInit {
     public platform : Platform,
     public http : HttpClient,
     public userService : UserService,
-    private authService: AuthenticationService) {
+    private authService: AuthenticationService,
+    private apiService: ApiService) {
      this.login_form = this.formBuilder.group({
         email: new FormControl('', Validators.compose([Validators.required])),
         password: new FormControl('', Validators.required),
@@ -36,12 +38,27 @@ export class LoginPage implements OnInit {
       this.clearAuthenticatedUser();
     }
 
-    login(formData){
-      // localStorage.setItem('authenticated' , JSON.stringify(formData)); 
-      // this.router.navigateByUrl('/home');
-      this.userService.showSidebar = true;
-      this.authService.login(formData);
-    }
+    // login(formData){
+    //   // localStorage.setItem('authenticated' , JSON.stringify(formData)); 
+    //   // this.router.navigateByUrl('/home');
+    //   this.userService.showSidebar = true;
+    //   this.authService.login(formData);
+    // }
+
+    login(formData) {  
+        this.apiService.loginUser(formData.email,formData.password).subscribe(res => {
+          console.log(res);
+          console.log(res[0]);
+          // if (res[0]!=undefined){
+          //   console.log("true");
+          //   localStorage.setItem('customer',JSON.stringify(res));
+          //   this.router.navigateByUrl(this.return);
+          // }else{
+          //   console.log("false");
+          //   this.alert.setMessage('No matching accounts found.','error');
+          // }
+        });
+      }
 
     signup(){
       this.router.navigateByUrl('/signup');
