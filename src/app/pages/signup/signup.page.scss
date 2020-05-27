@@ -29,6 +29,7 @@ ion-button{
 .white{
   color: #ffffff; 
   background:transparent; 
+  text-align:center;
 }
 
 .margin-top{
@@ -37,4 +38,10 @@ ion-button{
 
 .logo{
   padding: 40px;
+}
+
+.error {
+  color:red;
+  font-weight: bold;
+  text-align:center;
 }
