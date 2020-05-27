@@ -39,13 +39,6 @@ export class LoginPage implements OnInit {
       this.clearAuthenticatedUser();
     }
 
-    // login(formData){
-    //   // localStorage.setItem('authenticated' , JSON.stringify(formData)); 
-    //   // this.router.navigateByUrl('/home');
-    //   this.userService.showSidebar = true;
-    //   this.authService.login(formData);
-    // }
-
     login(formData) {  
         this.apiService.loginUser(formData.email,formData.password).subscribe(res => {
           console.log(res);
