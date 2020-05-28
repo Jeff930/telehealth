@@ -19,6 +19,11 @@ export class ApiService {
     return this.http.get<any>('http://localhost:5000/user-login/'+JSON.stringify(form));
   }
 
+  getUserDetails(emailAddress) {
+    console.log(emailAddress);
+    return this.http.get<any>('http://localhost:5000/user-details/'+emailAddress);
+  }
+
   signupUser(formData) {
     var hashedPassword = JSON.stringify(Md5.hashStr(formData.password));
     console.log(hashedPassword);
