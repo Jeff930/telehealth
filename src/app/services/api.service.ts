@@ -24,6 +24,18 @@ export class ApiService {
     return this.http.get<any>('http://localhost:5000/user-details/'+emailAddress);
   }
 
+  updateUserDetails(formData) {
+    const body = new HttpParams()
+      .set('firstname', formData.firstname)
+      .set('lastname', formData.lastname)
+      .set('userid', formData.userid)
+      .set('username', formData.username)
+      .set('email', formData.email);
+    console.log(body);
+    return this.http.post<any>('http://localhost:5000/update-user-details', body.toString(),
+     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+  }
+
   signupUser(formData) {
     var hashedPassword = JSON.stringify(Md5.hashStr(formData.password));
     console.log(hashedPassword);

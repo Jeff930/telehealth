@@ -30,6 +30,8 @@ export class SetupProfilePage implements OnInit {
     this.profile_form = this.formBuilder.group({
       verseTitle: new FormControl('', Validators.required),
       verseContent: new FormControl('', Validators.required),
+      userid: new FormControl(0),
+      username: new FormControl(''),
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
       email: new FormControl('', Validators.compose([Validators.required])),
@@ -53,12 +55,14 @@ export class SetupProfilePage implements OnInit {
 
   editForm() {
     this.formStatus = false;
-    console.log(this.formStatus);
   }
 
   saveFormChanges() {
     this.formStatus = true;
-    console.log(this.formStatus);
+    this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
+      console.log(res);
+      this.getUserDetails();
+    });
   }
 
   getUserDetails() {
@@ -66,8 +70,10 @@ export class SetupProfilePage implements OnInit {
     let emailAddress = userDetails.email;
 
     this.apiService.getUserDetails(emailAddress).subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.profile_form.patchValue({
+        username: res[0].UserName,
+        userid: res[0].UserId,
         firstname: res[0].FirstName,
         lastname: res[0].LastName,
         email: res[0].EmailAddress
