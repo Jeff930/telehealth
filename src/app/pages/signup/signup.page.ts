@@ -17,7 +17,7 @@ export class SignupPage implements OnInit {
   showError=false;
   showShortPassword=false;
   showPasswordMismatch=false;
-  showSuccess=true;
+  showSuccess=false;
 
   constructor(
     private router: Router,
