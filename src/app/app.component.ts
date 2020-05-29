@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform,AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from './services/user.service';
@@ -40,8 +40,7 @@ export class AppComponent implements OnInit {
       title: 'Logout',
       url: '/login',
       icon: 'log-out'
-    }
-   
+    }   
   ];
 
   constructor(
@@ -50,7 +49,8 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     private userService: UserService,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private alertCtrl: AlertController
   ) {
     this.initializeApp();
   }
@@ -78,10 +78,35 @@ export class AppComponent implements OnInit {
   }
 
   logout(){
-    // this.userService.showSidebar = false;
-    // this.userService.showMenubar = false;
+    this.presentAlert();
+  }
+
+  async presentAlert(){
+      const alert = await this.alertCtrl.create({
+        //cssClass: 'my-custom-class',
+        header: 'Logout Confirmation',
+        message: 'Are you sure you want to logout?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              console.log('Confirm Cancel: blah');
+            }
+          }, {
+            text: 'Confirm',
+            handler: () => {
+              this.userService.showSidebar = false;
+    this.userService.showMenubar = false;
     // this.router.navigateByUrl('/login');
     this.authenticationService.logout();
+            }
+          }
+        ]
+      });
+  
+      await alert.present();
   }
 
   toggleSideBar(){
