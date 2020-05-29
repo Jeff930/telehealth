@@ -41,37 +41,6 @@ export class SignupPage implements OnInit {
 
     ngOnInit(){}
 
-    // signup(formData){
-    //   if ( formData.password === formData.confirmpassword) {
-    //     if (formData.password.length < 6) {
-    //       this.showShortPassword = true;
-    //       this.showError = false;
-    //       this.showSuccess = false;
-    //       this.showPasswordMismatch = false;
-    //     } else {
-    //       this.apiService.signupUser(formData).subscribe( res => {
-    //         console.log(res);
-    //         if (res.affectedRows==1){
-    //           this.showSuccess = true;
-    //           this.showShortPassword = false;
-    //           this.showError = false;
-    //           this.showPasswordMismatch = false;
-    //         }else{
-    //           this.showSuccess = false;
-    //           this.showShortPassword = false;
-    //           this.showError = true;
-    //           this.showPasswordMismatch = false;
-    //         }
-    //       });
-    //     }
-    //   } else {
-    //       this.showError = false;
-    //       this.showShortPassword = false;
-    //       this.showSuccess = false;
-    //       this.showPasswordMismatch = true; 
-    //   }
-    // }
-
     signup(formData){
       if ( formData.password === formData.confirmpassword) {
         if (formData.password.length < 6) {
@@ -80,20 +49,20 @@ export class SignupPage implements OnInit {
           this.showSuccess = false;
           this.showPasswordMismatch = false;
         } else {
-          // this.apiService.signupUser(formData).subscribe( res => {
-          //   console.log(res);
-          //   if (res.affectedRows==1){
+          this.apiService.signupUser(formData).subscribe( res => {
+            console.log(res);
+            if (res.affectedRows==1){
               this.showSuccess = true;
               this.showShortPassword = false;
               this.showError = false;
               this.showPasswordMismatch = false;
-            // }else{
-            //   this.showSuccess = false;
-            //   this.showShortPassword = false;
-            //   this.showError = true;
-            //   this.showPasswordMismatch = false;
-            // }
-          // });
+            }else{
+              this.showSuccess = false;
+              this.showShortPassword = false;
+              this.showError = true;
+              this.showPasswordMismatch = false;
+            }
+          });
         }
       } else {
           this.showError = false;
