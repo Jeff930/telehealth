@@ -59,29 +59,29 @@ export class SetupProfilePage implements OnInit {
 
   saveFormChanges() {
     this.formStatus = true;
-    this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
-      console.log(res);
-      this.getUserDetails();
-    });
+    // this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
+    //   console.log(res);
+    //   this.getUserDetails();
+    // });
   }
 
   getUserDetails() {
     let userDetails = JSON.parse(localStorage.getItem('authenticated'));
     let emailAddress = userDetails.email;
 
-    this.apiService.getUserDetails(emailAddress).subscribe(res => {
-      // console.log(res);
-      this.profile_form.patchValue({
-        username: res[0].UserName,
-        userid: res[0].UserId,
-        firstname: res[0].FirstName,
-        lastname: res[0].LastName,
-        email: res[0].EmailAddress
-      });
+    // this.apiService.getUserDetails(emailAddress).subscribe(res => {
+    //   // console.log(res);
+    //   this.profile_form.patchValue({
+    //     username: res[0].UserName,
+    //     userid: res[0].UserId,
+    //     firstname: res[0].FirstName,
+    //     lastname: res[0].LastName,
+    //     email: res[0].EmailAddress
+    //   });
 
-      this.emailAddress = res[0].EmailAddress;
-      this.firstName = res[0].FirstName;
-      this.lastName = res[0].LastName;
-    });
+    //   this.emailAddress = res[0].EmailAddress;
+    //   this.firstName = res[0].FirstName;
+    //   this.lastName = res[0].LastName;
+    // });
   }
 }
