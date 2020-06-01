@@ -109,6 +109,10 @@ ion-item.selected {
   --color: #0a947a;
 }
 
+ion-title{
+  font-family: 'Montserrat', sans-serif;
+}
+
 .logo {
   padding: 10px 40px;
 }

@@ -3,10 +3,10 @@
     <ion-title>
       My Profile
     </ion-title>
-    <ion-button *ngIf="formStatus == true" slot="end" (click)="editForm()" class="btn-save ripple-style">
+    <ion-button *ngIf="isReadonly == true" slot="end" (click)="editForm()" class="btn-save ripple-style">
       <ion-icon name="create-outline"></ion-icon>&nbsp;Edit
     </ion-button>
-    <ion-button *ngIf="formStatus == false" slot="end" (click)="saveFormChanges()" class="btn-save ripple-style">
+    <ion-button *ngIf="isReadonly == false" slot="end" (click)="saveFormChanges()" [disabled]="formStatus" class="btn-save ripple-style">
       <ion-icon name="save-outline"></ion-icon>&nbsp;Save
     </ion-button>
   </ion-toolbar>
@@ -19,12 +19,12 @@
         <ion-col size="12">
           <ion-card class="banner">
             <ion-row>
-              <ion-col size="12" size-sm>
+              <ion-col size="3">
                 <div class="profile">
                   <img class="profile-image" src="assets/imgs/profile.jpg">
                 </div>
               </ion-col>
-              <ion-col size="12" size-sm>
+              <ion-col size="9">
                 <ion-card class="life-verse-card">
                   <ion-card-header>
                     <ion-card-subtitle>Life Verse</ion-card-subtitle>
@@ -66,33 +66,33 @@
                     <ion-row>
                       <ion-col size="12" size-sm>
                         <div>
-                          <ion-item *ngIf="formStatus == false" class="input_editmode">
+                          <ion-item *ngIf="isReadonly == false" class="input_editmode">
                             <ion-label></ion-label>
                             <ion-icon name="person"></ion-icon>
-                            <ion-input type="text" placeholder="First Name" required [readonly]="formStatus"
+                            <ion-input type="text" placeholder="First Name" required [readonly]="isReadonly"
                               formControlName="firstname"></ion-input>
                           </ion-item>
-                          <ion-item *ngIf="formStatus == true" class="input_romode">
-                            <ion-icon class="icon-label" name="person"></ion-icon>
-                            <ion-label>
-                              &nbsp; {{firstName}}
-                            </ion-label>
+                          <ion-item *ngIf="isReadonly == true" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="person"></ion-icon>
+                            <ion-input type="text" placeholder="First Name" required [readonly]="isReadonly"
+                              formControlName="firstname"></ion-input>
                           </ion-item>
                         </div>
                       </ion-col>
                       <ion-col size="12" size-sm>
                         <div>
-                          <ion-item *ngIf="formStatus == false" class="input_editmode">
+                          <ion-item *ngIf="isReadonly == false" class="input_editmode">
                             <ion-label></ion-label>
                             <ion-icon name="person-outline"></ion-icon>
-                            <ion-input type="text" placeholder="Last Name" required [readonly]="formStatus"
+                            <ion-input type="text" placeholder="Last Name" required [readonly]="isReadonly"
                               formControlName="lastname"></ion-input>
                           </ion-item>
-                          <ion-item *ngIf="formStatus == true" class="input_romode">
-                            <ion-icon class="icon-label" name="person-outline"></ion-icon>
-                            <ion-label>
-                              &nbsp; {{lastName}}
-                            </ion-label>
+                          <ion-item *ngIf="isReadonly == true" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="person-outline"></ion-icon>
+                            <ion-input type="text" placeholder="Last Name" required [readonly]="isReadonly"
+                              formControlName="lastname"></ion-input>
                           </ion-item>
                         </div>
                       </ion-col>
@@ -100,35 +100,37 @@
                     <ion-row>
                       <ion-col size="12" size-sm>
                         <div>
-                          <ion-item *ngIf="formStatus == false" class="input_editmode">
+                          <ion-item *ngIf="isReadonly == false" class="input_editmode">
                             <ion-label></ion-label>
                             <ion-icon name="mail"></ion-icon>
-                            <ion-input type="text" placeholder="Email Address" required [readonly]="formStatus"
+                            <ion-input type="text" placeholder="Email Address" required [readonly]="isReadonly"
                               formControlName="email">
                             </ion-input>
                           </ion-item>
-                          <ion-item *ngIf="formStatus == true" class="input_romode">
-                            <ion-icon class="icon-label" name="mail"></ion-icon>
-                            <ion-label>
-                              &nbsp; {{emailAddress}}
-                            </ion-label>
+                          <ion-item *ngIf="isReadonly == true" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="mail"></ion-icon>
+                            <ion-input type="text" placeholder="Email Address" required [readonly]="isReadonly"
+                              formControlName="email">
+                            </ion-input>
                           </ion-item>
                         </div>
                       </ion-col>
                       <ion-col size="12" size-sm>
                         <div>
-                          <ion-item *ngIf="formStatus == false" class="input_editmode">
+                          <ion-item *ngIf="isReadonly == false" class="input_editmode">
                             <ion-label></ion-label>
                             <ion-icon name="calendar"></ion-icon>
-                            <ion-input type="text" placeholder="Date of Birth" required [readonly]="formStatus"
+                            <ion-input type="text" placeholder="Date of Birth" required [readonly]="isReadonly"
                               formControlName="date">
                             </ion-input>
                           </ion-item>
-                          <ion-item *ngIf="formStatus == true" class="input_romode">
-                            <ion-icon class="icon-label" name="calendar"></ion-icon>
-                            <ion-label>
-                              &nbsp; 
-                            </ion-label>
+                          <ion-item *ngIf="isReadonly == true" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="calendar"></ion-icon>
+                            <ion-input type="text" placeholder="Date of Birth" required [readonly]="isReadonly"
+                              formControlName="date">
+                            </ion-input>
                           </ion-item>
                         </div>
                       </ion-col>

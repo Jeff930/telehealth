@@ -13,6 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class SetupProfilePage implements OnInit {
 
+  isReadonly: boolean = true;
   formStatus: boolean = true;
   profile_form: FormGroup;
   emailAddress: string;
@@ -28,19 +29,28 @@ export class SetupProfilePage implements OnInit {
     public userService: UserService,
     private apiService: ApiService) {
     this.profile_form = this.formBuilder.group({
-      verseTitle: new FormControl('', Validators.required),
-      verseContent: new FormControl('', Validators.required),
+      verseTitle: new FormControl('a', Validators.required),
+      verseContent: new FormControl('a', Validators.required),
       userid: new FormControl(0),
-      username: new FormControl(''),
+      username: new FormControl('a'),
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
       email: new FormControl('', Validators.compose([Validators.required])),
-      date: new FormControl('', Validators.required)
+      date: new FormControl('a', Validators.required)
     });
   }
 
   ngOnInit() {
     this.getUserDetails();
+
+    this.profile_form.valueChanges.subscribe(
+      result => {
+        if(this.profile_form.status == 'VALID'){
+          this.formStatus = false;
+        }else{
+          this.formStatus = true;
+        }
+      });
   }
   
   ionViewWillEnter(){
@@ -55,15 +65,15 @@ export class SetupProfilePage implements OnInit {
   }
 
   editForm() {
-    this.formStatus = false;
+    this.isReadonly = false;
   }
 
   saveFormChanges() {
-    this.formStatus = true;
-    this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
-      console.log(res);
-      this.getUserDetails();
-    });
+    this.isReadonly = true;
+    // this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
+    //   console.log(res);
+    //   this.getUserDetails();
+    // });
   }
 
   getUserDetails() {
