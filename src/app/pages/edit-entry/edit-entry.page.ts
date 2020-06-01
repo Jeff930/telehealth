@@ -34,7 +34,8 @@ export class EditEntryPage implements OnInit {
 
   ionViewWillEnter(){
     this.userService.showMenubar = true;
-    if (this.platform.is('desktop')) {
+    console.log(this.platform.width());
+    if (this.platform.width()>850) {
       this.userService.showSidebar = true;
     } else {
       this.userService.showSidebar = false;

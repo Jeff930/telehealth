@@ -43,14 +43,15 @@ export class SetupProfilePage implements OnInit {
     this.getUserDetails();
   }
   
-  ionViewWillEnter() {
+  ionViewWillEnter(){
     this.userService.showMenubar = true;
-    if (this.platform.is('desktop')) {
+    console.log(this.platform.width());
+    if (this.platform.width()>850) {
       this.userService.showSidebar = true;
     } else {
       this.userService.showSidebar = false;
     }
-    console.log(this.userService.showMenubar, this.userService.showSidebar);
+    console.log(this.userService.showMenubar,this.userService.showSidebar);
   }
 
   editForm() {

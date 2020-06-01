@@ -40,4 +40,6 @@ export class ForgotPasswordPage implements OnInit {
     console.log(data);
   }
 
+  
+
 }
