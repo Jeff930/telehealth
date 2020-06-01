@@ -1,7 +1,42 @@
 <ion-content fullscreen>
 	<form  [formGroup]="login_form" >
 		<ion-grid>
-  			<ion-row>
+			<ion-row>
+    			<ion-col size-lg="8" offset-lg="2" size-xl="10" offset-xl="1" text-center  class="login-content-desktop" >
+    				<ion-row>
+    					<ion-col size="6" class="left-content">
+    						<img class="logo-desktop" src="assets/imgs/logo-white.png">
+
+    						<ion-button class="social-login" size="large" expand="full" (click)="login(login_form.value)" >Sign in with Google+</ion-button> 
+
+    						<ion-button class="social-login" size="large" expand="full" (click)="login(login_form.value)" >Sign in with Facebook</ion-button> 
+        		    	</ion-col>
+
+        		    	<ion-col size="6" class="right-content">
+        		    		<ion-button class="signup-nav" (click)="signup()">Register</ion-button>
+        		    		<ion-button class="login-nav" (click)="signup()" disabled="true">Log In</ion-button>
+        		    		
+        		    		<h1>Log In</h1>
+
+     						<ion-item>
+     							<ion-label class="label-desktop" position="floating">Email Address</ion-label>
+            					<ion-input type="text" formControlName="email" required></ion-input>
+      						</ion-item>
+
+      						<ion-item>
+         						<ion-label class="label-desktop" position="floating">Password</ion-label>
+        						<ion-input type="password" formControlName="password" required></ion-input>
+      						</ion-item>
+
+      						<ion-button class="login-button" size="large" expand="full" (click)="login(login_form.value)" [disabled]="!login_form.valid" type="submit">Sign In</ion-button>
+      				
+      						<button class="recover-button" text-center (click)="recover()">Forgot Your Password?</button>
+
+      					</ion-col>	
+      				</ion-row>		
+				</ion-col>
+  			</ion-row>
+  			<!-- <ion-row>
     			<ion-col size-sm="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3" size-xl="4" offset-xl="4" text-center  class="login-content" >
     				<img class="logo" src="assets/imgs/logo-white.png"> 
         		      
@@ -17,16 +52,16 @@
         				<ion-input placeholder="Password" type="password" formControlName="password" required></ion-input>
       				</ion-item>
 
-      				<ion-button expand="full" (click)="login(login_form.value)" [disabled]="!login_form.valid" type="submit">LOGIN</ion-button>
+      				<ion-button expand="full" (click)="login(login_form.value)" [disabled]="!login_form.valid" type="submit" class="mobile-button">LOGIN</ion-button>
       				
       				<button class="white" text-center (click)="recover()">Forgot your password?</button>
 
       				<p class="white margin-top" text-center>Don't have an account? Get one here!</p>
 
-      				<ion-button expand="full" (click)="signup()">SIGN UP</ion-button>     				
+      				<ion-button class="mobile-button" expand="full" (click)="signup()">SIGN UP</ion-button>     				
 
 				</ion-col>
-  			</ion-row>
+  			</ion-row> -->
     	</ion-grid>
 	</form>
 </ion-content>
