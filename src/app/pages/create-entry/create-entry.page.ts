@@ -26,7 +26,7 @@ export class CreateEntryPage implements OnInit {
   }
 
   saveEntry(){
-    this.router.navigateByUrl('/view-entry');
+    this.userService.saveEntry();
   }
 
   cancelEntry(){

@@ -6,6 +6,7 @@ import { ViewEntryComponent} from './view-entry/view-entry.component';
 import { JournalCardComponent } from './journal-card/journal-card.component';
 import { QuoteCardComponent } from './quote-card/quote-card.component';
 import { JournalConstructComponent} from './journal-construct/journal-construct.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { JournalConstructComponent} from './journal-construct/journal-construct.
   ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     ViewEntryComponent,
