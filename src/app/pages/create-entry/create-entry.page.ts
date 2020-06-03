@@ -13,6 +13,8 @@ import { ApiService } from '../../services/api.service';
 })
 export class CreateEntryPage implements OnInit {
 
+  showError=false;
+
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -30,6 +32,15 @@ export class CreateEntryPage implements OnInit {
   saveEntry(){
     console.log(this.userService.title);
     console.log(this.userService.content);
+    this.apiService.createEntry(this.userService.title,this.userService.content).subscribe(res => {
+      console.log(res);
+      if (res.affectedRows==1){
+        this.showError = false;
+        this.router.navigateByUrl('/view-entries');
+      }else{
+        this.showError = true;
+      }
+    });
   }
 
   cancelEntry(){
