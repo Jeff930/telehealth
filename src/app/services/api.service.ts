@@ -49,4 +49,14 @@ export class ApiService {
     return this.http.post<any>('http://localhost:5000/user-signup', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
+
+  createEntry(title,content) {
+    const body = new HttpParams()
+      .set('title', title)
+      .set('content', content)
+      .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
+    console.log(body);
+    return this.http.post<any>('http://localhost:5000/create-entry', body.toString(),
+     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+  }
 }
