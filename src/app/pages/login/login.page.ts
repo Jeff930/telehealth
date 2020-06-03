@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
               console.log("true");
               this.showError=false;
               this.userService.showSidebar = true;
-              this.authService.login(formData);
+              this.authService.login(res);
               this.login_form.reset()
             }else{
               console.log("false");
