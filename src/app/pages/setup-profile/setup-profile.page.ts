@@ -15,6 +15,7 @@ export class SetupProfilePage implements OnInit {
 
   isReadonly: boolean = true;
   formStatus: boolean = true;
+  piTitle: string = "Personal Information";
   profile_form: FormGroup;
   emailAddress: string;
   firstName: string;
@@ -66,10 +67,12 @@ export class SetupProfilePage implements OnInit {
 
   editForm() {
     this.isReadonly = false;
+    this.piTitle = "Edit Personal Information";
   }
 
   saveFormChanges() {
     this.isReadonly = true;
+    this.piTitle = "Personal Information";
     // this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
     //   console.log(res);
     //   this.getUserDetails();
