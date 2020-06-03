@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-create-entry',
@@ -19,14 +20,16 @@ export class CreateEntryPage implements OnInit {
     public menuCtrl : MenuController,
     public platform : Platform,
     public http : HttpClient,
-    public userService : UserService) {
+    public userService : UserService,
+    public apiService : ApiService) {
     }
 
   ngOnInit() {
   }
 
   saveEntry(){
-    this.userService.saveEntry();
+    console.log(this.userService.title);
+    console.log(this.userService.content);
   }
 
   cancelEntry(){
