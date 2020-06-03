@@ -11,6 +11,8 @@ export class UserService {
   
   showSidebar = false;
   showMenubar = true;
+  title="";
+  content="";
 
   constructor() { 
     
