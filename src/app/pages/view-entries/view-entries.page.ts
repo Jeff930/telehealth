@@ -14,6 +14,7 @@ import { ApiService } from '../../services/api.service';
 export class ViewEntriesPage implements OnInit {
 
   option = 0;
+  searchInput="";
 
   constructor(public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -26,7 +27,11 @@ export class ViewEntriesPage implements OnInit {
     }
 
   ngOnInit() {
-    this.apiService.getEntries(1).subscribe(res=>{console.log(res)});
+    this.apiService.getEntries(1).subscribe( res=> {
+          console.log(res)
+        },err =>{
+          console.log(err);
+        });
   }
 
   showSearch(){
@@ -52,6 +57,13 @@ export class ViewEntriesPage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
+  }
+
+  search(event){
+    console.log(this.searchInput);
+    if (this.searchInput.length>3){
+      
+    }
   }
 
 }
