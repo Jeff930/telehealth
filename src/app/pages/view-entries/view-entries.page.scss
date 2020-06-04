@@ -46,3 +46,13 @@ ion-card{
 ion-text{
 	color:#ffffff;
 }
+
+.searchResults{
+	margin: 0px 20px;
+	p{
+	margin-bottom:0px;
+	}
+	ion-button{
+	--color:#E74C3C;	
+	}
+}
