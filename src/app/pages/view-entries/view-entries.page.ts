@@ -14,6 +14,7 @@ import { ApiService } from '../../services/api.service';
 export class ViewEntriesPage implements OnInit {
 
   option = 0;
+  page;
   searchInput="";
 
   constructor(public loadingCtrl: LoadingController,
@@ -27,7 +28,8 @@ export class ViewEntriesPage implements OnInit {
     }
 
   ngOnInit() {
-    this.apiService.getEntries(1).subscribe( res=> {
+    this.page = '1';
+    this.apiService.getEntries(this.page).subscribe( res=> {
           console.log(res)
         },err =>{
           console.log(err);
@@ -60,9 +62,15 @@ export class ViewEntriesPage implements OnInit {
   }
 
   search(event){
+    this.page = '1';
+    console.log(event);
     console.log(this.searchInput);
     if (this.searchInput.length>3){
-      
+      this.apiService.searchEntries(this.page,this.searchInput).subscribe( res=> {
+        console.log(res)
+      },err =>{
+        console.log(err);
+      });
     }
   }
 
