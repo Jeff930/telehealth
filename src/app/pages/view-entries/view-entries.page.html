@@ -15,7 +15,7 @@
 				<ion-row *ngIf="option==1">
 					<ion-col size-xs="12" size-sm="10" size-md="7" size-lg="5" size-xl="5">
 						<ion-text>SEARCH</ion-text>
-						<ion-searchbar class="searchbar" showCancelButton="focus" cancelButtonText="Custom Cancel"
+						<ion-searchbar class="searchbar" (ionChange)="search()" showCancelButton="focus" cancelButtonText="Custom Cancel"
 							placeholder=""></ion-searchbar>
 					</ion-col>
 				</ion-row>
