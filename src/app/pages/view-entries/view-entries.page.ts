@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-view-entries',
@@ -20,10 +21,12 @@ export class ViewEntriesPage implements OnInit {
     public menuCtrl : MenuController,
     public platform : Platform,
     public http : HttpClient,
-    public userService : UserService) {
+    public userService : UserService,
+    public apiService : ApiService) {
     }
 
   ngOnInit() {
+    this.apiService.getEntries(1).subscribe(res=>{console.log(res)});
   }
 
   showSearch(){
