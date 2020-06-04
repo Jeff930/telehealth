@@ -68,4 +68,14 @@ export class ApiService {
     return this.http.post<any>('http://localhost:5000/get-entries', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
+
+  searchEntries(page,searchKey) {
+    const body = new HttpParams()
+      .set('id', JSON.parse(localStorage.getItem('authenticated'))[0].UserId)
+      .set('page', page)
+      .set('searchKey',searchKey);
+    console.log(body);
+    return this.http.post<any>('http://localhost:5000/search-entries', body.toString(),
+     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+  }
 }
