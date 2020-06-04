@@ -16,8 +16,11 @@ export class ViewEntriesPage implements OnInit {
   option = 0;
   page;
   hasSearched=false;
+  hasFiltered = false;
   searchInput="";
+  searchDisplay="";
   dateInput="";
+  dateDisplay="";
 
   constructor(public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -36,6 +39,7 @@ export class ViewEntriesPage implements OnInit {
   getEntries(){
     this.page = '1';
     this.hasSearched = false;
+    this.hasFiltered = false;
     this.apiService.getEntries(this.page).subscribe( res=> {
           console.log(res)
         },err =>{
@@ -74,7 +78,9 @@ export class ViewEntriesPage implements OnInit {
     console.log(this.searchInput);
     if (this.searchInput.length>3){
       this.apiService.searchEntries(this.page,this.searchInput).subscribe( res=> {
+        this.searchDisplay = this.searchInput;
         this.hasSearched = true;
+        this.hasFiltered = false;
         console.log(res)
       },err =>{
         console.log(err);
@@ -85,17 +91,19 @@ export class ViewEntriesPage implements OnInit {
   filter(){
     this.page = '1';
     console.log(this.dateInput);
-    var date = this.dateInput.split('T')[0]; 
-    console.log(date);
-    this.apiService.filterEntries(this.page,date).subscribe( res=> {
-      this.hasSearched = true;
+    this.dateInput = this.dateInput.split('T')[0]; 
+    console.log(this.dateInput);
+    this.apiService.filterEntries(this.page,this.dateInput).subscribe( res=> {
+      this.dateDisplay = this.dateInput;
+      this.hasSearched = false;
+      this.hasFiltered = true;
       console.log(res)
     },err =>{
       console.log(err);
     }); 
   }
 
-  clearSearch(){
+  clearInput(){
     this.getEntries();
   }
 
