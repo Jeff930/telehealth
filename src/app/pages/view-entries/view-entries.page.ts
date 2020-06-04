@@ -17,6 +17,7 @@ export class ViewEntriesPage implements OnInit {
   page;
   hasSearched=false;
   searchInput="";
+  dateInput="";
 
   constructor(public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -79,6 +80,21 @@ export class ViewEntriesPage implements OnInit {
         console.log(err);
       });
     }
+  }
+
+  filter(){
+    this.page = '1';
+    console.log(this.dateInput);
+    var dateFormat = this.dateInput.split('T')[0]; 
+    console.log(dateFormat);
+    // if (this.searchInput.length>3){
+    //   this.apiService.searchEntries(this.page,this.searchInput).subscribe( res=> {
+    //     this.hasSearched = true;
+    //     console.log(res)
+    //   },err =>{
+    //     console.log(err);
+    //   });
+    // }
   }
 
   clearSearch(){
