@@ -78,4 +78,14 @@ export class ApiService {
     return this.http.post<any>('http://localhost:5000/search-entries', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
+
+  filterEntries(page,date) {
+    const body = new HttpParams()
+      .set('id', JSON.parse(localStorage.getItem('authenticated'))[0].UserId)
+      .set('page', page)
+      .set('date',date);
+    console.log(body);
+    return this.http.post<any>('http://localhost:5000/filter-entries', body.toString(),
+     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+  }
 }
