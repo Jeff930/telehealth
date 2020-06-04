@@ -23,7 +23,7 @@
 				<ion-row *ngIf="option==2">
 					<ion-col size-xs="12" size-sm="6" size-md="5" size-lg="3" size-xl="3">
 						<ion-text>FILTER BY DATE</ion-text>
-						<ion-datetime displayFormat="MMMM DD, YYYY" class="sort" placeholder="MM DD, YYYY" (ionChange)></ion-datetime>
+						<ion-datetime displayFormat="MMMM DD, YYYY" pickerFormat="MMMM DD, YYYY" class="sort" placeholder="MM DD, YYYY" (ionChange)="filter()" [(ngModel)]="dateInput"></ion-datetime>
 					</ion-col>	
 				</ion-row>
 			</ion-grid>
@@ -31,7 +31,7 @@
    	</ion-card>
    	<ion-grid>
    		<div class="searchResults" *ngIf="hasSearched">
-   			<p>Showing results for "{{clearSearch}}".</p>
+   			<p>Showing search results for "{{clearSearch}}".</p>
    			<ion-button fill="clear" (click)="clearInput()">Clear Search</ion-button>
    		</div>
 		<ion-row>
