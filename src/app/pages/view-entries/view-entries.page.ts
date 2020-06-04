@@ -15,6 +15,7 @@ export class ViewEntriesPage implements OnInit {
 
   option = 0;
   page;
+  hasSearched=false;
   searchInput="";
 
   constructor(public loadingCtrl: LoadingController,
@@ -28,7 +29,12 @@ export class ViewEntriesPage implements OnInit {
     }
 
   ngOnInit() {
+    this.getEntries();
+  }
+
+  getEntries(){
     this.page = '1';
+    this.hasSearched = false;
     this.apiService.getEntries(this.page).subscribe( res=> {
           console.log(res)
         },err =>{
@@ -67,11 +73,16 @@ export class ViewEntriesPage implements OnInit {
     console.log(this.searchInput);
     if (this.searchInput.length>3){
       this.apiService.searchEntries(this.page,this.searchInput).subscribe( res=> {
+        this.hasSearched = true;
         console.log(res)
       },err =>{
         console.log(err);
       });
     }
+  }
+
+  clearSearch(){
+    this.getEntries();
   }
 
 }
