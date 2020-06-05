@@ -15,15 +15,20 @@ export class JournalCardComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.getREntries();
+    //this.getREntries();
   }
 
   goToEntry(){
     this.router.navigateByUrl('/view-entry');
   }
 
-  getREntries(){
-    const sample = this.userService.getRecentEntries();
-    console.log(sample);
+  trimDate(date){
+    var formatted = date.split('T')[0]; 
+    return formatted;
   }
+
+  // getREntries(){
+  //   const sample = this.userService.getRecentEntries();
+  //   console.log(sample);
+  // }
 }
