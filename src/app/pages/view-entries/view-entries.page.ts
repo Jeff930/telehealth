@@ -41,7 +41,8 @@ export class ViewEntriesPage implements OnInit {
     this.hasSearched = false;
     this.hasFiltered = false;
     this.apiService.getEntries(this.page).subscribe( res=> {
-          console.log(res)
+          console.log(res);
+          this.userService.entries = res.rows;
         },err =>{
           console.log(err);
         });
