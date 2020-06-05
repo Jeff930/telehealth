@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,8 @@ import { UserService } from '../../services/user.service';
 })
 export class HomePage implements OnInit {
 
+  page;
+  recentEntries = [];
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -19,9 +22,11 @@ export class HomePage implements OnInit {
     public menuCtrl : MenuController,
     public platform : Platform,
     public http : HttpClient,
-    public userService : UserService) { }
+    public userService : UserService,
+    public apiService : ApiService) { }
 
   ngOnInit() {
+    this.getEntries();
   }
 
   ionViewWillEnter(){
@@ -33,6 +38,20 @@ export class HomePage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
+  }
+
+  getEntries(){
+    this.page = '1';
+    this.apiService.getEntries(this.page).subscribe( res=> {
+          this.recentEntries = res.rows.slice(0,2);
+          this.setEntries(this.recentEntries);
+        },err =>{
+          console.log(err);
+        });
+  }
+
+  setEntries(entries){
+    this.userService.setRecentEntries(entries);
   }
 
 }

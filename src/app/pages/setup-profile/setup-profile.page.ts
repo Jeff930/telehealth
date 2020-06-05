@@ -17,9 +17,6 @@ export class SetupProfilePage implements OnInit {
   formStatus: boolean = true;
   piTitle: string = "Personal Information";
   profile_form: FormGroup;
-  emailAddress: string;
-  firstName: string;
-  lastName: string;
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -73,17 +70,17 @@ export class SetupProfilePage implements OnInit {
   saveFormChanges() {
     this.isReadonly = true;
     this.piTitle = "Personal Information";
-    // this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
-    //   console.log(res);
-    //   this.getUserDetails();
-    // });
+    this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
+      // console.log(res);
+      this.getUserDetails();
+    });
   }
 
   getUserDetails() {
     let userDetails = JSON.parse(localStorage.getItem('authenticated'));
-    let emailAddress = userDetails.email;
+    let userId = userDetails[0].UserId;
 
-    this.apiService.getUserDetails(emailAddress).subscribe(res => {
+    this.apiService.getUserDetails(userId).subscribe(res => {
       // console.log(res);
       this.profile_form.patchValue({
         username: res[0].UserName,
@@ -92,10 +89,6 @@ export class SetupProfilePage implements OnInit {
         lastname: res[0].LastName,
         email: res[0].EmailAddress
       });
-
-      this.emailAddress = res[0].EmailAddress;
-      this.firstName = res[0].FirstName;
-      this.lastName = res[0].LastName;
     });
   }
 }
