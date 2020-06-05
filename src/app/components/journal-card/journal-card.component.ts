@@ -14,9 +14,7 @@ export class JournalCardComponent implements OnInit {
     private userService: UserService
     ) { }
 
-  ngOnInit() {
-    //this.getREntries();
-  }
+  ngOnInit() {}
 
   goToEntry(){
     this.router.navigateByUrl('/view-entry');
@@ -26,9 +24,5 @@ export class JournalCardComponent implements OnInit {
     var formatted = date.split('T')[0]; 
     return formatted;
   }
-
-  // getREntries(){
-  //   const sample = this.userService.getRecentEntries();
-  //   console.log(sample);
-  // }
+  
 }
