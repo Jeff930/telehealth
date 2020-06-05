@@ -77,6 +77,14 @@ export class AppComponent implements OnInit {
     }
   }
 
+  getUsername(){
+    return JSON.parse(localStorage.getItem('authenticated'))[0].UserName;
+  }
+
+  getEmail(){
+    return JSON.parse(localStorage.getItem('authenticated'))[0].EmailAddress;
+  }
+
   logout(){
     // this.userService.showSidebar = false;
     // this.userService.showMenubar = false;
