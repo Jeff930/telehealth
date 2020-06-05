@@ -6,28 +6,13 @@ import { Subject } from 'rxjs';
 })
 export class UserService {
 
-  private mySubject = new Subject<any>();
-  ob = this.mySubject.asObservable();
-  
   showSidebar = false;
   showMenubar = true;
   title="";
   content="";
   entries = [];
 
-  constructor() { 
-    
+  constructor() {   
   }
-
-  // saveEntry(){
-  //   this.mySubject.next();
-  // }
-
-  // setRecentEntries(entries){
-  //   this.rEntries = entries;
-  // }
-
-  // getRecentEntries(){
-  //   return this.rEntries;
-  // }
+  
 }
