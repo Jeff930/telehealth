@@ -14,7 +14,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class HomePage implements OnInit {
 
   page;
-  recentEntries = [];
+
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -43,15 +43,11 @@ export class HomePage implements OnInit {
   getEntries(){
     this.page = '1';
     this.apiService.getEntries(this.page).subscribe( res=> {
-          this.userService.entries = res.rows.slice(0,2);
-          console.log(this.userService.entries);
-        },err =>{
-          console.log(err);
-        });
+      this.userService.entries = res.rows.slice(0,2);
+      console.log(this.userService.entries);
+    },err =>{
+      console.log(err);
+    });
   }
-
-  // setEntries(entries){
-  //   this.userService.setRecentEntries(entries);
-  // }
 
 }
