@@ -20,8 +20,8 @@
         </div>
 
         <ion-list id="inbox-list">
-          <ion-list-header>Sample Username</ion-list-header>
-          <ion-note>Sample Email Address</ion-note>
+          <ion-list-header>{{getUsername()}}</ion-list-header>
+          <ion-note>{{getEmail()}}</ion-note>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
