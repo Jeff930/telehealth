@@ -13,20 +13,21 @@ export class UserService {
   showMenubar = true;
   title="";
   content="";
-  rEntries = [];
+  entries = [];
+
   constructor() { 
     
   }
 
-  saveEntry(){
-    this.mySubject.next();
-  }
+  // saveEntry(){
+  //   this.mySubject.next();
+  // }
 
-  setRecentEntries(entries){
-    this.rEntries = entries;
-  }
+  // setRecentEntries(entries){
+  //   this.rEntries = entries;
+  // }
 
-  getRecentEntries(){
-    return this.rEntries;
-  }
+  // getRecentEntries(){
+  //   return this.rEntries;
+  // }
 }
