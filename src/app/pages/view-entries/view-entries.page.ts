@@ -37,7 +37,7 @@ export class ViewEntriesPage implements OnInit {
   }
 
   getEntries(){
-    this.page = '1';
+    this.page = 1;
     this.hasSearched = false;
     this.hasFiltered = false;
     this.apiService.getEntries(this.page).subscribe( res=> {
@@ -46,6 +46,38 @@ export class ViewEntriesPage implements OnInit {
         },err =>{
           console.log(err);
         });
+  }
+
+  nextPage(){
+    this.page++;
+    if(this.hasSearched == false && this.hasFiltered == false){
+      this.apiService.getEntries(this.page).subscribe( res=> {
+        console.log(res);
+        this.userService.entries = res.rows;
+      },err =>{
+        console.log(err);
+      });
+    } else if(this.hasSearched == true && this.hasFiltered == false){
+      this.upsertSearch();
+    } else if(this.hasSearched == false && this.hasFiltered == true){
+      this.upsertFilter();
+    }
+  }
+
+  previousPage(){
+    this.page--;
+    if(this.hasSearched == false && this.hasFiltered == false){
+      this.apiService.getEntries(this.page).subscribe( res=> {
+        console.log(res);
+        this.userService.entries = res.rows;
+      },err =>{
+        console.log(err);
+      });
+    } else if(this.hasSearched == true && this.hasFiltered == false){
+      this.upsertSearch();
+    } else if(this.hasSearched == false && this.hasFiltered == true){
+      this.upsertFilter();
+    }
   }
 
   showSearch(){
@@ -74,26 +106,35 @@ export class ViewEntriesPage implements OnInit {
   }
 
   search(event){
-    this.page = '1';
+    this.page = 1;
     console.log(event);
     console.log(this.searchInput);
     if (this.searchInput.length>3){
-      this.apiService.searchEntries(this.page,this.searchInput).subscribe( res=> {
-        this.searchDisplay = this.searchInput;
-        this.hasSearched = true;
-        this.hasFiltered = false;
-        this.userService.entries = res.rows;
-      },err =>{
-        console.log(err);
-      });
+      this.upsertSearch();
     }
   }
 
+  upsertSearch(){
+    this.apiService.searchEntries(this.page,this.searchInput).subscribe( res=> {
+      console.log(res);
+      this.searchDisplay = this.searchInput;
+      this.hasSearched = true;
+      this.hasFiltered = false;
+      this.userService.entries = res.rows;
+    },err =>{
+      console.log(err);
+    });
+  }
+
   filter(){
-    this.page = '1';
+    this.page = 1;
     console.log(this.dateInput);
     this.dateInput = this.dateInput.split('T')[0]; 
     console.log(this.dateInput);
+    this.upsertFilter();
+  }
+
+  upsertFilter(){
     this.apiService.filterEntries(this.page,this.dateInput).subscribe( res=> {
       this.dateDisplay = this.dateInput;
       this.hasSearched = false;
