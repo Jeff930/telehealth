@@ -121,18 +121,16 @@
                       <ion-col size="12" size-sm>
                         <div>
                           <ion-item *ngIf="isReadonly == false" class="input_editmode">
-                            <ion-label></ion-label>
                             <ion-icon name="calendar"></ion-icon>
-                            <ion-input type="text" placeholder="Date of Birth" required [readonly]="isReadonly"
-                              formControlName="date">
-                            </ion-input>
+                            <ion-datetime displayFormat="MMMM DD, YYYY" pickerFormat="MMMM DD, YYYY" placeholder="MM DD, YYYY" required
+                              formControlName="birthdate">
+                            </ion-datetime>
                           </ion-item>
                           <ion-item *ngIf="isReadonly == true" class="input_editmode">
-                            <ion-label></ion-label>
                             <ion-icon name="calendar"></ion-icon>
-                            <ion-input type="text" placeholder="Date of Birth" required [readonly]="isReadonly"
-                              formControlName="date">
-                            </ion-input>
+                            <ion-datetime displayFormat="MMMM DD, YYYY" pickerFormat="MMMM DD, YYYY" placeholder="MM DD, YYYY" required
+                              formControlName="birthdate" [readonly]="isReadonly">
+                            </ion-datetime>
                           </ion-item>
                         </div>
                       </ion-col>

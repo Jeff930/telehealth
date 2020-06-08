@@ -82,7 +82,7 @@ export class ViewEntriesPage implements OnInit {
         this.searchDisplay = this.searchInput;
         this.hasSearched = true;
         this.hasFiltered = false;
-        console.log(res)
+        this.userService.entries = res.rows;
       },err =>{
         console.log(err);
       });
@@ -98,6 +98,7 @@ export class ViewEntriesPage implements OnInit {
       this.dateDisplay = this.dateInput;
       this.hasSearched = false;
       this.hasFiltered = true;
+      this.userService.entries = res.rows;
       console.log(res)
     },err =>{
       console.log(err);

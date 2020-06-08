@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { ApiService } from 'src/app/services/api.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-setup-profile',
@@ -25,7 +26,8 @@ export class SetupProfilePage implements OnInit {
     public platform: Platform,
     public http: HttpClient,
     public userService: UserService,
-    private apiService: ApiService) {
+    private apiService: ApiService,
+    private datepipe: DatePipe) {
     this.profile_form = this.formBuilder.group({
       verseTitle: new FormControl('a', Validators.required),
       verseContent: new FormControl('a', Validators.required),
@@ -33,8 +35,8 @@ export class SetupProfilePage implements OnInit {
       username: new FormControl('a'),
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.compose([Validators.required])),
-      date: new FormControl('a', Validators.required)
+      birthdate: new FormControl(new Date, Validators.required),
+      email: new FormControl('', Validators.compose([Validators.required]))
     });
   }
 
@@ -65,13 +67,19 @@ export class SetupProfilePage implements OnInit {
   editForm() {
     this.isReadonly = false;
     this.piTitle = "Edit Personal Information";
+    let date =  new Date(this.profile_form.value.birthdate);
+    date.setDate(date.getDate() + 2);
+    let date2 = new Date(date).toISOString();
+    this.profile_form.value.birthdate = date2;
+    console.log(this.profile_form.value.birthdate);
+    console.log(date);
+    console.log(date2);
   }
 
   saveFormChanges() {
     this.isReadonly = true;
     this.piTitle = "Personal Information";
     this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
-      // console.log(res);
       this.getUserDetails();
     });
   }
@@ -79,14 +87,16 @@ export class SetupProfilePage implements OnInit {
   getUserDetails() {
     let userDetails = JSON.parse(localStorage.getItem('authenticated'));
     let userId = userDetails[0].UserId;
-
     this.apiService.getUserDetails(userId).subscribe(res => {
-      // console.log(res);
+      console.log(res);
+      let date = this.datepipe.transform(res[0].Birthdate, 'longDate');
+      console.log(date);
       this.profile_form.patchValue({
         username: res[0].UserName,
         userid: res[0].UserId,
         firstname: res[0].FirstName,
         lastname: res[0].LastName,
+        birthdate: date,
         email: res[0].EmailAddress
       });
     });

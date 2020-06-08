@@ -15,6 +15,6 @@ import { SetupProfilePage } from './setup-profile.page';
     IonicModule,
     SetupProfilePageRoutingModule
   ],
-  declarations: [SetupProfilePage]
+  declarations: [SetupProfilePage],
 })
 export class SetupProfilePageModule {}

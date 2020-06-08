@@ -3,7 +3,7 @@
 		<ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6" size-xl="6" *ngFor="let entry of userService.entries; let i = index">
 			<ion-card (click)="goToEntry()">
   				<ion-card-header>
-    				<ion-card-subtitle>{{trimDate(entry.CreatedTimestamp)}}</ion-card-subtitle>
+    				<ion-card-subtitle>{{entry.CreatedTimestamp | date:'medium'}}</ion-card-subtitle>
     				<ion-card-title>{{entry.Title}}</ion-card-title>
   				</ion-card-header>
   				<img class="card-image" src="assets/imgs/placeholder-image.jpg"/>

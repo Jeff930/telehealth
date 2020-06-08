@@ -27,6 +27,7 @@ export class ApiService {
     const body = new HttpParams()
       .set('firstname', formData.firstname)
       .set('lastname', formData.lastname)
+      .set('birthdate', formData.birthdate)
       .set('userid', formData.userid)
       .set('username', formData.username)
       .set('email', formData.email);
