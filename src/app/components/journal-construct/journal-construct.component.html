@@ -17,8 +17,11 @@
 
 							</ion-row>
 						</ion-card-title>
-						<div></div>
+						
 					</ion-card-header>
+					<ion-card-content *ngIf="imagePath">
+						<img [src]="imagePath">
+					</ion-card-content>
 					<!-- <img class="card-image" src="assets/imgs/placeholder-image.jpg"/> -->
 					<ion-card-content>
 						<ion-textarea class="journal-content" rows="25"
