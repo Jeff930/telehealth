@@ -12,6 +12,7 @@ import { UserService } from '../../services/user.service';
 })
 export class ViewEntryPage implements OnInit {
 
+  viewedEntry;
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -23,9 +24,12 @@ export class ViewEntryPage implements OnInit {
     }
 
   ngOnInit() {
+    this.getViewedEntry();
   }
 
   editEntry(){
+    this.userService.title = this.viewedEntry.Title;
+    this.userService.content = this.viewedEntry.Content;
     this.router.navigateByUrl('/edit-entry');
   }
   
@@ -42,5 +46,10 @@ export class ViewEntryPage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
+  }
+
+  getViewedEntry(){
+    this.viewedEntry = this.userService.viewedEntry;
+    console.log(this.viewedEntry)
   }
 }

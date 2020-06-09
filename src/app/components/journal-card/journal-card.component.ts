@@ -16,7 +16,8 @@ export class JournalCardComponent implements OnInit {
 
   ngOnInit() {}
 
-  goToEntry(){
+  goToEntry(entry){
+    this.userService.viewedEntry = entry;
     this.router.navigateByUrl('/view-entry');
   }
 

@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-edit-entry',
@@ -12,6 +13,7 @@ import { UserService } from '../../services/user.service';
 })
 export class EditEntryPage implements OnInit {
 
+  showError=false;
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -19,13 +21,22 @@ export class EditEntryPage implements OnInit {
     public menuCtrl : MenuController,
     public platform : Platform,
     public http : HttpClient,
-    public userService : UserService) { }
+    public userService : UserService,
+    public apiService: ApiService) { }
 
   ngOnInit() {
   }
 
   saveChanges(){
-    this.router.navigateByUrl('/view-entry');
+    this.apiService.updateEntry(this.userService.title,this.userService.content,this.userService.viewedEntry.EntryNo).subscribe(res => {
+      console.log(res);
+      if (res.affectedRows==1){
+        this.showError = false;
+        this.router.navigateByUrl('/view-entries');
+      }else{
+        this.showError = true;
+      }
+    });
   }
 
   cancelEdit(){

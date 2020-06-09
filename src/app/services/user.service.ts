@@ -11,6 +11,7 @@ export class UserService {
   title="";
   content="";
   entries = [];
+  viewedEntry;
 
   constructor() {   
   }

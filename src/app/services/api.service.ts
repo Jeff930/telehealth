@@ -60,6 +60,17 @@ export class ApiService {
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
+  updateEntry(title,content,entryNo) {
+    const body = new HttpParams()
+      .set('title', title)
+      .set('content', content)
+      .set('entryNo', entryNo)
+      .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
+    console.log(body);
+    return this.http.post<any>('http://localhost:5000/update-entry', body.toString(),
+     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+  }
+
   getEntries(page) {
     const body = new HttpParams()
       .set('id', JSON.parse(localStorage.getItem('authenticated'))[0].UserId)
