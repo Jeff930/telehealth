@@ -5,9 +5,6 @@ import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http'
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { ApiService } from '../../services/api.service';
-import { Crop } from '@ionic-native/crop/ngx';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 @Component({
   selector: 'app-create-entry',
@@ -25,9 +22,6 @@ export class CreateEntryPage implements OnInit {
     public menuCtrl : MenuController,
     public platform : Platform,
     public http : HttpClient,
-    private imagePicker: ImagePicker,
-    private crop: Crop,
-    private transfer: FileTransfer,
     public userService : UserService,
     public apiService : ApiService) {
     }
@@ -63,5 +57,7 @@ export class CreateEntryPage implements OnInit {
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
   }
+
+  
 
 }
