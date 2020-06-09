@@ -4,7 +4,15 @@
 				<ion-card>
 					<ion-card-header>
 						<ion-card-title>
-							<ion-input placeholder="Place Your Title Here..." [(ngModel)]="userService.title"></ion-input>
+							<ion-row>
+								<ion-col size="11">
+									<ion-input placeholder="Place Your Title Here..." [(ngModel)]="userService.title"></ion-input>
+								</ion-col>
+								
+								<ion-col size="1">
+									<ion-button class="add-image"><ion-icon name="images-outline" class="util-icon"></ion-icon></ion-button>
+								</ion-col>
+							</ion-row>
 						</ion-card-title>
 					</ion-card-header>
 					<!-- <img class="card-image" src="assets/imgs/placeholder-image.jpg"/> -->
