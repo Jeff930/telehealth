@@ -99,4 +99,9 @@ export class ApiService {
     return this.http.post<any>('http://localhost:5000/filter-entries', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
+
+  deleteEntry(id) {
+    console.log(id);
+    return this.http.get<any>('http://localhost:5000/delete-entry/'+id);
+  }
 }

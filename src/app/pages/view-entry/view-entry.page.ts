@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-view-entry',
@@ -20,7 +21,8 @@ export class ViewEntryPage implements OnInit {
     public menuCtrl : MenuController,
     public platform : Platform,
     public http : HttpClient,
-    public userService : UserService) {
+    public userService : UserService,
+    public apiService: ApiService) {
     }
 
   ngOnInit() {
@@ -34,7 +36,9 @@ export class ViewEntryPage implements OnInit {
   }
   
   deleteEntry(){
-    this.router.navigateByUrl('/view-entries');
+    this.apiService.deleteEntry(this.userService.viewedEntry.EntryNo).subscribe(res => {
+      this.router.navigateByUrl('/view-entries');
+    });
   }
 
   ionViewWillEnter(){
