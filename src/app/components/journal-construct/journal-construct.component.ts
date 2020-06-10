@@ -15,7 +15,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 export class JournalConstructComponent implements OnInit {
 
   entry_form: FormGroup;
-  imagePath;
+  imagePaths = [];
 
   constructor(
     private router: Router,
@@ -32,22 +32,30 @@ export class JournalConstructComponent implements OnInit {
 
   acceptImage(image){
     console.log(image);
-    const file: File = image.files[0];
-    const reader = new FileReader();
-    console.log(file);
-    reader.addEventListener('load', (event: any) => {
-      this.imagePath = event.target.result;
-      console.log(this.imagePath);
-    //   this.apiService.uploadImage(this.selectedFile.file).subscribe(
-    //     (res) => {
+   
+    for (var i=0;i<image.files.length;i++){ 
+      var file:File = image.files[i];
+      const reader = new FileReader();
+      console.log(image.files.length);
+      console.log("entered")
+      //console.log(files);
+      reader.addEventListener('load', (event: any) => {
+        console.log("entered")
+        this.imagePaths.push(event.target.result);
+        console.log(this.imagePaths);
+        console.log(this.imagePaths.length);
+        //   this.apiService.uploadImage(this.selectedFile.file).subscribe(
+        //     (res) => {
         
-    //     },
-    //     (err) => {
+        //     },
+        //     (err) => {
         
-    //     })
-     });
+        //     })
+        });
 
-    var test= reader.readAsDataURL(file);
-    console.log(test);
+        reader.readAsDataURL(file);
+      
+    }
+   
   }
 }
