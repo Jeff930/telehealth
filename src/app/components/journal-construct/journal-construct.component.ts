@@ -42,15 +42,11 @@ export class JournalConstructComponent implements OnInit {
       reader.addEventListener('load', (event: any) => {
         console.log("entered")
         this.imagePaths.push(event.target.result);
+        this.userService.entryImages = this.imagePaths;
+        console.log(file);
         console.log(this.imagePaths);
         console.log(this.imagePaths.length);
-        //   this.apiService.uploadImage(this.selectedFile.file).subscribe(
-        //     (res) => {
-        
-        //     },
-        //     (err) => {
-        
-        //     })
+      
         });
 
         reader.readAsDataURL(file);
