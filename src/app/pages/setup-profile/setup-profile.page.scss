@@ -4,7 +4,16 @@ ion-content {
 
 ion-card-title{
     color: white;
+}
+
+.lifeverse{
+    padding-top: 0px;
+    padding-bottom: 0px;
     font-weight: bolder;
+}
+
+ion-textarea{
+    margin-top: 0px;
 }
 
 .input_editmode{
@@ -15,6 +24,8 @@ ion-card-title{
     --background: #2C3E50;
     color: white;
 }
+
+
 
 ion-card-subtitle{
     color: white;

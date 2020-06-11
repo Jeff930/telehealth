@@ -29,8 +29,8 @@ export class SetupProfilePage implements OnInit {
     private apiService: ApiService,
     private datepipe: DatePipe) {
     this.profile_form = this.formBuilder.group({
-      verseTitle: new FormControl('a', Validators.required),
-      verseContent: new FormControl('a', Validators.required),
+      lifeverse: new FormControl('', Validators.required),
+      versecontent: new FormControl('a', Validators.required),
       userid: new FormControl(0),
       username: new FormControl('a'),
       firstname: new FormControl('', Validators.required),
@@ -96,6 +96,8 @@ export class SetupProfilePage implements OnInit {
         userid: res[0].UserId,
         firstname: res[0].FirstName,
         lastname: res[0].LastName,
+        lifeverse: res[0].LifeVerse,
+        versecontent: res[0].VerseContent,
         birthdate: date,
         email: res[0].EmailAddress
       });

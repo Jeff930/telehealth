@@ -30,7 +30,9 @@ export class ApiService {
       .set('birthdate', formData.birthdate)
       .set('userid', formData.userid)
       .set('username', formData.username)
-      .set('email', formData.email);
+      .set('email', formData.email)
+      .set('lifeverse', formData.lifeverse)
+      .set('versecontent', formData.versecontent);
     console.log(body);
     return this.http.post<any>('http://localhost:5000/update-user-details', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
