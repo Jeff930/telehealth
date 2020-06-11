@@ -12,6 +12,7 @@ export class UserService {
   content="";
   entries = [];
   viewedEntry;
+  entryImages;
 
   constructor() {   
   }
