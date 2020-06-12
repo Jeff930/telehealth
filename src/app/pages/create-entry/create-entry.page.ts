@@ -34,6 +34,7 @@ export class CreateEntryPage implements OnInit {
   saveEntry(){
     console.log(this.userService.title);
     console.log(this.userService.content);
+    console.log(this.userService.entryImages);
     this.apiService.createEntry(this.userService.title,this.userService.content,this.userService.entryImages).subscribe(res => {
       console.log(res);
       if (res.affectedRows==1){

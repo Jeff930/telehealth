@@ -53,14 +53,14 @@ export class ApiService {
   }
 
   createEntry(title,content,images) {
+    console.log(images);
     const body = new HttpParams()
       .set('title', title)
       .set('content', content)
-      .set('images',images)
+      .set('images',JSON.stringify(images))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     console.log(body);
-    return this.http.post<any>('http://localhost:5000/create-entry', body.toString(),
-     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+    return this.http.post<any>('http://localhost:5000/create-entry', body);
   }
 
   updateEntry(title,content,entryNo) {

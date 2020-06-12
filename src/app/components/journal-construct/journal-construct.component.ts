@@ -32,13 +32,11 @@ export class JournalConstructComponent implements OnInit {
 
   acceptImage(image){
     console.log(image);
-   
     for (var i=0;i<image.files.length;i++){ 
       var file:File = image.files[i];
       const reader = new FileReader();
       console.log(image.files.length);
       console.log("entered")
-      //console.log(files);
       reader.addEventListener('load', (event: any) => {
         console.log("entered")
         this.imagePaths.push(event.target.result);
