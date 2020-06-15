@@ -60,7 +60,8 @@ export class ApiService {
       .set('images',JSON.stringify(images))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     console.log(body);
-    return this.http.post<any>('http://localhost:5000/create-entry', body);
+    return this.http.post<any>('http://localhost:5000/create-entry', body.toString(),
+    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
   updateEntry(title,content,entryNo) {
