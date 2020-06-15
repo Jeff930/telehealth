@@ -76,3 +76,26 @@ ion-card-subtitle{
 .icon-label{
     color: white;
 }
+
+.add-image{
+	float:right;
+	background-color:#E74C3C;	
+	color:white;
+	padding:8px 20px 5px 20px;
+	border-radius:10%;
+	cursor:pointer;
+}
+
+.add-image:focus,
+.add-image:hover {
+    background-color: #E95A4B;
+}
+
+.image-input{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
