@@ -16,6 +16,7 @@ export class JournalConstructComponent implements OnInit {
 
   entry_form: FormGroup;
   imagePaths = [];
+  images = [];
 
   constructor(
     private router: Router,
@@ -39,8 +40,12 @@ export class JournalConstructComponent implements OnInit {
       console.log("entered")
       reader.addEventListener('load', (event: any) => {
         console.log("entered")
-        this.imagePaths.push(event.target.result);
-        this.userService.entryImages = this.imagePaths;
+        var tempImage = event.target.result;
+        this.imagePaths.push(tempImage);
+        var image = btoa(tempImage).replace("+", "-").replace("/", "_")
+        this.images.push(image);
+
+        this.userService.entryImages = this.images;
         console.log(file);
         console.log(this.imagePaths);
         console.log(this.imagePaths.length);
