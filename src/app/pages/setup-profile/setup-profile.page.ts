@@ -18,6 +18,7 @@ export class SetupProfilePage implements OnInit {
   formStatus: boolean = true;
   piTitle: string = "Personal Information";
   profile_form: FormGroup;
+  imagePaths = [];
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -102,5 +103,32 @@ export class SetupProfilePage implements OnInit {
         email: res[0].EmailAddress
       });
     });
+  }
+
+  acceptImage(image){
+    console.log(image);
+    for (var i=0;i<image.files.length;i++){ 
+      var file:File = image.files[i];
+      const reader = new FileReader();
+      console.log(image.files.length);
+      console.log("entered")
+      reader.addEventListener('load', (event: any) => {
+        console.log("entered")
+        if(this.imagePaths.length <= 0){
+          this.imagePaths.push(event.target.result);
+        }else{
+          this.imagePaths[0] = event.target.result;
+        }
+        this.userService.entryImages = this.imagePaths;
+        console.log(file);
+        console.log(this.imagePaths);
+        console.log(this.imagePaths.length);
+      
+        });
+
+        reader.readAsDataURL(file);
+      
+    }
+   
   }
 }
