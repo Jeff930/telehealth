@@ -54,7 +54,13 @@ export class JournalConstructComponent implements OnInit {
 
         reader.readAsDataURL(file);
       
-    }
-   
+      }
+  }
+
+  removeImage(index){
+    this.imagePaths.splice(index,1);
+    this.images.splice(index,1);
+    this.userService.entryImages = this.images;
+    console.log(this.imagePaths);
   }
 }
