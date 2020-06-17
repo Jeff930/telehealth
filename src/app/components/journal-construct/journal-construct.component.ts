@@ -44,17 +44,10 @@ export class JournalConstructComponent implements OnInit {
         this.imagePaths.push(tempImage);
         var image = btoa(tempImage).replace("+", "-").replace("/", "_")
         this.images.push(image);
-
         this.userService.entryImages = this.images;
-        console.log(file);
-        console.log(this.imagePaths);
-        console.log(this.imagePaths.length);
-      
-        });
-
-        reader.readAsDataURL(file);
-      
-      }
+      });
+      reader.readAsDataURL(file);      
+    }
   }
 
   removeImage(index){
