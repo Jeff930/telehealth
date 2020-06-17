@@ -13,6 +13,7 @@ export class UserService {
   entries = [];
   viewedEntry;
   entryImages;
+  totalPages;
 
   constructor() {   
   }

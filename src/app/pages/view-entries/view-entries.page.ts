@@ -21,7 +21,7 @@ export class ViewEntriesPage implements OnInit {
   searchDisplay="";
   dateInput="";
   dateDisplay="";
-
+  pages;
   constructor(public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
     public alertCtrl : AlertController,
@@ -36,6 +36,17 @@ export class ViewEntriesPage implements OnInit {
     this.getEntries();
   }
 
+  onChange(d){
+    this.hasSearched = false;
+    this.hasFiltered = false;
+    this.apiService.getEntries(this.page).subscribe( res=> {
+          console.log(res);
+          this.userService.entries = res.rows;
+        },err =>{
+          console.log(err);
+        });
+  }
+
   getEntries(){
     this.page = 1;
     this.hasSearched = false;
@@ -43,6 +54,7 @@ export class ViewEntriesPage implements OnInit {
     this.apiService.getEntries(this.page).subscribe( res=> {
           console.log(res);
           this.userService.entries = res.rows;
+          this.userService.totalPages = Array.from({length: res.totalPages}, (v, i) => i + 1);
         },err =>{
           console.log(err);
         });

@@ -1,11 +1,15 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      My Entries
-    </ion-title>
-    <ion-button (click)="showSearch()" class="create-entry" slot="end"><ion-icon name="search-outline" class="util-icon"></ion-icon> </ion-button>
-    <ion-button (click)="showSort()" class="create-entry" slot="end"><ion-icon name="funnel-outline" class="util-icon"></ion-icon> </ion-button>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-title>
+			My Entries
+		</ion-title>
+		<ion-button (click)="showSearch()" class="create-entry" slot="end">
+			<ion-icon name="search-outline" class="util-icon"></ion-icon>
+		</ion-button>
+		<ion-button (click)="showSort()" class="create-entry" slot="end">
+			<ion-icon name="funnel-outline" class="util-icon"></ion-icon>
+		</ion-button>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -16,34 +20,40 @@
 					<ion-col size-xs="12" size-sm="10" size-md="7" size-lg="5" size-xl="5">
 						<ion-text>SEARCH</ion-text>
 						<ion-searchbar class="searchbar" (keyup.enter)="search($event)" [(ngModel)]="searchInput"
-						showCancelButton="focus" cancelButtonText="Custom Cancel"
-							placeholder=""></ion-searchbar>
+							showCancelButton="focus" cancelButtonText="Custom Cancel" placeholder=""></ion-searchbar>
 					</ion-col>
 				</ion-row>
 				<ion-row *ngIf="option==2">
 					<ion-col size-xs="12" size-sm="6" size-md="5" size-lg="3" size-xl="3">
 						<ion-text>FILTER BY DATE</ion-text>
-						<ion-datetime displayFormat="MMMM DD, YYYY" pickerFormat="MMMM DD, YYYY" class="sort" placeholder="MM DD, YYYY" (ionChange)="filter()" [(ngModel)]="dateInput"></ion-datetime>
-					</ion-col>	
+						<ion-datetime displayFormat="MMMM DD, YYYY" pickerFormat="MMMM DD, YYYY" class="sort"
+							placeholder="MM DD, YYYY" (ionChange)="filter()" [(ngModel)]="dateInput"></ion-datetime>
+					</ion-col>
 				</ion-row>
 			</ion-grid>
-   		</ion-card-content>
-   	</ion-card>
-   	<ion-grid>
-   		<div class="searchResults" *ngIf="hasSearched">
-   			<p>Showing search results for "{{searchDisplay}}".</p>
-   			<ion-button fill="clear" (click)="clearInput()">Clear Search</ion-button>
-   		</div>
-   		<div class="searchResults" *ngIf="hasFiltered">
-   			<p>Showing filter results for "{{dateDisplay}}".</p>
-   			<ion-button fill="clear" (click)="clearInput()">Clear Filter</ion-button>
-   		</div>
-   	</ion-grid>
-		<app-journal-card></app-journal-card>
-		<ion-grid>
+		</ion-card-content>
+	</ion-card>
+	<ion-grid>
+		<div class="searchResults" *ngIf="hasSearched">
+			<p>Showing search results for "{{searchDisplay}}".</p>
+			<ion-button fill="clear" (click)="clearInput()">Clear Search</ion-button>
+		</div>
+		<div class="searchResults" *ngIf="hasFiltered">
+			<p>Showing filter results for "{{dateDisplay}}".</p>
+			<ion-button fill="clear" (click)="clearInput()">Clear Filter</ion-button>
+		</div>
+	</ion-grid>
+	<app-journal-card></app-journal-card>
+	<ion-grid>
 		<ion-row>
 			<ion-col>
 				<ion-button class="nav-button" (click)="nextPage()">Next Page >></ion-button>
+				<ion-item class="nav-button">
+					<ion-label>Page</ion-label>
+					<ion-select interface="popover" [(ngModel)]="page" (ionChange)="onChange($event)">
+						<ion-select-option *ngFor="let p of userService.totalPages" [value]="p">{{p}}</ion-select-option>
+					</ion-select>
+				</ion-item>
 				<ion-button class="nav-button" (click)="previousPage()">
 					<< Previous Page</ion-button>
 			</ion-col>
