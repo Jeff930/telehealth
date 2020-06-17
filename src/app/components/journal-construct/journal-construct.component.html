@@ -20,7 +20,8 @@
 						
 					</ion-card-header>
 					<ion-card-content *ngIf="imagePaths.length > 0">
-						<img class="uploads" *ngFor="let imagePath of imagePaths; let i = index" [src]="imagePath">
+						<p>Click an image to remove from list.</p>
+						<img class="uploads" *ngFor="let imagePath of imagePaths; let i = index" [src]="imagePath" (click)="removeImage(i)">
 					</ion-card-content>
 					<!-- <img class="card-image" src="assets/imgs/placeholder-image.jpg"/> -->
 					<ion-card-content>

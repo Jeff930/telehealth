@@ -56,10 +56,25 @@ p{
 }
 
 .uploads{
-	height:200px;
-	width: 300px;
-	margin: 5px;
-	padding: 2px;
+	height:250px;
+	width:300px;
+	margin:5px;
+	padding:30px 2px;
+	border:3px solid lightgray;
+	background-color:lightgray;
+	border-radius:5px;
+	cursor:pointer;
+}
+
+.uploads:focus,
+.uploads:hover {
+    border:3px solid #2C3E50;
+    background-color: #2C3E50;
+}
+
+p{	
+	font-size:16px;
+	margin:10px;
 }
 
 
