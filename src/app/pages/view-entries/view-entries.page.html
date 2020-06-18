@@ -50,8 +50,8 @@
 				<ion-button class="nav-button" (click)="nextPage()">Next Page >></ion-button>
 				<ion-item class="nav-button">
 					<ion-label>Page</ion-label>
-					<ion-select interface="popover" [(ngModel)]="page" (ionChange)="onChange($event)">
-						<ion-select-option *ngFor="let p of userService.totalPages" [value]="p">{{p}}</ion-select-option>
+					<ion-select interface="popover" [(ngModel)]="page" (ionChange)="onChange($event)" value='1'>
+						<ion-select-option *ngFor="let p of userService.totalPages" [value]="p" >{{p}}</ion-select-option>
 					</ion-select>
 				</ion-item>
 				<ion-button class="nav-button" (click)="previousPage()">
