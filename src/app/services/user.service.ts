@@ -14,6 +14,8 @@ export class UserService {
   viewedEntry;
   entryImages;
   totalPages;
+  firstPage;
+  lastPage;
 
   constructor() {   
   }
