@@ -10,6 +10,7 @@ export class UserService {
   showMenubar = true;
   title="";
   content="";
+  journalMode="";
   entries = [];
   viewedEntry;
   entryImages;

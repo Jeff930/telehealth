@@ -25,6 +25,7 @@ export class EditEntryPage implements OnInit {
     public apiService: ApiService) { }
 
   ngOnInit() {
+    this.userService.journalMode = "Edit";
   }
 
   saveChanges(){

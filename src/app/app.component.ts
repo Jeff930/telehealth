@@ -97,6 +97,5 @@ export class AppComponent implements OnInit {
       this.userService.showSidebar = false;
     else
     this.userService.showSidebar = true;
-
   }
 }

@@ -29,6 +29,7 @@ export class CreateEntryPage implements OnInit {
   ngOnInit() {
     this.userService.title = "";
     this.userService.content = "";
+    this.userService.journalMode = "Create";
   }
 
   saveEntry(){
