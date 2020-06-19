@@ -36,8 +36,8 @@ export class CreateEntryPage implements OnInit {
     console.log(this.userService.content);
     console.log(this.userService.entryImages);
     this.apiService.createEntry(this.userService.title,this.userService.content,this.userService.entryImages).subscribe(res => {
-      console.log(res);
-      if (res.affectedRows==1){
+      console.log(res['Success']);
+      if (res['Success']==true){
         this.showError = false;
         this.router.navigateByUrl('/view-entries');
       }else{
@@ -60,7 +60,4 @@ export class CreateEntryPage implements OnInit {
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
   }
-
-  
-
 }
