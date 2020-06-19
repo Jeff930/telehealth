@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController , AlertController, MenuController , Platform  } from '@ionic/angular';
+import { LoadingController, AlertController, MenuController, Platform } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { ApiService } from '../../services/api.service';
@@ -15,150 +15,168 @@ export class ViewEntriesPage implements OnInit {
 
   option = 0;
   page;
-  hasSearched=false;
+  hasSearched = false;
   hasFiltered = false;
-  searchInput="";
-  searchDisplay="";
-  dateInput="";
-  dateDisplay="";
+  searchInput = "";
+  searchDisplay = "";
+  dateInput = "";
+  dateDisplay = "";
   pages;
   constructor(public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
-    public alertCtrl : AlertController,
-    public menuCtrl : MenuController,
-    public platform : Platform,
-    public http : HttpClient,
-    public userService : UserService,
-    public apiService : ApiService) {
-    }
+    public alertCtrl: AlertController,
+    public menuCtrl: MenuController,
+    public platform: Platform,
+    public http: HttpClient,
+    public userService: UserService,
+    public apiService: ApiService) {
+  }
 
   ngOnInit() {
     this.getEntries();
+    this.userService.firstPage = 1;
   }
 
-  onChange(d){
+  onChange(d) {
+    if (this.page == 1) {
+      this.userService.firstPage = 1;
+    } else {
+      this.userService.firstPage = 0;
+    }
+
+    if (this.page == this.pages) {
+      this.userService.lastPage = 1;
+    } else {
+      this.userService.lastPage = 0;
+    }
+
     this.hasSearched = false;
     this.hasFiltered = false;
-    this.apiService.getEntries(this.page).subscribe( res=> {
-          console.log(res);
-          this.userService.entries = res.rows;
-        },err =>{
-          console.log(err);
-        });
+    this.apiService.getEntries(this.page).subscribe(res => {
+      console.log(res);
+      this.userService.entries = res.rows;
+    }, err => {
+      console.log(err);
+    });
   }
 
-  getEntries(){
+  getEntries() {
     this.page = 1;
     this.hasSearched = false;
     this.hasFiltered = false;
-    this.apiService.getEntries(this.page).subscribe( res=> {
-          console.log(res);
-          this.userService.entries = res.rows;
-          this.userService.totalPages = Array.from({length: res.totalPages}, (v, i) => i + 1);
-        },err =>{
-          console.log(err);
-        });
+    this.apiService.getEntries(this.page).subscribe(res => {
+      console.log(res);
+      this.userService.entries = res.rows;
+      this.pages = res.totalPages;
+      this.userService.totalPages = Array.from({ length: res.totalPages }, (v, i) => i + 1);
+      if (res.totalPages == 1) {
+        this.userService.firstPage = 1;
+        this.userService.lastPage = 1;
+      }
+    }, err => {
+      console.log(err);
+    });
   }
 
-  nextPage(){
+  nextPage() {
     this.page++;
-    if(this.hasSearched == false && this.hasFiltered == false){
-      this.apiService.getEntries(this.page).subscribe( res=> {
+    if (this.hasSearched == false && this.hasFiltered == false) {
+      this.apiService.getEntries(this.page).subscribe(res => {
         console.log(res);
         this.userService.entries = res.rows;
-      },err =>{
+      }, err => {
         console.log(err);
       });
-    } else if(this.hasSearched == true && this.hasFiltered == false){
+    } else if (this.hasSearched == true && this.hasFiltered == false) {
       this.upsertSearch();
-    } else if(this.hasSearched == false && this.hasFiltered == true){
+    } else if (this.hasSearched == false && this.hasFiltered == true) {
       this.upsertFilter();
     }
   }
 
-  previousPage(){
+  previousPage() {
     this.page--;
-    if(this.hasSearched == false && this.hasFiltered == false){
-      this.apiService.getEntries(this.page).subscribe( res=> {
+    if (this.hasSearched == false && this.hasFiltered == false) {
+      this.apiService.getEntries(this.page).subscribe(res => {
         console.log(res);
         this.userService.entries = res.rows;
-      },err =>{
+      }, err => {
         console.log(err);
       });
-    } else if(this.hasSearched == true && this.hasFiltered == false){
+    } else if (this.hasSearched == true && this.hasFiltered == false) {
       this.upsertSearch();
-    } else if(this.hasSearched == false && this.hasFiltered == true){
+    } else if (this.hasSearched == false && this.hasFiltered == true) {
       this.upsertFilter();
     }
   }
 
-  showSearch(){
+  showSearch() {
     if (this.option == 1)
       this.option = 0;
     else
       this.option = 1;
   }
 
-  showSort(){
+  showSort() {
     if (this.option == 2)
       this.option = 0;
     else
       this.option = 2;
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.userService.showMenubar = true;
     console.log(this.platform.width());
-    if (this.platform.width()>850) {
+    if (this.platform.width() > 850) {
       this.userService.showSidebar = true;
     } else {
       this.userService.showSidebar = false;
     }
-    console.log(this.userService.showMenubar,this.userService.showSidebar);
+    console.log(this.userService.showMenubar, this.userService.showSidebar);
   }
 
-  search(event){
+  search(event) {
     this.page = 1;
     console.log(event);
     console.log(this.searchInput);
-    if (this.searchInput.length>3){
+    if (this.searchInput.length > 3) {
       this.upsertSearch();
     }
   }
 
-  upsertSearch(){
-    this.apiService.searchEntries(this.page,this.searchInput).subscribe( res=> {
+  upsertSearch() {
+    this.apiService.searchEntries(this.page, this.searchInput).subscribe(res => {
       console.log(res);
       this.searchDisplay = this.searchInput;
       this.hasSearched = true;
       this.hasFiltered = false;
       this.userService.entries = res.rows;
-    },err =>{
+    }, err => {
       console.log(err);
     });
   }
 
-  filter(){
+  filter() {
     this.page = 1;
     console.log(this.dateInput);
-    this.dateInput = this.dateInput.split('T')[0]; 
+    this.dateInput = this.dateInput.split('T')[0];
     console.log(this.dateInput);
     this.upsertFilter();
   }
 
-  upsertFilter(){
-    this.apiService.filterEntries(this.page,this.dateInput).subscribe( res=> {
+  upsertFilter() {
+    this.apiService.filterEntries(this.page, this.dateInput).subscribe(res => {
       this.dateDisplay = this.dateInput;
       this.hasSearched = false;
       this.hasFiltered = true;
       this.userService.entries = res.rows;
       console.log(res)
-    },err =>{
+    }, err => {
       console.log(err);
-    }); 
+    });
   }
 
-  clearInput(){
+  clearInput() {
     this.getEntries();
   }
 
