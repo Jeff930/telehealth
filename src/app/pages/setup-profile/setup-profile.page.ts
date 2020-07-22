@@ -43,7 +43,6 @@ export class SetupProfilePage implements OnInit {
 
   ngOnInit() {
     this.getUserDetails();
-
     this.profile_form.valueChanges.subscribe(
       result => {
         if(this.profile_form.status == 'VALID'){
@@ -110,25 +109,15 @@ export class SetupProfilePage implements OnInit {
     for (var i=0;i<image.files.length;i++){ 
       var file:File = image.files[i];
       const reader = new FileReader();
-      console.log(image.files.length);
-      console.log("entered")
       reader.addEventListener('load', (event: any) => {
-        console.log("entered")
         if(this.imagePaths.length <= 0){
           this.imagePaths.push(event.target.result);
         }else{
           this.imagePaths[0] = event.target.result;
         }
         this.userService.entryImages = this.imagePaths;
-        console.log(file);
-        console.log(this.imagePaths);
-        console.log(this.imagePaths.length);
-      
         });
-
         reader.readAsDataURL(file);
-      
     }
-   
   }
 }
