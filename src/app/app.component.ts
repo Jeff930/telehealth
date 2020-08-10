@@ -14,7 +14,7 @@ import { AuthenticationService } from './services/authentication.service';
 })
 export class AppComponent implements OnInit {
 
-  public selectedIndex = 0;
+  // public selectedIndex = 0;
   public appPages = [
     {
       title: 'My Home',
@@ -35,11 +35,11 @@ export class AppComponent implements OnInit {
       title: 'Create Entry',
       url: '/create-entry',
       icon: 'add-circle'
-    },
-    {
-      title: 'Logout',
-      url: '/login',
-      icon: 'log-out'
+    // },
+    // {
+    //   title: 'Logout',
+    //   url: '/login',
+    //   icon: 'log-out'
     }
    
   ];
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+      this.userService.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
   }
 
@@ -86,9 +86,6 @@ export class AppComponent implements OnInit {
   }
 
   logout(){
-    // this.userService.showSidebar = false;
-    // this.userService.showMenubar = false;
-    // this.router.navigateByUrl('/login');
     this.authenticationService.logout();
   }
 
