@@ -14,7 +14,7 @@ import { ApiService } from '../../services/api.service';
 export class ViewEntriesPage implements OnInit {
 
   option = 0;
-  page;
+  page = 1;
   hasSearched = false;
   hasFiltered = false;
   searchInput = "";
@@ -133,6 +133,7 @@ export class ViewEntriesPage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar, this.userService.showSidebar);
+    this.getEntries();
   }
 
   search(event) {
