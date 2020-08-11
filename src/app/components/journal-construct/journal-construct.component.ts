@@ -38,14 +38,14 @@ export class JournalConstructComponent implements OnInit {
       const reader = new FileReader();
       console.log(image.files.length);
       console.log("entered")
-      reader.addEventListener('load', (event: any) => {
+      reader.onload = (event: any) => {
         console.log("entered")
         var tempImage = event.target.result;
         this.imagePaths.push(tempImage);
         var image = btoa(tempImage).replace("+", "-").replace("/", "_")
         this.images.push(image);
         this.userService.entryImages = this.images;
-      });
+      };
       reader.readAsDataURL(file);      
     }
   }
