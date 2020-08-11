@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ApiService } from 'src/app/services/api.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Crop } from '@ionic-native/crop/ngx';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 @Component({
   selector: 'app-journal-construct',
@@ -19,17 +15,21 @@ export class JournalConstructComponent implements OnInit {
   images = [];
 
   constructor(
-    private router: Router,
-    private imagePicker: ImagePicker,
-    private crop: Crop,
-    private transfer: FileTransfer,
     public userService: UserService,
     public apiService: ApiService,
     public formBuilder: FormBuilder,
     ) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.imagePaths = [];
+    console.log(this.imagePaths);
+  }
+
+  ionViewWillEnter(){
+    this.imagePaths = [];
+    console.log(this.imagePaths);
+  }
 
   acceptImage(image){
     console.log(image);
