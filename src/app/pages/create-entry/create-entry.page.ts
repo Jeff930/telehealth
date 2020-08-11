@@ -40,6 +40,8 @@ export class CreateEntryPage implements OnInit {
       console.log(res['Success']);
       if (res['Success']==true){
         this.showError = false;
+        alert("Entry created successfully!")
+        this.userService.selectedIndex = 2;
         this.router.navigateByUrl('/view-entries');
       }else{
         this.showError = true;

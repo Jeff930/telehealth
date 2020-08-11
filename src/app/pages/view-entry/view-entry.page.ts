@@ -37,6 +37,8 @@ export class ViewEntryPage implements OnInit {
   
   deleteEntry(){
     this.apiService.deleteEntry(this.userService.viewedEntry.EntryNo).subscribe(res => {
+      alert("Entry deleted successfully!")
+      this.userService.selectedIndex = 2;
       this.router.navigateByUrl('/view-entries');
     });
   }

@@ -17,8 +17,8 @@ export class UserService {
   totalPages;
   firstPage;
   lastPage;
+  selectedIndex = 0;
 
   constructor() {   
   }
-  
 }
