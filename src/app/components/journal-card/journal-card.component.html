@@ -7,8 +7,8 @@
     				<ion-card-title>{{entry.Title}}</ion-card-title>
   				</ion-card-header>
   				<img class="card-image" src="{{'https://journal4life.com/api/v1/images/entries/'+ entry.EntryNo + '/' + entry.EntryNo + '-0.jpeg' }}"/>
-  				<ion-card-content>
-  					{{entry.Content}}
+  				<ion-card-content class="card-content">
+  					<p class="card-text">{{getContent(entry.Content)}}</p>
   				</ion-card-content>
 			</ion-card>
 		</ion-col>
