@@ -38,6 +38,7 @@ export class HomePage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
+    this.userService.selectedIndex = 0;
   }
 
   getEntries(){
