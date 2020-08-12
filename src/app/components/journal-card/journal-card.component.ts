@@ -25,5 +25,12 @@ export class JournalCardComponent implements OnInit {
     var formatted = date.split('T')[0]; 
     return formatted;
   }
+
+  getContent(content){
+    if (content.length>=30)
+      return content.substring(0,30)+"...";
+    else 
+      return content;
+  }
   
 }
