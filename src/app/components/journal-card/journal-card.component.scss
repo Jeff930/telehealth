@@ -9,10 +9,18 @@ ion-card:hover{
 
 	ion-card-title, ion-card-subtitle {
 	--color:white;
-}
+	}
 }
 
+.card-content{
+	height:55px;
+	overflow:hidden;
+}
 
+.card-text{
+	text-overflow: ellipsis !important;
+	overflow:hidden;
+}
 
 .card-image{
 	width:100%;
