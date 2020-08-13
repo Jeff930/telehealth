@@ -108,4 +108,9 @@ export class ApiService {
     console.log(id);
     return this.http.get<any>('https://journal4life.com:5000/delete-entry/'+id);
   }
+
+  getTotalImage(id) {
+    console.log(id);
+    return this.http.get<any>('https://journal4life.com:5000/get-entry-image-total/'+id);
+  }
 }
