@@ -132,10 +132,9 @@ ion-item.selected {
   --background:#0a947a;
 }
 
-.logout{
-  --color:#E74C3C;
-  font-size:20px;
-  font-weight:bolder;
+.logout:hover{
+   --ion-background-color:#F5F5F5;
+   cursor:pointer;
 }
 
 .profile{
