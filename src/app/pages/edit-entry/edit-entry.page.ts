@@ -53,6 +53,8 @@ export class EditEntryPage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
+    this.userService.journalMode = "Edit";
+    console.log(this.userService.journalMode);
   }
 
 }
