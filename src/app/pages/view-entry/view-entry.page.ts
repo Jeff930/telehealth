@@ -14,6 +14,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class ViewEntryPage implements OnInit {
 
   viewedEntry;
+  imagePaths=[];
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -44,6 +45,7 @@ export class ViewEntryPage implements OnInit {
   }
 
   ionViewWillEnter(){
+    this.imagePaths =[];
     this.userService.showMenubar = true;
     console.log(this.platform.width());
     if (this.platform.width()>850) {
@@ -52,6 +54,13 @@ export class ViewEntryPage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
+    console.log(this.userService.viewedEntry.EntryNo)
+    this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
+      console.log(res['totalFiles']);
+      for (var i=0;i<res['totalFiles'];i++){
+        this.imagePaths.push('https://journal4life.com/api/v1/images/entries/'+this.userService.viewedEntry.EntryNo+'/'+this.userService.viewedEntry.EntryNo+"-"+i+".jpeg");
+      }
+    });
   }
 
   getViewedEntry(){
