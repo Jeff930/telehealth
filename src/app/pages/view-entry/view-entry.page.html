@@ -17,13 +17,15 @@
     <ion-row>
       <ion-col size="12">
         <ion-card>
-          <ion-card-header>
+          <ion-card-header class="view-header">
             <ion-card-subtitle>{{viewedEntry.CreatedTimestamp | date:'medium'}}</ion-card-subtitle>
             <ion-card-title>{{viewedEntry.Title}}</ion-card-title>
           </ion-card-header>
-          <img class="uploads" *ngFor="let imagePath of imagePaths" [src]="imagePath">
+          <ion-card-content *ngIf="imagePaths.length > 0">
+             <img class="uploads" *ngFor="let imagePath of imagePaths" [src]="imagePath">
+          </ion-card-content>
           <ion-card-content>
-            {{viewedEntry.Content}}
+            <p class="journal-content">{{viewedEntry.Content}}</p>
           </ion-card-content>
         </ion-card>
       </ion-col>
