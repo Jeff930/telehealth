@@ -65,5 +65,9 @@ export class CreateEntryPage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
+    this.userService.title = "";
+    this.userService.content = "";
+    this.userService.journalMode = "Create";
+    console.log(this.userService.journalMode);
   }
 }
