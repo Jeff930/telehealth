@@ -22,14 +22,20 @@ export class JournalConstructComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.imagePaths = [];
+    if (this.userService.journalMode == "Create"){
+      this.imagePaths = [];
+    }else{
+      this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
+        console.log(res['totalFiles']);
+        for (var i=0;i<res['totalFiles'];i++){
+          this.imagePaths.push('https://journal4life.com/api/v1/images/entries/'+this.userService.viewedEntry.EntryNo+'/'+this.userService.viewedEntry.EntryNo+"-"+i+".jpeg");
+        }
+      });
+    }
     console.log(this.imagePaths);
   }
 
-  ionViewWillEnter(){
-    this.imagePaths = [];
-    console.log(this.imagePaths);
-  }
+  ionViewWillEnter(){}
 
   acceptImage(image){
     console.log(image);
