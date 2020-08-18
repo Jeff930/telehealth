@@ -13,7 +13,7 @@ export class UserService {
   journalMode="";
   entries = [];
   viewedEntry;
-  entryImages;
+  entryImages = [];
   totalPages;
   firstPage;
   lastPage;
