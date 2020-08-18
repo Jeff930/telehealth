@@ -64,11 +64,13 @@ export class ApiService {
     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
-  updateEntry(title,content,entryNo) {
+  updateEntry(title,content,entryNo,images) {
+    console.log(images);
     const body = new HttpParams()
       .set('title', title)
       .set('content', content)
       .set('entryNo', entryNo)
+      .set('images',JSON.stringify(images))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     console.log(body);
     return this.http.post<any>('https://journal4life.com:5000/update-entry', body.toString(),
