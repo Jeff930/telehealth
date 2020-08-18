@@ -29,7 +29,8 @@ export class EditEntryPage implements OnInit {
   }
 
   saveChanges(){
-    this.apiService.updateEntry(this.userService.title,this.userService.content,this.userService.viewedEntry.EntryNo).subscribe(res => {
+    console.log(this.userService.entryImages);
+    this.apiService.updateEntry(this.userService.title,this.userService.content,this.userService.viewedEntry.EntryNo,this.userService.entryImages).subscribe(res => {
       console.log(res);
       if (res.affectedRows==1){
         this.showError = false;
