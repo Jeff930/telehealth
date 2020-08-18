@@ -13,11 +13,8 @@
 									<label class="add-image" for="file"><ion-icon name="images-outline" class="util-icon"></ion-icon></label>
 									<input #image (change)="acceptImage(image)" name="file" id="file" class="image-input" type="file" accept="image/gif, image/jpeg, image/png" multiple/>
 								</ion-col>
-
-
 							</ion-row>
 						</ion-card-title>
-						
 					</ion-card-header>
 					<ion-card-content *ngIf="imagePaths.length > 0">
 						<p>Click an image to remove from list.</p>
