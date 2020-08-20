@@ -82,6 +82,15 @@ export class ApiService {
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
+  updateProfileImage(image) {
+    const body = new HttpParams()
+      .set('image',JSON.stringify(image))
+      .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
+    console.log(body);
+    return this.http.post<any>('https://localhost:5000/update-profile-image', body.toString(),
+     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+  }
+
   getEntries(page) {
     const body = new HttpParams()
       .set('id', JSON.parse(localStorage.getItem('authenticated'))[0].UserId)
