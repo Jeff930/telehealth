@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from './services/user.service';
+import { ApiService } from './services/api.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 
@@ -49,6 +50,7 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private userService: UserService,
+    private apiService: ApiService,
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
@@ -62,7 +64,10 @@ export class AppComponent implements OnInit {
 
       this.authenticationService.authState.subscribe(state => {
         if (state) {
-          this.router.navigateByUrl('/home');
+          this.apiService.getProfileImage(JSON.parse(localStorage.getItem('authenticated'))[0].UserId).subscribe(res => {
+            this.userService.profileImage = res;
+            this.router.navigateByUrl('/home');
+          })
         } else {
           this.router.navigateByUrl('/login');
         }
@@ -75,6 +80,10 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.userService.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+
+  getProfile(){
+    
   }
 
   getUsername(){
