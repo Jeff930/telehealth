@@ -16,7 +16,7 @@
     <ion-menu contentId="main-content" type="overlay" >
       <ion-content >
         <div class="profile">
-          <img class="profile-image" src="assets/imgs/profile.jpg">
+          <img class="profile-image" [src]="userService.profileImage">
         </div>
 
         <ion-list id="inbox-list">
