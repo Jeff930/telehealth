@@ -18,7 +18,11 @@ export class UserService {
   firstPage;
   lastPage;
   selectedIndex = 0;
+  email;
+  username;
+  profileImage;
 
-  constructor() {   
+  constructor() {  
+    //console.log(this.email) 
   }
 }

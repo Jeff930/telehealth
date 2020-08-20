@@ -56,7 +56,7 @@ ion-card-subtitle{
 .profile-image {
     height: 250px;
     width: 250px;
-    
+    object-fit: cover;
     margin: 0 auto;
     border-radius: 50%;
 }
