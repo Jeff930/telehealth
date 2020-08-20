@@ -4,7 +4,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from '../../services/api.service';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -16,9 +16,12 @@ export class SetupProfilePage implements OnInit {
 
   isReadonly: boolean = true;
   formStatus: boolean = true;
-  piTitle: string = "Personal Information";
+  profileCopy;
+  piTitle: string = "About Me";
   profile_form: FormGroup;
-  imagePaths = [];
+  imagePath;
+  profileImage;
+  view = true;
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
@@ -30,12 +33,11 @@ export class SetupProfilePage implements OnInit {
     private apiService: ApiService,
     private datepipe: DatePipe) {
     this.profile_form = this.formBuilder.group({
-      lifeverse: new FormControl('', Validators.required),
-      versecontent: new FormControl('a', Validators.required),
       userid: new FormControl(0),
-      username: new FormControl('a'),
+      username: new FormControl(''),
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
+      phone: new FormControl('', Validators.required),
       birthdate: new FormControl(new Date, Validators.required),
       email: new FormControl('', Validators.compose([Validators.required]))
     });
@@ -54,6 +56,7 @@ export class SetupProfilePage implements OnInit {
   }
   
   ionViewWillEnter(){
+    this.profileImage = this.userService.profileImage;
     this.userService.showMenubar = true;
     console.log(this.platform.width());
     if (this.platform.width()>850) {
@@ -66,7 +69,7 @@ export class SetupProfilePage implements OnInit {
 
   editForm() {
     this.isReadonly = false;
-    this.piTitle = "Edit Personal Information";
+    this.piTitle = "Edit";
     let date =  new Date(this.profile_form.value.birthdate);
     date.setDate(date.getDate() + 2);
     let date2 = new Date(date).toISOString();
@@ -78,27 +81,46 @@ export class SetupProfilePage implements OnInit {
 
   saveFormChanges() {
     this.isReadonly = true;
-    this.piTitle = "Personal Information";
+    this.piTitle = "About Me";
     this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
       this.getUserDetails();
     });
   }
+  
+
+  cancelChanges(){
+    this.isReadonly = true;
+    this.piTitle = "About Me";
+    this.profile_form.patchValue({
+      username: this.profileCopy[0].UserName,
+      userid: this.profileCopy[0].UserId,
+      firstname: this.profileCopy[0].FirstName,
+      lastname: this.profileCopy[0].LastName,
+      phone: this.profileCopy[0].Phone,
+      birthdate: this.profileCopy[0].Birthdate,
+      email: this.profileCopy[0].EmailAddress
+    });
+  }
 
   getUserDetails() {
+    console.log(JSON.parse(localStorage.getItem('authenticated')));
     let userDetails = JSON.parse(localStorage.getItem('authenticated'));
     let userId = userDetails[0].UserId;
     this.apiService.getUserDetails(userId).subscribe(res => {
+      localStorage.setItem('authenticated' , JSON.stringify(res));
+      this.userService.username = JSON.parse(localStorage.getItem('authenticated'))[0].UserName;
+      this.userService.email = JSON.parse(localStorage.getItem('authenticated'))[0].EmailAddress;
       console.log(res);
-      let date = this.datepipe.transform(res[0].Birthdate, 'longDate');
-      console.log(date);
+      this.profileCopy = res;
+      //let date = this.datepipe.transform(res[0].Birthdate, 'longDate');
+      //console.log(date);
       this.profile_form.patchValue({
         username: res[0].UserName,
         userid: res[0].UserId,
         firstname: res[0].FirstName,
         lastname: res[0].LastName,
-        lifeverse: res[0].LifeVerse,
-        versecontent: res[0].VerseContent,
-        birthdate: date,
+        phone: res[0].Phone,
+        birthdate: res[0].Birthdate,
         email: res[0].EmailAddress
       });
     });
@@ -106,18 +128,23 @@ export class SetupProfilePage implements OnInit {
 
   acceptImage(image){
     console.log(image);
-    for (var i=0;i<image.files.length;i++){ 
-      var file:File = image.files[i];
+      var file:File = image.files[0];
       const reader = new FileReader();
-      reader.addEventListener('load', (event: any) => {
-        if(this.imagePaths.length <= 0){
-          this.imagePaths.push(event.target.result);
-        }else{
-          this.imagePaths[0] = event.target.result;
-        }
-        this.userService.entryImages = this.imagePaths;
-        });
-        reader.readAsDataURL(file);
-    }
+      console.log(image.files.length);
+      console.log("entered")
+      reader.onload = (event: any) => {
+        var imagePath = event.target.result;
+        var image = btoa(imagePath).replace("+", "-").replace("/", "_");
+        console.log(this.userService.entryImages);
+        this.profileImage = imagePath;
+        console.log(this.profileImage);
+        this.view = false;
+      };
+      reader.readAsDataURL(file);      
+  }
+
+  cancelProfile(){
+    this.view = true;
+    this.profileImage = this.userService.profileImage;
   }
 }
