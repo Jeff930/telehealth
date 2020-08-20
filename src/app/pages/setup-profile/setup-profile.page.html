@@ -11,8 +11,11 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
+
           <ion-card class="banner">
              <ion-card-content>
+
+
               <ion-card class="profile-form">
                 <ion-card-header>
                   <ion-grid>
@@ -33,15 +36,7 @@
                           <img class="profile-image" [src]="profileImage" >
                         </div>  
                       
-                        <!-- <div>
-                          <label class="add-image" for="file">UPDATE PROFILE PICTURE</label>
-                          <input #image (change)="acceptImage(image)" name="file" id="file" class="image-input" type="file" accept="image/gif, image/jpeg, image/png" multiple/>
-                        </div>   -->
-
-                        <!--  <div>
-                          <ion-button class="profile-button">Save Changes</ion-button>
-                          <ion-button class="profile-button">Cancel</ion-button>
-                        </div>   -->
+                       
                         </ion-col>
                     </ion-row>
                     <ion-row>
@@ -63,18 +58,7 @@
                 </ion-card-content>
               </ion-card>
             </ion-card-content>
-           <!--  <ion-row>
-              <ion-col size-xl="3" size-xs="12" size-sm="5" size-lg="3">
-                <div class="profile">
-                  <h6 *ngIf="imagePaths.length <= 0">Edit this page and upload a pic!</h6>
-                  <img class="profile-image" *ngFor="let imagePath of imagePaths; let i = index" [src]="imagePath">
-                  <ion-col size="1">
-                    <label  *ngIf="isReadonly == false" class="add-image" for="file"><ion-icon name="images-outline" class="util-icon"></ion-icon></label>
-                    <input #image (change)="acceptImage(image)" name="file" id="file" class="image-input" type="file" accept="image/gif, image/jpeg, image/png" multiple/>
-                  </ion-col>
-                </div>
-              </ion-col>
-            </ion-row> -->
+           
             <ion-card-content>
               <ion-card class="profile-form">
                 <ion-card-header>
@@ -214,6 +198,9 @@
                 </ion-card-content>
               </ion-card>
             </ion-card-content>
+
+                
+              
           </ion-card>
         </ion-col>
       </ion-row>
