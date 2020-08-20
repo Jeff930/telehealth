@@ -49,17 +49,35 @@ ion-card-subtitle{
 }
 
 .profile {
-    height: 170px;
-    margin-top: 12px;
+    text-align:center;
+    display: block;
 }
 
 .profile-image {
-    height: 200px;
-    width: auto;
-    margin: auto;
-    display: block;
+    height: 250px;
+    width: 250px;
+    
+    margin: 0 auto;
     border-radius: 50%;
 }
+
+.profile-button {
+  --background:#E74C3C;
+  float:right;
+}
+
+.image-button {
+ --background:#E74C3C;
+  margin-top: 80px;
+  margin-left: 50px;
+}
+
+.cancel-button {
+ --background:#E74C3C;
+  margin-top: 80px;
+}
+
+
 
 .btn-save{
     // float: right;
@@ -78,12 +96,14 @@ ion-card-subtitle{
 }
 
 .add-image{
-	float:right;
-	background-color:#E74C3C;	
-	color:white;
-	padding:8px 20px 5px 20px;
-	border-radius:10%;
-	cursor:pointer;
+    margin: 4px auto;
+    float:right;
+    background-color:#E74C3C;   
+    color:white;
+    font-size:14px;
+    border-radius:4px;
+    padding:10px 15px;
+    cursor:pointer;
 }
 
 .add-image:focus,
