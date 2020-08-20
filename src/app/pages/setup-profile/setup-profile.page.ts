@@ -147,4 +147,9 @@ export class SetupProfilePage implements OnInit {
     this.view = true;
     this.profileImage = this.userService.profileImage;
   }
+
+  saveProfile(){
+    this.userService.profileImage = this.profileImage;
+    this.view = true;
+  }
 }
