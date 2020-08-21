@@ -16,15 +16,15 @@ export class ApiService {
         password:hashedPassword,
     }
     console.log(JSON.stringify(form));
-    return this.http.get<any>('https://localhost:5000/user-login/'+JSON.stringify(form));
+    return this.http.get<any>('https://journal4life.com:5000/user-login/'+JSON.stringify(form));
   }
 
   getUserDetails(userId) {
-    return this.http.get<any>('https://localhost:5000/user-details/'+userId);
+    return this.http.get<any>('https://journal4life.com:5000/user-details/'+userId);
   }
 
   getProfileImage(userId) {
-    return this.http.get<any>('https://localhost:5000/profile-image/'+userId);
+    return this.http.get<any>('https://journal4life.com:5000/profile-image/'+userId);
   }
 
   updateUserDetails(formData) {
@@ -38,7 +38,18 @@ export class ApiService {
       .set('phone',formData.phone)
       //.set('profile',image)
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/update-user-details', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/update-user-details', body.toString(),
+     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+  }
+
+  updatePassword(password,email) {
+    var hashedPassword = JSON.stringify(Md5.hashStr(password));
+    const body = new HttpParams()
+      .set('email', email)
+      .set('password', hashedPassword.substring(1,hashedPassword.length-1));
+      //.set('profile',image)
+    console.log(body);
+    return this.http.post<any>('https://journal4life.com:5000/update-password', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
@@ -53,7 +64,7 @@ export class ApiService {
       .set('birthdate',formData.birthdate)
       .set('password', hashedPassword.substring(1,hashedPassword.length-1));
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/user-signup', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/user-signup', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
@@ -65,7 +76,7 @@ export class ApiService {
       .set('images',JSON.stringify(images))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/create-entry', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/create-entry', body.toString(),
     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
@@ -78,7 +89,7 @@ export class ApiService {
       .set('images',JSON.stringify(images))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/update-entry', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/update-entry', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
@@ -87,7 +98,7 @@ export class ApiService {
       .set('image',JSON.stringify(image))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/upload-profile', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/upload-profile', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
@@ -96,7 +107,7 @@ export class ApiService {
       .set('id', JSON.parse(localStorage.getItem('authenticated'))[0].UserId)
       .set('page', page);
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/get-entries', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/get-entries', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
@@ -105,7 +116,7 @@ export class ApiService {
       .set('email', email)
       .set('number', num);
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/verify', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/verify', body.toString(),
     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
@@ -113,7 +124,7 @@ export class ApiService {
     const body = new HttpParams()
       .set('email', email);
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/send-email', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/send-email', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
@@ -123,7 +134,7 @@ export class ApiService {
       .set('page', page)
       .set('searchKey',searchKey);
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/search-entries', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/search-entries', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
@@ -133,17 +144,17 @@ export class ApiService {
       .set('page', page)
       .set('date',date);
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/filter-entries', body.toString(),
+    return this.http.post<any>('https://journal4life.com:5000/filter-entries', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
   deleteEntry(id) {
     console.log(id);
-    return this.http.get<any>('https://localhost:5000/delete-entry/'+id);
+    return this.http.get<any>('https://journal4life.com:5000/delete-entry/'+id);
   }
 
   getTotalImage(id) {
     console.log(id);
-    return this.http.get<any>('https://localhost:5000/get-entry-image-total/'+id);
+    return this.http.get<any>('https://journal4life.com:5000/get-entry-image-total/'+id);
   }
 }
