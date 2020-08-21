@@ -87,7 +87,7 @@ export class ApiService {
       .set('image',JSON.stringify(image))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     console.log(body);
-    return this.http.post<any>('https://localhost:5000/update-profile-image', body.toString(),
+    return this.http.post<any>('https://localhost:5000/upload-profile', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
