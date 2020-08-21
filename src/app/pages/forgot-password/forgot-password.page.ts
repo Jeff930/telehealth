@@ -15,7 +15,10 @@ export class ForgotPasswordPage implements OnInit {
   emailInput: "";
   num_verified: boolean = false;
   wrong_num: boolean = false;
+  password;
+  confirmPassword;
   password_form: FormGroup;
+  passwordError = false;
   step1 = true;
   step2 = false;
   step3 = false;
@@ -63,11 +66,18 @@ export class ForgotPasswordPage implements OnInit {
     })
   }
 
-  changePassword(data) {
-    // this.router.navigateByUrl('/login');
-    // console.log(data);
-    this.step3 = false;
-    this.step4 = true;
+  changePassword() {
+    if (this.password != null && this.password == this.confirmPassword){
+      this.apiService.updatePassword(this.password,this.emailInput).subscribe(res =>{
+        if (res == "Success"){
+          this.passwordError = false;
+          this.step3 = false;
+          this.step4 = true;
+        }
+      })
+    }else{
+      this.passwordError = true;
+    }
   }
 
   goBackToLogin(){
