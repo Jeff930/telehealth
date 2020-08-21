@@ -22,7 +22,12 @@ ion-card:hover{
 	overflow:hidden;
 }
 
-.card-image{
-	width:100%;
+.image-div{
 	height:300px;
+	width:auto;
+	overflow:hidden;
+}
+
+.card-image{
+	overflow:hidden;
 }
