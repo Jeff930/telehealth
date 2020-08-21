@@ -21,6 +21,7 @@ export class SetupProfilePage implements OnInit {
   profile_form: FormGroup;
   imagePath;
   profileImage;
+  btoaImage;
   view = true;
   constructor(private router: Router,
     public loadingCtrl: LoadingController,
@@ -137,6 +138,7 @@ export class SetupProfilePage implements OnInit {
         var image = btoa(imagePath).replace("+", "-").replace("/", "_");
         console.log(this.userService.entryImages);
         this.profileImage = imagePath;
+        this.btoaImage = image;
         console.log(this.profileImage);
         this.view = false;
       };
@@ -149,7 +151,10 @@ export class SetupProfilePage implements OnInit {
   }
 
   saveProfile(){
-    this.userService.profileImage = this.profileImage;
-    this.view = true;
+    this.apiService.updateProfileImage(this.btoaImage).subscribe(res =>{
+      console.log(res);
+      this.userService.profileImage = this.profileImage;
+      this.view = true;
+    })
   }
 }
