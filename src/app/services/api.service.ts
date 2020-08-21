@@ -100,6 +100,23 @@ export class ApiService {
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
+  verifyNumber(email,num) {
+    const body = new HttpParams()
+      .set('email', email)
+      .set('number', num);
+    console.log(body);
+    return this.http.post<any>('https://localhost:5000/verify', body.toString(),
+    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+  }
+
+  sendVerification(email) {
+    const body = new HttpParams()
+      .set('email', email);
+    console.log(body);
+    return this.http.post<any>('https://localhost:5000/send-email', body.toString(),
+     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
+  }
+
   searchEntries(page,searchKey) {
     const body = new HttpParams()
       .set('id', JSON.parse(localStorage.getItem('authenticated'))[0].UserId)
