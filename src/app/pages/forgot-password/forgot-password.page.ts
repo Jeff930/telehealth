@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,9 +10,9 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
 })
 export class ForgotPasswordPage implements OnInit {
 
-  verification_number: number = 657392;
+  verification_number: number;
   v_num_input: number;
-  e_num_input: "";
+  emailInput: "";
   num_verified: boolean = false;
   wrong_num: boolean = false;
   password_form: FormGroup;
@@ -21,7 +22,8 @@ export class ForgotPasswordPage implements OnInit {
   step4 = false;
   constructor(
     public router: Router,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public apiService: ApiService
   ) {
     this.password_form = this.fb.group({
       new_password: new FormControl('', Validators.required),
@@ -29,21 +31,36 @@ export class ForgotPasswordPage implements OnInit {
     });
   }
 
+  ionViewWillEnter(){
+    this.step1 = true;
+    this.step2 = false;
+    this.step3 = false;
+    this.step4 = false;
+  }
+
   ngOnInit() {
   }
 
   submitRecovery(num_input) {
-    if (num_input == this.verification_number) {
-      this.step2 = false;
-    this.step3 = true;
-    } else {
-      this.wrong_num = true;
-    }
+    this.apiService.verifyNumber(this.emailInput,num_input).subscribe(res =>{
+      if (res == "Success"){
+        this.step2 = false;
+        this.step3 = true;
+        this.wrong_num = false;
+      }else{
+        this.wrong_num = true;
+      }
+    })
   }
 
-  submitEmail(num_input) {
-    this.step1 = false;
-    this.step2 = true;
+  submitEmail(emailInput) {
+    console.log("called");
+    this.apiService.sendVerification(emailInput).subscribe(res =>{
+      if (res == "Success"){
+        this.step1 = false;
+        this.step2 = true;
+      }
+    })
   }
 
   changePassword(data) {
