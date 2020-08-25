@@ -15,7 +15,6 @@
           <ion-card class="banner">
              <ion-card-content>
 
-
               <ion-card class="profile-form">
                 <ion-card-header>
                   <ion-grid>
@@ -35,24 +34,19 @@
                         <div class="profile">
                           <img class="profile-image" [src]="profileImage" >
                         </div>  
-                      
-                       
-                        </ion-col>
+                      </ion-col>
                     </ion-row>
                     <ion-row>
                       <ion-col>
-        
-                      
                         <div *ngIf = "view == true">
                           <label class="add-image" for="file">UPDATE PROFILE PICTURE</label>
                           <input #image (change)="acceptImage(image)" name="file" id="file" class="image-input" type="file" accept="image/gif, image/jpeg, image/png" multiple/>
                         </div>  
-
                         <div *ngIf = "view == false">
                           <ion-button class="profile-button" (click)="cancelProfile()">Cancel</ion-button>
                           <ion-button class="profile-button" (click)="saveProfile()">Save Changes</ion-button>
                         </div>  
-                        </ion-col>
+                      </ion-col>
                     </ion-row>
                   </ion-grid>
                 </ion-card-content>
@@ -92,7 +86,7 @@
                       <ion-col size="12" size-sm>
                         <div>
                           <ion-item *ngIf="isReadonly == false" class="input_editmode">
-                            <ion-label></ion-label>
+                            <ion-label>Username</ion-label>
                             <ion-icon name="person-circle"></ion-icon>
                             <ion-input type="text" placeholder="Username" required [readonly]="isReadonly"
                               formControlName="username"></ion-input>
@@ -199,6 +193,92 @@
               </ion-card>
             </ion-card-content>
 
+             <ion-card-content>
+              <ion-card class="profile-form">
+                <ion-card-header>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col>
+                        <div style="float: left;">
+                          <ion-card-title>Change Password</ion-card-title>
+                        </div>
+                        <div style="float: right;">
+                          <ion-button *ngIf="isReadonly == true" slot="end" (click)="editForm()"
+                            class="btn-save ripple-style">
+                            <ion-icon name="create-outline"></ion-icon><!-- &nbsp; -->
+                          </ion-button>
+                          <ion-button *ngIf="isReadonly == false" slot="end" (click)="cancelChanges()"
+                            [disabled]="formStatus" class="btn-save ripple-style">
+                            <ion-icon name="close-outline"></ion-icon>&nbsp;
+                          </ion-button>
+                          <ion-button *ngIf="isReadonly == false" slot="end" (click)="saveFormChanges()"
+                            [disabled]="formStatus" class="btn-save ripple-style">
+                            <ion-icon name="save-outline"></ion-icon>&nbsp;
+                          </ion-button>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="12" size-sm>
+                        <div>
+                          <ion-item *ngIf="isReadonly == false" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="lock-closed-sharp"></ion-icon>
+                            <ion-input type="Password" placeholder="Current Password"></ion-input>
+                          </ion-item>
+                          <ion-item *ngIf="isReadonly == true" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="lock-closed-sharp"></ion-icon>
+                            <ion-input type="Password" placeholder="Current Password"></ion-input>
+                          </ion-item>
+                        </div>
+                      </ion-col>
+                      <ion-col size="12" size-sm>
+                         <div>
+                          <ion-item *ngIf="isReadonly == false" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <ion-input type="Password" placeholder="New Password">
+                            </ion-input>
+                          </ion-item>
+                          <ion-item *ngIf="isReadonly == true" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <ion-input type="Password" placeholder="New Password">
+                            </ion-input>
+                          </ion-item>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="12" size-sm>
+                        <div></div>
+                      </ion-col>
+                      <ion-col size="12" size-sm>
+                         <div>
+                          <ion-item *ngIf="isReadonly == false" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="lock-closed"></ion-icon>
+                            <ion-input type="Password" placeholder="Confirm Password">
+                            </ion-input>
+                          </ion-item>
+                          <ion-item *ngIf="isReadonly == true" class="input_editmode">
+                            <ion-label></ion-label>
+                            <ion-icon name="lock-closed"></ion-icon>
+                            <ion-input type="Password" placeholder="Confirm Password">
+                            </ion-input>
+                          </ion-item>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </ion-card>
+            </ion-card-content>
                 
               
           </ion-card>
