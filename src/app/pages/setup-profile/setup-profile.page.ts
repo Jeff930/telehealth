@@ -153,8 +153,13 @@ export class SetupProfilePage implements OnInit {
   saveProfile(){
     this.apiService.updateProfileImage(this.btoaImage).subscribe(res =>{
       console.log(res);
-      this.userService.profileImage = this.profileImage;
+      if (res == "success"){
+        this.userService.profileImage = this.profileImage;
       this.view = true;
+      }else{
+        console.log(res);
+      }
+      
     })
   }
 }
