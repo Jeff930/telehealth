@@ -65,7 +65,14 @@ export class AppComponent implements OnInit {
       this.authenticationService.authState.subscribe(state => {
         if (state) {
           this.apiService.getProfileImage(JSON.parse(localStorage.getItem('authenticated'))[0].UserId).subscribe(res => {
-            this.userService.profileImage = res;
+            console.log(res);
+            if (res=="error"){
+              console.log("here");
+              this.userService.profileImage = "https://journal4life.com/images/placeholder.jpg";
+            }else{
+              console.log(res);
+              this.userService.profileImage = res;
+            }
             this.router.navigateByUrl('/home');
           })
         } else {
