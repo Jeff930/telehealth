@@ -20,7 +20,7 @@ export class UserService {
   selectedIndex = 0;
   email;
   username;
-  profileImage;
+  profileImage = "https://journal4life.com/images/placeholder.jpg";
 
   constructor() {  
     //console.log(this.email) 
