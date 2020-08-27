@@ -19,6 +19,8 @@ import { AuthenticationService } from './services/authentication.service';
 import { ApiService } from './services/api.service';
 import { DatePipe } from '@angular/common';
 
+import { QuillModule } from 'ngx-quill';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -28,7 +30,8 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule.forRoot()
   ],
   providers: [
     StatusBar,

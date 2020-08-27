@@ -7,6 +7,7 @@ import { JournalCardComponent } from './journal-card/journal-card.component';
 import { QuoteCardComponent } from './quote-card/quote-card.component';
 import { JournalConstructComponent} from './journal-construct/journal-construct.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     IonicModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    QuillModule.forRoot()
   ],
   exports: [
     ViewEntryComponent,
