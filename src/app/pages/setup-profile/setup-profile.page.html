@@ -12,8 +12,8 @@
       <ion-row>
         <ion-col size="12">
 
-          <ion-card class="banner">
-             <ion-card-content>
+         <!--  <ion-card class="banner">
+             <ion-card-content> -->
 
               <ion-card class="profile-form">
                 <ion-card-header>
@@ -30,9 +30,9 @@
                 <ion-card-content>
                   <ion-grid>
                     <ion-row>
-                      <ion-col>
-                        <div class="profile">
-                          <img class="profile-image" [src]="profileImage" >
+                      <ion-col class="profile">
+                        <div class="profile-image" [ngStyle]="{'background': 'url(' + profileImage + ') no-repeat center'}">
+                          <!-- <img class="profile-image" [src]="profileImage" > -->
                         </div>  
                       </ion-col>
                     </ion-row>
@@ -51,9 +51,9 @@
                   </ion-grid>
                 </ion-card-content>
               </ion-card>
-            </ion-card-content>
+            <!-- </ion-card-content>
            
-            <ion-card-content>
+            <ion-card-content> -->
               <ion-card class="profile-form">
                 <ion-card-header>
                   <ion-grid>
@@ -86,7 +86,7 @@
                       <ion-col size="12" size-sm>
                         <div>
                           <ion-item *ngIf="isReadonly == false" class="input_editmode">
-                            <ion-label>Username</ion-label>
+                            <ion-label></ion-label>
                             <ion-icon name="person-circle"></ion-icon>
                             <ion-input type="text" placeholder="Username" required [readonly]="isReadonly"
                               formControlName="username"></ion-input>
@@ -191,9 +191,9 @@
                   </ion-grid>
                 </ion-card-content>
               </ion-card>
-            </ion-card-content>
+           <!--  </ion-card-content> -->
 
-             <ion-card-content>
+             <!-- <ion-card-content>
               <ion-card class="profile-form">
                 <ion-card-header>
                   <ion-grid>
@@ -205,7 +205,7 @@
                         <div style="float: right;">
                           <ion-button *ngIf="isReadonly == true" slot="end" (click)="editForm()"
                             class="btn-save ripple-style">
-                            <ion-icon name="create-outline"></ion-icon><!-- &nbsp; -->
+                            <ion-icon name="create-outline"></ion-icon><!-- &nbsp;
                           </ion-button>
                           <ion-button *ngIf="isReadonly == false" slot="end" (click)="cancelChanges()"
                             [disabled]="formStatus" class="btn-save ripple-style">
@@ -278,10 +278,10 @@
                   </ion-grid>
                 </ion-card-content>
               </ion-card>
-            </ion-card-content>
+            </ion-card-content> -->
                 
               
-          </ion-card>
+          <!-- </ion-card> -->
         </ion-col>
       </ion-row>
     </ion-grid>

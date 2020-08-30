@@ -3,7 +3,7 @@ ion-content {
 }
 
 ion-card-title{
-    color: white;
+    color: #2C3E50;
 }
 
 .lifeverse{
@@ -28,7 +28,7 @@ ion-textarea{
 
 
 ion-card-subtitle{
-    color: white;
+    color: #2C3E50;
 }
 
 .banner {
@@ -36,7 +36,7 @@ ion-card-subtitle{
 }
 
 .profile-form {
-    --background: #2C3E50;
+    --background: #FFFFFF;
 }
 
 .life-verse-card {
@@ -48,15 +48,16 @@ ion-card-subtitle{
     --background: transparent;
 }
 
-.profile {
+.profile{
     text-align:center;
-    display: block;
 }
 
-.profile-image {
+.profile-image{
+    display:inline-block;
     height: 250px;
     width: 250px;
-    object-fit: cover;
+    background-size:cover !important;
+    overflow:hidden;
     margin: 0 auto;
     border-radius: 50%;
 }
