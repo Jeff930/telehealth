@@ -27,6 +27,7 @@ export class JournalCardComponent implements OnInit {
   }
 
   getContent(content){
+    content = content.replace(/<[^>]*>/g, '');
     if (content.length>=30)
       return content.substring(0,30)+"...";
     else 
