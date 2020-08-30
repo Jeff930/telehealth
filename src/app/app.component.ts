@@ -63,6 +63,7 @@ export class AppComponent implements OnInit {
       this.splashScreen.hide();
 
       this.authenticationService.authState.subscribe(state => {
+        console.log(state);
         if (state) {
           this.apiService.getProfileImage(JSON.parse(localStorage.getItem('authenticated'))[0].UserId).subscribe(res => {
             console.log(res);
@@ -87,10 +88,6 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.userService.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
-  }
-
-  getProfile(){
-    
   }
 
   getUsername(){
