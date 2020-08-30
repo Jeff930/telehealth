@@ -36,6 +36,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('authenticated');
+    //alert(JSON.stringify(localStorage.getItem('suggestion')));
     this.authState.next(false);
   }
 

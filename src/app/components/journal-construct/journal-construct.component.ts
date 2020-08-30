@@ -22,6 +22,7 @@ export class JournalConstructComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.userService.content);
     if (this.userService.journalMode == "Create"){
       this.imagePaths = [];
       this.images = [];

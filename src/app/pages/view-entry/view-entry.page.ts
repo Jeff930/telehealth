@@ -45,6 +45,7 @@ export class ViewEntryPage implements OnInit {
   }
 
   ionViewWillEnter(){
+    console.log(this.userService.viewedEntry);
     this.imagePaths =[];
     this.userService.showMenubar = true;
     console.log(this.platform.width());
@@ -55,6 +56,7 @@ export class ViewEntryPage implements OnInit {
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
     console.log(this.userService.viewedEntry.EntryNo)
+    this.getViewedEntry();
     this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
       console.log(res);
       this.imagePaths = res;
