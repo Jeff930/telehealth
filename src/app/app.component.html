@@ -16,11 +16,13 @@
     <ion-menu contentId="main-content" type="overlay" >
       <ion-content >
         <div class="profile">
-          <img class="profile-image" [src]="userService.profileImage" [alt]="userService.profileImage">
-        </div>
+        <div class="profile-image" [ngStyle]="{'background': 'url(' + userService.profileImage + ') no-repeat center'}">
+                          <!-- <img class="profile-image" [src]="profileImage" > -->
+                        </div> 
+                      </div>
         <ion-list id="inbox-list">
-          <ion-list-header>{{getUsername()}}</ion-list-header>
-          <ion-note>{{getEmail()}}</ion-note>
+          <!-- <ion-list-header>{{getUsername()}}</ion-list-header>
+          <ion-note>{{getEmail()}}</ion-note> -->
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="userService.selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="userService.selectedIndex == i">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
