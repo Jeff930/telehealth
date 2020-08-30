@@ -29,7 +29,8 @@
                   </div>
           </ion-card-content>
           <ion-card-content>
-            <p class="journal-content">{{viewedEntry.Content}}</p>
+            <div class="journal-content" [innerHTML]="viewedEntry.Content"></div>
+            <!-- <p class="journal-content">{{viewedEntry.Content}}</p> -->
           </ion-card-content>
         </ion-card>
       </ion-col>
