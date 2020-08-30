@@ -3,6 +3,9 @@
     <ion-title>
       My Entry
     </ion-title>
+    <ion-button class="create-entry" slot="end">
+      <ion-icon name="share-social-outline" class="util-icon"></ion-icon>
+    </ion-button>
     <ion-button (click)="editEntry()" class="create-entry" slot="end">
       <ion-icon name="create-outline" class="util-icon"></ion-icon>
     </ion-button>
@@ -22,7 +25,8 @@
             <ion-card-title>{{viewedEntry.Title}}</ion-card-title>
           </ion-card-header>
           <ion-card-content *ngIf="imagePaths.length > 0">
-             <img class="uploads" *ngFor="let imagePath of imagePaths" [src]="imagePath">
+             <div class="uploads" *ngFor="let imagePath of imagePaths; let i = index" [ngStyle]="{'background': 'url(' + imagePath + ') no-repeat center'}">
+                  </div>
           </ion-card-content>
           <ion-card-content>
             <p class="journal-content">{{viewedEntry.Content}}</p>
