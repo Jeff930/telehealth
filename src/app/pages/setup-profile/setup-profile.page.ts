@@ -72,7 +72,8 @@ export class SetupProfilePage implements OnInit {
     this.isReadonly = false;
     this.piTitle = "Edit";
     let date =  new Date(this.profile_form.value.birthdate);
-    date.setDate(date.getDate() + 2);
+    //date.setDate(date.getDate() + 2);
+    console.log(date);
     let date2 = new Date(date).toISOString();
     this.profile_form.value.birthdate = date2;
     console.log(this.profile_form.value.birthdate);
@@ -81,6 +82,7 @@ export class SetupProfilePage implements OnInit {
   }
 
   saveFormChanges() {
+    console.log(this.profile_form.value);
     this.isReadonly = true;
     this.piTitle = "About Me";
     this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
