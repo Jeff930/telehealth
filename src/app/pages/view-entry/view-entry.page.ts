@@ -56,10 +56,11 @@ export class ViewEntryPage implements OnInit {
     console.log(this.userService.showMenubar,this.userService.showSidebar);
     console.log(this.userService.viewedEntry.EntryNo)
     this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
-      console.log(res['totalFiles']);
-      for (var i=0;i<res['totalFiles'];i++){
-        this.imagePaths.push('https://journal4life.com/api/v1/images/entries/'+this.userService.viewedEntry.EntryNo+'/'+this.userService.viewedEntry.EntryNo+"-"+i+".jpeg");
-      }
+      console.log(res);
+      this.imagePaths = res;
+      // for (var i=0;i<res['totalFiles'];i++){
+      //   this.imagePaths.push('https://journal4life.com/api/v1/images/entries/'+this.userService.viewedEntry.EntryNo+'/'+this.userService.viewedEntry.EntryNo+"-"+i+".jpeg");
+      // }
     });
   }
 
