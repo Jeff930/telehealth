@@ -28,10 +28,11 @@ export class ApiService {
   }
 
   updateUserDetails(formData) {
+    var date = formData.birthdate.substr(0,10);
     const body = new HttpParams()
       .set('firstname', formData.firstname)
       .set('lastname', formData.lastname)
-      .set('birthdate', formData.birthdate)
+      .set('birthdate', date)
       .set('userid', formData.userid)
       .set('username', formData.username)
       .set('email', formData.email)
