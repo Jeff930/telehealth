@@ -17,6 +17,8 @@ export class LoginPage implements OnInit {
 
   login_form: FormGroup;
   showError= false;
+  email;
+  password;
 
   constructor(
     private router: Router,
@@ -29,7 +31,7 @@ export class LoginPage implements OnInit {
     public userService : UserService,
     private authService: AuthenticationService,
     private apiService: ApiService) {
-     this.login_form = this.formBuilder.group({
+    this.login_form = this.formBuilder.group({
         email: new FormControl('', Validators.compose([Validators.required])),
         password: new FormControl('', Validators.required),
     });
@@ -39,7 +41,10 @@ export class LoginPage implements OnInit {
       this.clearAuthenticatedUser();
     }
 
-    login(formData) {  
+    login(formData) {
+      localStorage.setItem('suggestion' , JSON.stringify(formData));
+      console.log(JSON.parse(localStorage.getItem('suggestion')));
+      console.log(JSON.parse(localStorage.getItem('suggestion')).email);
         this.apiService.loginUser(formData).subscribe(res => {
           console.log(res);
           console.log(res[0]);
@@ -69,6 +74,14 @@ export class LoginPage implements OnInit {
       this.userService.showMenubar = false;
       this.userService.showSidebar = false;
       console.log(this.userService.showMenubar,this.userService.showSidebar);
+      if (localStorage.getItem('suggestion')){
+        this.login_form.value.email = JSON.parse(localStorage.getItem('suggestion')).email;
+        this.login_form.value.password = JSON.parse(localStorage.getItem('suggestion')).password;
+        this.login_form.patchValue({
+          email: JSON.parse(localStorage.getItem('suggestion')).email,
+          password: JSON.parse(localStorage.getItem('suggestion')).password
+        });
+      }
     }
 
     clearAuthenticatedUser(){
