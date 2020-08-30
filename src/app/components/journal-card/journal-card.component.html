@@ -6,8 +6,7 @@
     				<ion-card-subtitle>{{entry.CreatedTimestamp | date:'medium'}}</ion-card-subtitle>
     				<ion-card-title>{{entry.Title}}</ion-card-title>
   				</ion-card-header>
-          <div class="image-div">
-  				  <img class="card-image" src="{{'https://journal4life.com/api/v1/images/entries/'+ entry.EntryNo + '/' + entry.EntryNo + '-0.jpeg' }}"/>
+          <div class="image-div" [ngStyle]="{'background': 'url(https://journal4life.com/api/v1/images/entries/'+ entry.EntryNo + '/' + entry.EntryNo + '-0.jpeg' + ') no-repeat center'}">
           </div>
   				<ion-card-content class="card-content">
   					<p class="card-text">{{getContent(entry.Content)}}</p>

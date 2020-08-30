@@ -25,9 +25,6 @@ ion-card:hover{
 .image-div{
 	height:300px;
 	width:auto;
-	overflow:hidden;
-}
-
-.card-image{
+	background-size:cover !important;
 	overflow:hidden;
 }
