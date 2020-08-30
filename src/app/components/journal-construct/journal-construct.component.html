@@ -6,9 +6,8 @@
 						<ion-card-title>
 							<ion-row>
 								<ion-col size="11">
-									<ion-input placeholder="Place Your Title Here..." [(ngModel)]="userService.title"></ion-input>
+									<ion-input placeholder="Place Title Here..." [(ngModel)]="userService.title"></ion-input>
 								</ion-col>
-								
 								<ion-col size="1">
 									<label class="add-image" for="file"><ion-icon name="images-outline" class="util-icon"></ion-icon></label>
 									<input #image (change)="acceptImage(image)" name="file" id="file" class="image-input" type="file" accept="image/gif, image/jpeg, image/png" multiple/>
@@ -18,7 +17,13 @@
 					</ion-card-header>
 					<ion-card-content *ngIf="imagePaths.length > 0">
 						<p>Click an image to remove from list.</p>
-						<img class="uploads" *ngFor="let imagePath of imagePaths; let i = index" [src]="imagePath" (click)="removeImage(i)">
+						 <div class="uploads" *ngFor="let imagePath of imagePaths; let i = index" [ngStyle]="{'background': 'url(' + imagePath + ') no-repeat center'}" (click)="removeImage(i)">
+          				</div>
+
+
+
+
+						<!-- <img class="uploads" *ngFor="let imagePath of imagePaths; let i = index" [src]="imagePath" (click)="removeImage(i)"> -->
 					</ion-card-content>
 					<!-- <img class="card-image" src="assets/imgs/placeholder-image.jpg"/> -->
 					<ion-card-content>
