@@ -34,15 +34,17 @@ export class EditEntryPage implements OnInit {
       console.log(res);
       if (res.affectedRows==1){
         this.showError = false;
-        this.router.navigateByUrl('/view-entries');
+        this.presentAlert();
+        // this.router.navigateByUrl('/view-entries');
       }else{
+        this.presentError();
         this.showError = true;
       }
     });
   }
 
   cancelEdit(){
-    this.router.navigateByUrl('/view-entry')
+    this.router.navigateByUrl('/view-entry');
   }
 
   ionViewWillEnter(){
@@ -56,6 +58,36 @@ export class EditEntryPage implements OnInit {
     console.log(this.userService.showMenubar,this.userService.showSidebar);
     this.userService.journalMode = "Edit";
     console.log(this.userService.journalMode);
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles',
+      duration:1000
+    }).then((res) => {
+      res.present();
+  });
+  }
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Success!',
+      message: 'Your entry has been updated.',
+      buttons: ['OK']
+    });
+    await alert.present();
+
+    const { role, data } = await alert.onDidDismiss();
+    this.router.navigateByUrl('/view-entries');
+  }
+
+  async presentError() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Error!',
+      message: 'Entry update failed.',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
 }
