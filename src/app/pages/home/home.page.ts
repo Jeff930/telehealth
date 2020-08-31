@@ -43,12 +43,18 @@ export class HomePage implements OnInit {
 
   getEntries(){
     this.page = '1';
-    this.apiService.getEntries(this.page).subscribe( res=> {
-      this.userService.entries = res.rows.slice(0,2);
-      console.log(this.userService.entries);
-    },err =>{
-      console.log(err);
-    });
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
+      this.apiService.getEntries(this.page).subscribe( res=> {
+        this.userService.entries = res.rows.slice(0,2);
+        console.log(this.userService.entries);
+        this.loadingCtrl.dismiss();
+      },err =>{
+        console.log(err);
+      });
+    });   
   }
-
 }
