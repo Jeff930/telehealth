@@ -40,14 +40,15 @@ export class CreateEntryPage implements OnInit {
       console.log(res['Success']);
       if (res['Success']==true){
         this.showError = false;
-        alert("Entry created successfully!")
         this.userService.selectedIndex = 2;
         this.userService.title = "";
         this.userService.content = "";
         this.userService.entryImages = [];
-        this.router.navigateByUrl('/view-entries');
+        // this.router.navigateByUrl('/view-entries');
+        this.presentAlert();
       }else{
         this.showError = true;
+        this.presentError();
       }
     });
   }
@@ -69,5 +70,34 @@ export class CreateEntryPage implements OnInit {
     this.userService.content = "";
     this.userService.journalMode = "Create";
     console.log(this.userService.journalMode);
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles',
+      duration:1000
+    }).then((res) => {
+      res.present();
+  });}
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Success!',
+      message: 'Your entry has been created.',
+      buttons: ['OK']
+    });
+    await alert.present();
+
+    const { role, data } = await alert.onDidDismiss();
+    this.router.navigateByUrl('/view-entries');
+  }
+
+  async presentError() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Error!',
+      message: 'Entry creation failed.',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 }

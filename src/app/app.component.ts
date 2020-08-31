@@ -99,6 +99,7 @@ export class AppComponent implements OnInit {
   }
 
   logout(){
+
     this.authenticationService.logout();
   }
 
@@ -108,4 +109,35 @@ export class AppComponent implements OnInit {
     else
     this.userService.showSidebar = true;
   }
+
+  // async presentAlertConfirm() {
+  //   const alert = await this.alertCtrl.create({
+  //     cssClass: 'my-custom-class',
+  //     header: 'Confirm',
+  //     message: 'Do you really want to delete this entry?',
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         role: 'cancel',
+  //         cssClass: 'secondary',
+  //         handler: (blah) => {
+  //           console.log('Confirm Cancel: blah');
+  //         }
+  //       }, {
+  //         text: 'Okay',
+  //         handler: () => {
+  //           console.log('Confirm Okay');
+  //           this.apiService.deleteEntry(this.userService.viewedEntry.EntryNo).subscribe(res => {
+  //             this.userService.selectedIndex = 2;
+  //             this.presentDelete();
+  //             //this.router.navigateByUrl('/view-entries');
+  //           },err=>{
+  //             this.presentError();
+  //           });
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   await alert.present();
+  // }
 }
