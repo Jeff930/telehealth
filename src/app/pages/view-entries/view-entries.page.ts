@@ -65,6 +65,7 @@ export class ViewEntriesPage implements OnInit {
     this.hasSearched = false;
     this.hasFiltered = false;
     this.apiService.getEntries(this.page).subscribe(res => {
+      this.loadingCtrl.dismiss();
       console.log(res);
       this.userService.entries = res.rows;
       this.pages = res.totalPages;
@@ -133,7 +134,13 @@ export class ViewEntriesPage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar, this.userService.showSidebar);
-    this.getEntries();
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+      }).then((res) => {
+        res.present();
+        this.getEntries();
+      });
   }
 
   search(event) {
