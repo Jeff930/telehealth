@@ -45,8 +45,13 @@ export class SetupProfilePage implements OnInit {
   }
 
   ngOnInit() {
-    this.getUserDetails();
-    this.profile_form.valueChanges.subscribe(
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
+      this.getUserDetails();
+      this.profile_form.valueChanges.subscribe(
       result => {
         if(this.profile_form.status == 'VALID'){
           this.formStatus = false;
@@ -54,6 +59,7 @@ export class SetupProfilePage implements OnInit {
           this.formStatus = true;
         }
       });
+    });
   }
   
   ionViewWillEnter(){
@@ -110,6 +116,7 @@ export class SetupProfilePage implements OnInit {
     let userDetails = JSON.parse(localStorage.getItem('authenticated'));
     let userId = userDetails[0].UserId;
     this.apiService.getUserDetails(userId).subscribe(res => {
+      this.loadingCtrl.dismiss();
       localStorage.setItem('authenticated' , JSON.stringify(res));
       this.userService.username = JSON.parse(localStorage.getItem('authenticated'))[0].UserName;
       this.userService.email = JSON.parse(localStorage.getItem('authenticated'))[0].EmailAddress;
