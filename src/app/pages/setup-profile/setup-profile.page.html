@@ -94,7 +94,7 @@
                           <ion-item *ngIf="isReadonly == true" class="input_editmode">
                             <ion-label></ion-label>
                             <ion-icon name="person-circle"></ion-icon>
-                            <ion-input type="text" placeholder="Username" required [readonly]="isReadonly"
+                            <ion-input class="default" type="text" placeholder="Username" required [readonly]="isReadonly"
                               formControlName="username"></ion-input>
                           </ion-item>
                         </div>
@@ -111,7 +111,7 @@
                           <ion-item *ngIf="isReadonly == true" class="input_editmode">
                             <ion-label></ion-label>
                             <ion-icon name="mail"></ion-icon>
-                            <ion-input type="text" placeholder="Email Address" required [readonly]="isReadonly"
+                            <ion-input class="default" type="text" placeholder="Email Address" required [readonly]="isReadonly"
                               formControlName="email">
                             </ion-input>
                           </ion-item>
@@ -130,7 +130,7 @@
                           <ion-item *ngIf="isReadonly == true" class="input_editmode">
                             <ion-label></ion-label>
                             <ion-icon name="person"></ion-icon>
-                            <ion-input type="text" placeholder="First Name" required [readonly]="isReadonly"
+                            <ion-input  class="default" type="text" placeholder="First Name" required [readonly]="isReadonly"
                               formControlName="firstname"></ion-input>
                           </ion-item>
                         </div>
@@ -146,7 +146,7 @@
                           <ion-item *ngIf="isReadonly == true" class="input_editmode">
                             <ion-label></ion-label>
                             <ion-icon name="person-outline"></ion-icon>
-                            <ion-input type="text" placeholder="Last Name" required [readonly]="isReadonly"
+                            <ion-input class="default" type="text" placeholder="Last Name" required [readonly]="isReadonly"
                               formControlName="lastname"></ion-input>
                           </ion-item>
                         </div>
@@ -165,7 +165,7 @@
                           <ion-item *ngIf="isReadonly == true" class="input_editmode">
                             <ion-label></ion-label>
                             <ion-icon name="call"></ion-icon>
-                            <ion-input type="text" placeholder="Contact Number" [readonly]="isReadonly"
+                            <ion-input class="default" type="text" placeholder="Contact Number" [readonly]="isReadonly"
                               formControlName="phone">
                             </ion-input>
                           </ion-item>
@@ -181,7 +181,7 @@
                           </ion-item>
                           <ion-item *ngIf="isReadonly == true" class="input_editmode">
                             <ion-icon name="calendar"></ion-icon>
-                            <ion-datetime displayFormat="MMMM DD, YYYY" pickerFormat="MMMM DD, YYYY"
+                            <ion-datetime class="default" displayFormat="MMMM DD, YYYY" pickerFormat="MMMM DD, YYYY"
                               placeholder="MM DD, YYYY" required formControlName="birthdate" [readonly]="isReadonly">
                             </ion-datetime>
                           </ion-item>
