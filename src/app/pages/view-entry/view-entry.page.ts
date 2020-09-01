@@ -37,11 +37,61 @@ export class ViewEntryPage implements OnInit {
   }
   
   deleteEntry(){
-    this.apiService.deleteEntry(this.userService.viewedEntry.EntryNo).subscribe(res => {
-      alert("Entry deleted successfully!")
-      this.userService.selectedIndex = 2;
-      this.router.navigateByUrl('/view-entries');
+    this.presentAlertConfirm();
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm',
+      message: 'Do you really want to delete this entry?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.apiService.deleteEntry(this.userService.viewedEntry.EntryNo).subscribe(res => {
+              this.userService.selectedIndex = 2;
+              this.presentDelete();
+              //this.router.navigateByUrl('/view-entries');
+            },err=>{
+              this.presentError();
+            });
+          }
+        }
+      ]
     });
+    await alert.present();
+  }
+
+  async presentDelete() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Success!',
+      message: 'Your entry has been deleted.',
+      buttons: ['OK']
+    });
+    await alert.present();
+
+    const { role, data } = await alert.onDidDismiss();
+    this.router.navigateByUrl('/view-entries');
+  }
+
+  async presentError() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Error!',
+      message: 'Entry deletion failed.',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   ionViewWillEnter(){
@@ -55,15 +105,20 @@ export class ViewEntryPage implements OnInit {
       this.userService.showSidebar = false;
     }
     console.log(this.userService.showMenubar,this.userService.showSidebar);
-    console.log(this.userService.viewedEntry.EntryNo)
-    this.getViewedEntry();
-    this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
-      console.log(res);
-      this.imagePaths = res;
-      // for (var i=0;i<res['totalFiles'];i++){
-      //   this.imagePaths.push('https://journal4life.com/api/v1/images/entries/'+this.userService.viewedEntry.EntryNo+'/'+this.userService.viewedEntry.EntryNo+"-"+i+".jpeg");
-      // }
-    });
+    console.log(this.userService.viewedEntry.EntryNo);
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles',
+      duration:1500
+    }).then((res) => {
+      res.present();
+      this.getViewedEntry();
+      this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
+        console.log(res);
+        this.imagePaths = res;
+        this.loadingCtrl.dismiss();
+      });
+  });
   }
 
   getViewedEntry(){
