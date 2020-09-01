@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform,AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from './services/user.service';
@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private apiService: ApiService,
     private router: Router,
+    public alertCtrl: AlertController,
     private authenticationService: AuthenticationService
   ) {
     this.initializeApp();
@@ -99,8 +100,7 @@ export class AppComponent implements OnInit {
   }
 
   logout(){
-
-    this.authenticationService.logout();
+    this.presentAlertConfirm();
   }
 
   toggleSideBar(){
@@ -110,34 +110,28 @@ export class AppComponent implements OnInit {
     this.userService.showSidebar = true;
   }
 
-  // async presentAlertConfirm() {
-  //   const alert = await this.alertCtrl.create({
-  //     cssClass: 'my-custom-class',
-  //     header: 'Confirm',
-  //     message: 'Do you really want to delete this entry?',
-  //     buttons: [
-  //       {
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         cssClass: 'secondary',
-  //         handler: (blah) => {
-  //           console.log('Confirm Cancel: blah');
-  //         }
-  //       }, {
-  //         text: 'Okay',
-  //         handler: () => {
-  //           console.log('Confirm Okay');
-  //           this.apiService.deleteEntry(this.userService.viewedEntry.EntryNo).subscribe(res => {
-  //             this.userService.selectedIndex = 2;
-  //             this.presentDelete();
-  //             //this.router.navigateByUrl('/view-entries');
-  //           },err=>{
-  //             this.presentError();
-  //           });
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   await alert.present();
-  // }
+  async presentAlertConfirm() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Logout',
+      message: 'Do you really want to logout?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.authenticationService.logout();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 }
