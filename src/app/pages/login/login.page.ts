@@ -53,7 +53,6 @@ export class LoginPage implements OnInit {
         this.apiService.loginUser(formData).subscribe(res => {
           console.log(res);
           console.log(res[0]);
-          this.loadingCtrl.dismiss();
           if (res[0]!=undefined){
             if (res[0].UserId!=undefined){
               console.log("true");
@@ -61,16 +60,20 @@ export class LoginPage implements OnInit {
               this.userService.showSidebar = true;
               this.authService.login(res);
               this.login_form.reset()
+              this.loadingCtrl.dismiss();
             }else{
+              this.loadingCtrl.dismiss();
               console.log("false");
               this.presentError();
               this.showError=true;
             }
           }else{
             if (res[0]= []){
+              this.loadingCtrl.dismiss();
               this.presentInvalid();
               this.showError=true;
             }else{
+              this.loadingCtrl.dismiss();
               this.presentError();
               this.showError=true;
             }
@@ -115,7 +118,6 @@ export class LoginPage implements OnInit {
       });
       await alert.present();
       const { role, data } = await alert.onDidDismiss();
-      this.router.navigateByUrl('/view-entries');
     }
   
     async presentError() {
