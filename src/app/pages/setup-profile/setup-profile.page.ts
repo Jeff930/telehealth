@@ -88,15 +88,26 @@ export class SetupProfilePage implements OnInit {
   }
 
   saveFormChanges() {
-    console.log(this.profile_form.value);
-    this.isReadonly = true;
-    this.piTitle = "About Me";
-    this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
-      this.getUserDetails();
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
+      console.log(this.profile_form.value);
+      this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
+        if (res.affectedRows==1){
+          this.isReadonly = true;
+          this.piTitle = "About Me";
+          this.loadingCtrl.dismiss();
+          this.presentAlert();
+          this.getUserDetails();
+        }else{
+          this.presentError();
+        }
+      });
     });
   }
   
-
   cancelChanges(){
     this.isReadonly = true;
     this.piTitle = "About Me";
@@ -160,15 +171,65 @@ export class SetupProfilePage implements OnInit {
   }
 
   saveProfile(){
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
     this.apiService.updateProfileImage(this.btoaImage).subscribe(res =>{
       console.log(res);
       if (res == "success"){
+        this.loadingCtrl.dismiss();
         this.userService.profileImage = this.profileImage;
-      this.view = true;
+        this.view = true;
+        this.presentImage();
       }else{
+        this.loadingCtrl.dismiss();
+        this.presentImageError();
         console.log(res);
       }
-      
-    })
+    });});
+  }
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Success!',
+      message: 'Your profile has been updated.',
+      buttons: ['OK']
+    });
+    await alert.present();
+    const { role, data } = await alert.onDidDismiss();
+  }
+
+  async presentError() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Error!',
+      message: 'Profile update failed.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  async presentImage() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Success!',
+      message: 'Your profile image has been updated.',
+      buttons: ['OK']
+    });
+    await alert.present();
+    const { role, data } = await alert.onDidDismiss();
+  }
+
+  async presentImageError() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Error!',
+      message: 'Profile image update failed.',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 }
