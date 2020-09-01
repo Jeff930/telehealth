@@ -42,12 +42,18 @@ export class LoginPage implements OnInit {
     }
 
     login(formData) {
-      localStorage.setItem('suggestion' , JSON.stringify(formData));
-      console.log(JSON.parse(localStorage.getItem('suggestion')));
-      console.log(JSON.parse(localStorage.getItem('suggestion')).email);
+      this.loadingCtrl.create({
+        cssClass: 'yellow',
+        spinner:'circles'
+      }).then((res) => {
+        res.present();
+        localStorage.setItem('suggestion' , JSON.stringify(formData));
+        console.log(JSON.parse(localStorage.getItem('suggestion')));
+        console.log(JSON.parse(localStorage.getItem('suggestion')).email);
         this.apiService.loginUser(formData).subscribe(res => {
           console.log(res);
           console.log(res[0]);
+          this.loadingCtrl.dismiss();
           if (res[0]!=undefined){
             if (res[0].UserId!=undefined){
               console.log("true");
@@ -57,14 +63,21 @@ export class LoginPage implements OnInit {
               this.login_form.reset()
             }else{
               console.log("false");
+              this.presentError();
               this.showError=true;
             }
           }else{
-            console.log("false");
-            this.showError=true;
+            if (res[0]= []){
+              this.presentInvalid();
+              this.showError=true;
+            }else{
+              this.presentError();
+              this.showError=true;
+            }
           }
         });
-      }
+      });
+    }
 
     signup(){
       this.router.navigateByUrl('/signup');
@@ -91,5 +104,27 @@ export class LoginPage implements OnInit {
 
     recover(){
       this.router.navigateByUrl('/forgot-password');
+    }
+
+    async presentInvalid() {
+      const alert = await this.alertCtrl.create({
+        cssClass: 'alert',
+        header: 'Invalid Login!',
+        message: 'No matching account found.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      const { role, data } = await alert.onDidDismiss();
+      this.router.navigateByUrl('/view-entries');
+    }
+  
+    async presentError() {
+      const alert = await this.alertCtrl.create({
+        cssClass: 'alert',
+        header: 'Error!',
+        message: 'Failed to login.',
+        buttons: ['OK']
+      });
+      await alert.present();
     }
 }
