@@ -21,6 +21,9 @@ import { DatePipe } from '@angular/common';
 
 import { QuillModule } from 'ngx-quill';
 
+
+import { SocialPageModule } from './pages/social/social.module';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -31,6 +34,7 @@ import { QuillModule } from 'ngx-quill';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SocialPageModule,
     QuillModule.forRoot()
   ],
   providers: [
