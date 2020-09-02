@@ -68,7 +68,7 @@ export class HomePage implements OnInit {
     console.log("Modal called");
       const modal = await this.modalCtrl.create({
       component: SocialPage,
-      cssClass: 'my-custom-class'
+      cssClass: 'social'
     });
     return await modal.present();
   }

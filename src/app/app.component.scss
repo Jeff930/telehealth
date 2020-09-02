@@ -2,6 +2,10 @@ ion-menu ion-content {
   
 }
 
+.social .modal-wrapper{
+  --height:200px;
+}
+
 ion-menu.md ion-content {
   --padding-start: 8px;
   --padding-end: 8px;
