@@ -1,9 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>social</ion-title>
+    <ion-title>Share Us!</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<ion-button class="create-entry fb" (click)="share('fb')">
+      				<ion-icon name="logo-facebook" class="util-icon" ></ion-icon>
+   				</ion-button>
+   			</ion-col>
+   			<ion-col>
+				<ion-button class="create-entry tw" (click)="share('tw')">
+      				<ion-icon name="logo-twitter" class="util-icon" ></ion-icon>
+   				</ion-button>
+   			</ion-col>
+   			<ion-col>
+				<ion-button class="create-entry in" (click)="share('in')">
+      				<ion-icon name="logo-linkedin" class="util-icon" ></ion-icon>
+   				</ion-button>
+   			</ion-col>
+   			<ion-col>
+				<ion-button class="create-entry rt" (click)="share('rd')">
+      				<ion-icon name="logo-reddit" class="util-icon" ></ion-icon>
+   				</ion-button>
+   			</ion-col>
+   		</ion-row>
+    </ion-grid>
 </ion-content>
