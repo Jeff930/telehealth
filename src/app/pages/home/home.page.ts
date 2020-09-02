@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController , AlertController, MenuController , Platform  } from '@ionic/angular';
+import { LoadingController , AlertController, MenuController , Platform, ModalController  } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { ApiService } from 'src/app/services/api.service';
+import { SocialPage } from '../social/social.page';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,7 @@ export class HomePage implements OnInit {
     public platform : Platform,
     public http : HttpClient,
     public userService : UserService,
+    public modalCtrl: ModalController,
     public apiService : ApiService) { }
 
   ngOnInit() {
@@ -56,5 +58,18 @@ export class HomePage implements OnInit {
         console.log(err);
       });
     });   
+  }
+
+  presentModal(){
+    console.log("Modal");
+    this.present();
+  }
+  async present() {
+    console.log("Modal called");
+      const modal = await this.modalCtrl.create({
+      component: SocialPage,
+      cssClass: 'my-custom-class'
+    });
+    return await modal.present();
   }
 }
