@@ -58,4 +58,10 @@ share(socialPlatform: any) {
     }
   }
 
+  copyInputMessage(inputElement){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+  }
+
 }
