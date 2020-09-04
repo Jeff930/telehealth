@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ApiService } from 'src/app/services/api.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import Quill from "quill";
 
 @Component({
   selector: 'app-journal-construct',
@@ -13,6 +14,19 @@ export class JournalConstructComponent implements OnInit {
   entry_form: FormGroup;
   imagePaths = [];
   images = [];
+
+  public editorOptions = {
+    toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+      
+        ['clean'],                                         // remove formatting button
+
+        ['link']                         // link and image, video
+    ]
+  };
 
   constructor(
     public userService: UserService,
