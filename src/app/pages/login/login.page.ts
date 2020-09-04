@@ -38,7 +38,25 @@ export class LoginPage implements OnInit {
     }
 
     ngOnInit(){
-      this.clearAuthenticatedUser();
+      this.loadingCtrl.create({
+        cssClass: 'yellow',
+        spinner:'circles',
+        duration:700
+      }).then((res) => {
+        res.present();
+        this.clearAuthenticatedUser();
+      this.userService.showMenubar = false;
+      this.userService.showSidebar = false;
+      console.log(this.userService.showMenubar,this.userService.showSidebar);
+      if (localStorage.getItem('suggestion')){
+        this.login_form.value.email = JSON.parse(localStorage.getItem('suggestion')).email;
+        this.login_form.value.password = JSON.parse(localStorage.getItem('suggestion')).password;
+        this.login_form.patchValue({
+          email: JSON.parse(localStorage.getItem('suggestion')).email,
+          password: JSON.parse(localStorage.getItem('suggestion')).password
+        });
+      }
+      });   
     }
 
     login(formData) {
