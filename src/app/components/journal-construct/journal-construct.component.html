@@ -27,7 +27,9 @@
 					</ion-card-content>
 					<!-- <img class="card-image" src="assets/imgs/placeholder-image.jpg"/> -->
 					<ion-card-content>
-						<quill-editor class="journal-content" rows="25" [(ngModel)]="userService.content"></quill-editor>
+						<quill-editor class="journal-content" rows="25" [(ngModel)]="userService.content"
+    [placeholder]="editorPlaceholder"
+    [modules]="editorOptions"></quill-editor>
 						<!-- <ion-textarea class="journal-content" rows="25"
 							placeholder="What happened today? Place them here..." [(ngModel)]="userService.content">
 						</ion-textarea> -->
