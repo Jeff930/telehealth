@@ -29,18 +29,26 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getEntries();
-  }
-
-  ionViewWillEnter(){
     this.userService.showMenubar = true;
-    console.log(this.platform.width());
+    console.log(this.userService.showMenubar,this.userService.showSidebar);
+    this.userService.selectedIndex = 0;
     if (this.platform.width()>850) {
       this.userService.showSidebar = true;
     } else {
       this.userService.showSidebar = false;
     }
+  }
+
+  ionViewWillEnter(){
+    this.userService.showMenubar = true;
+    console.log(this.platform.width());
     console.log(this.userService.showMenubar,this.userService.showSidebar);
     this.userService.selectedIndex = 0;
+    if (this.platform.width()>850) {
+      this.userService.showSidebar = true;
+    } else {
+      this.userService.showSidebar = false;
+    }
   }
 
   getEntries(){
