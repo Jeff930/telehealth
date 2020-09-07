@@ -9,8 +9,10 @@
         		    	</ion-col>
 
         		    	<ion-col size="6" class="right-content">
+        		    		<!-- <ion-button class="signup-nav"><ion-icon name="help-circle-outline"></ion-icon></ion-button> -->
         		    		<ion-button class="signup-nav" (click)="signup()">Register</ion-button>
         		    		<ion-button class="login-nav" (click)="signup()" disabled="true">Log In</ion-button>
+
         		    		
         		    		<h1>Log In</h1>
 
@@ -27,6 +29,8 @@
       						<ion-button class="login-button" size="large" expand="full" (click)="login(login_form.value)" [disabled]="!login_form.valid" type="submit">Sign In</ion-button>
       				
       						<button class="recover-button" text-center (click)="recover()">Forgot Your Password?</button>
+
+      						<button class="recover-button help" text-center>Need help?</button>
 
       					</ion-col>	
       				</ion-row>		
