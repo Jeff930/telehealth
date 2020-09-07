@@ -18,10 +18,7 @@ export class JournalConstructComponent implements OnInit {
   public editorOptions = {
     toolbar: [
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-
-        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-        [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
-      
+     
         ['clean'],                                         // remove formatting button
 
         ['link']                         // link and image, video
