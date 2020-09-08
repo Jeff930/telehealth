@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController, AlertController, MenuController, Platform } from '@ionic/angular';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 
@@ -26,7 +27,8 @@ export class ForgotPasswordPage implements OnInit {
   constructor(
     public router: Router,
     public fb: FormBuilder,
-    public apiService: ApiService
+    public apiService: ApiService,
+    public loadingCtrl: LoadingController,
   ) {
     this.password_form = this.fb.group({
       new_password: new FormControl('', Validators.required),
@@ -45,39 +47,66 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   submitRecovery(num_input) {
-    this.apiService.verifyNumber(this.emailInput,num_input).subscribe(res =>{
-      if (res == "Success"){
-        this.step2 = false;
-        this.step3 = true;
-        this.wrong_num = false;
-      }else{
-        this.wrong_num = true;
-      }
-    })
+    console.log("called");
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
+      this.apiService.verifyNumber(this.emailInput,num_input).subscribe(res =>{
+        if (res == "Success"){
+          this.step2 = false;
+          this.step3 = true;
+          this.wrong_num = false;
+          this.loadingCtrl.dismiss();
+        }else{
+          this.wrong_num = true;
+          this.loadingCtrl.dismiss();
+        }
+      });
+    });
   }
 
   submitEmail(emailInput) {
     console.log("called");
-    this.apiService.sendVerification(emailInput).subscribe(res =>{
-      if (res == "Success"){
-        this.step1 = false;
-        this.step2 = true;
-      }
-    })
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
+      this.apiService.sendVerification(emailInput).subscribe(res =>{
+        if (res == "Success"){
+          this.loadingCtrl.dismiss();
+          this.step1 = false;
+          this.step2 = true;
+        }else{
+          this.loadingCtrl.dismiss();
+        }
+      });
+    });
   }
 
   changePassword() {
-    if (this.password != null && this.password == this.confirmPassword){
-      this.apiService.updatePassword(this.password,this.emailInput).subscribe(res =>{
-        if (res == "Success"){
-          this.passwordError = false;
-          this.step3 = false;
-          this.step4 = true;
-        }
-      })
-    }else{
-      this.passwordError = true;
-    }
+    console.log("called");
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
+      if (this.password != null && this.password.length >= 6 && this.password == this.confirmPassword){
+        this.apiService.updatePassword(this.password,this.emailInput).subscribe(res =>{
+          if (res == "Success"){
+            this.passwordError = false;
+            this.loadingCtrl.dismiss();
+            this.step3 = false;
+            this.step4 = true;
+          }
+        })
+      }else{
+        this.passwordError = true;
+        this.loadingCtrl.dismiss();
+      }
+    })
   }
 
   goBackToLogin(){
