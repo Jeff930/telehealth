@@ -17,7 +17,7 @@
 					</ion-card-header>
 					<ion-card-content *ngIf="imagePaths.length > 0">
 						<p>Click an image to remove from list.</p>
-						 <div class="uploads" *ngFor="let imagePath of imagePaths; let i = index" [ngStyle]="{'background': 'url(' + imagePath + ') no-repeat center'}" (click)="removeImage(i)">
+						 <div class="uploads" *ngFor="let imagePath of userService.imagePaths; let i = index" [ngStyle]="{'background': 'url(' + imagePath + ') no-repeat center'}" (click)="removeImage(i)">
           				</div>
 
 

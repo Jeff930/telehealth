@@ -41,13 +41,11 @@ export class JournalConstructComponent implements OnInit {
       this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
         console.log(res);
         this.imagePaths = res;
+        this.userService.imagePaths = res;
         for (var i=0;i<this.imagePaths.length;i++){
           this.images.push(btoa(this.imagePaths[i]).replace("+", "-").replace("/", "_"));
           this.userService.entryImages = this.images;
         }
-        // for (var i=0;i<res['totalFiles'];i++){
-        //   this.imagePaths.push('https://journal4life.com/api/v1/images/entries/'+this.userService.viewedEntry.EntryNo+'/'+this.userService.viewedEntry.EntryNo+"-"+i+".jpeg");
-        // }
       });
     }
     console.log(this.imagePaths);
@@ -69,6 +67,7 @@ export class JournalConstructComponent implements OnInit {
         var tempImage = event.target.result;
         console.log(tempImage);
         this.imagePaths.push(tempImage);
+        this.userService.imagePaths = this.imagePaths;
         var image = btoa(tempImage).replace("+", "-").replace("/", "_");
         console.log(this.userService.entryImages);
         this.images.push(image);
