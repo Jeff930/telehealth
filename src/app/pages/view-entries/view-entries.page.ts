@@ -153,14 +153,22 @@ export class ViewEntriesPage implements OnInit {
   }
 
   upsertSearch() {
-    this.apiService.searchEntries(this.page, this.searchInput).subscribe(res => {
-      console.log(res);
-      this.searchDisplay = this.searchInput;
-      this.hasSearched = true;
-      this.hasFiltered = false;
-      this.userService.entries = res.rows;
-    }, err => {
-      console.log(err);
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
+      this.apiService.searchEntries(this.page, this.searchInput).subscribe(res => {
+        console.log(res);
+        this.searchDisplay = this.searchInput;
+        this.hasSearched = true;
+        this.hasFiltered = false;
+        this.loadingCtrl.dismiss();
+        this.userService.entries = res.rows;
+      }, err => {
+        console.log(err);
+        this.loadingCtrl.dismiss();
+      });
     });
   }
 
