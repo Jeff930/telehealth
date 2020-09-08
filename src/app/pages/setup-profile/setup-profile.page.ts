@@ -51,6 +51,8 @@ export class SetupProfilePage implements OnInit {
     }).then((res) => {
       res.present();
       this.getUserDetails();
+      
+    // console.log(this.profileImage);
       this.profile_form.valueChanges.subscribe(
       result => {
         if(this.profile_form.status == 'VALID'){
@@ -63,7 +65,12 @@ export class SetupProfilePage implements OnInit {
   }
   
   ionViewWillEnter(){
-    this.profileImage = this.userService.profileImage;
+    if (this.userService.profileImage == "error"){
+      this.profileImage = "https://journal4life.com/images/placeholder.jpg";
+    }else{
+      this.profileImage = this.userService.profileImage;
+    }
+    console.log(this.profileImage);
     this.userService.showMenubar = true;
     console.log(this.platform.width());
     if (this.platform.width()>850) {
