@@ -30,6 +30,7 @@ export class CreateEntryPage implements OnInit {
     this.userService.title = "";
     this.userService.content = "";
     this.userService.journalMode = "Create";
+    this.userService.entryImages = [];
   }
 
   saveEntry(){
@@ -44,7 +45,7 @@ export class CreateEntryPage implements OnInit {
         this.userService.title = "";
         this.userService.content = "";
         this.userService.entryImages = [];
-        // this.router.navigateByUrl('/view-entries');
+        this.userService.imagePaths = [];
         this.presentAlert();
       }else{
         this.showError = true;

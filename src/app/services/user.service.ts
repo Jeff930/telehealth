@@ -14,6 +14,7 @@ export class UserService {
   entries = [];
   viewedEntry;
   entryImages = [];
+  imagePaths = [];
   totalPages;
   firstPage;
   lastPage;
