@@ -75,7 +75,6 @@ export class LoginPage implements OnInit {
             if (res[0].UserId!=undefined){
               console.log("true");
               this.showError=false;
-              this.userService.showSidebar = true;
               this.authService.login(res);
               this.login_form.reset()
               this.loadingCtrl.dismiss();
