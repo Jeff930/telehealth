@@ -147,7 +147,7 @@ export class ViewEntriesPage implements OnInit {
     this.page = 1;
     console.log(event);
     console.log(this.searchInput);
-    if (this.searchInput.length > 3) {
+    if (this.searchInput.length > 2) {
       this.upsertSearch();
     }
   }
