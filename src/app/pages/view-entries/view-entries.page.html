@@ -45,7 +45,7 @@
 	</ion-grid>
 	<app-journal-card></app-journal-card>
 	<ion-grid >
-		<ion-row>
+		<ion-row *ngIf="userService.entries.length != 0">
 			<ion-col>
 				<ion-button class="nav-button" (click)="nextPage()" [disabled]="userService.lastPage">>></ion-button>
 					<!-- <ion-label>Page</ion-label> -->
