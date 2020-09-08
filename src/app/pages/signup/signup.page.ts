@@ -66,6 +66,7 @@ export class SignupPage implements OnInit {
               this.showShortPassword = false;
               this.showError = false;
               this.showPasswordMismatch = false;
+              this.signup_form.reset()
             }else{
               this.loadingCtrl.dismiss();
               this.presentError();
