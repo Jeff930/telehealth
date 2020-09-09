@@ -1,0 +1,27 @@
+.logo{
+  height: 3vw;
+  min-height: 50px;
+  padding: 5px 0px 1px;
+}
+
+.main-header{
+  --ion-background-color: #F5E6AA;
+}
+
+.create-entry{
+  --background:#0a947a;
+}
+
+.logout:hover{
+   --ion-background-color:#F5F5F5;
+   cursor:pointer;
+}
+
+.card{
+	margin:20px;
+}
+
+.card-text{
+  text-align: justify;
+  text-justify: inter-word;
+}
