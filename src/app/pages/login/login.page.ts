@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
         email: new FormControl('', Validators.compose([Validators.required])),
         password: new FormControl('', Validators.required),
     });
-    }
+  }
 
     ngOnInit(){
       this.loadingCtrl.create({
@@ -101,6 +101,10 @@ export class LoginPage implements OnInit {
 
     signup(){
       this.router.navigateByUrl('/signup');
+    }
+
+    faq(){
+      this.router.navigateByUrl('/faq');
     }
 
     ionViewWillEnter(){

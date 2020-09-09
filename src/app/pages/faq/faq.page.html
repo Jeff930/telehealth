@@ -1,9 +1,143 @@
-<ion-header>
+<ion-header class="main-header" *ngIf="showHeader">
   <ion-toolbar>
-    <ion-title>faq</ion-title>
+    <ion-title>
+      <img class="logo" src="assets/imgs/logo.png">
+    </ion-title>
+    <ion-button class="logout" fill="clear" slot="end"><ion-icon class="help-icon" name="help-circle-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar *ngIf="platform.width()<501">
+    <ion-title>FAQs</ion-title>
+    <ion-button (click)="back()" class="create-entry" slot="end"><ion-icon name="arrow-back-outline" class="util-icon"></ion-icon> </ion-button>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="platform.width()>501">
+    <ion-title>Frequently Asked Questions</ion-title>
+    <ion-button (click)="back()" class="create-entry" slot="end"><ion-icon name="arrow-back-outline" class="util-icon" ></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+	<ion-grid>
+	<ion-row>
+		<ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12">
+			<ion-card class="card">
+  				<ion-card-header color="secondary">
+    				<ion-card-title>Still need help? Contact us!</ion-card-title>
+  				</ion-card-header>
+  				<ion-card-content class="card-content">
+  					<br>
+  					<p class="card-text">We'd love to hear from you. You can send us an email at placeholder@email.com or contact us with our contact number - 12345678910. </p>
+  				</ion-card-content>
+			</ion-card>
+
+			<ion-card class="card">
+  				<ion-card-header color="secondary">
+    				<ion-card-title>How to register for Journey4Life Digital Journal?</ion-card-title>
+  				</ion-card-header>
+  				<ion-card-content class="card-content">
+  					<br>
+  					<p class="card-text">1. From the Login page, navigate to Signup page by clicking 
+  					"Register" button on the top right of the page.</p>
+  					<br>
+  					<p class="card-text">2. Provide the form with the required details. For your security, your password must be longer than 6 characters.</p>
+  					<br>
+  					<p class="card-text">3. Click the "Register" button. Once you are prompted that your account is successfully created, congratulations! you can now start your journey with Journal4Life Digital Journal.</p>
+  				</ion-card-content>
+			</ion-card>
+
+			<ion-card class="card">
+  				<ion-card-header color="secondary">
+    				<ion-card-title>I forgot my password. How can I recover my account?</ion-card-title>
+  				</ion-card-header>
+  				<ion-card-content class="card-content">
+  					<br> 
+  					<p class="card-text">1. From the Login page, click the forgot password on the bottom part of the page.</p>
+  					<br>
+  					<p class="card-text">2. Provide your email address associated with your account and select "Recover Account" button. An email containing your verification number will be sent to your email address.</p>
+  					<br>
+  					<p class="card-text">3. Check your mailbox for the verification number. Insert the sent verification number and click "Verify" button. For your security, it is recommended that you do not share this verification number to anyone.</p>
+  					<br>
+  					<p class="card-text">4. After your verification number has been verified, you can now change the password to your account.</p>
+  				</ion-card-content>
+			</ion-card>
+
+			<ion-card class="card">
+  				<ion-card-header color="secondary">
+    				<ion-card-title>How to create an entry in Journey4Life Digital Journal?</ion-card-title>
+  				</ion-card-header>
+  				<ion-card-content class="card-content">
+  					<br>
+  					<p class="card-text">1. You can access the Create Entry page using the side menu. Select the "Create Entry" option. You will be navigated to Create Entry page.</p>
+  					<br>
+  					<p class="card-text">2. On the page, provide the details of your entry including the title and content. You can also add images by clicking the image button on the top right of the Create Entry area.</p>
+  					<br>
+  					<p class="card-text">3. Once finished, you can save your entry by clicking the save button on the top right. You will be prompted after your entry is successfully created.</p>
+  				</ion-card-content>
+			</ion-card>
+
+			<ion-card class="card">
+  				<ion-card-header color="secondary">
+    				<ion-card-title>How to edit an entry in Journey4Life Digital Journal?</ion-card-title>
+  				</ion-card-header>
+  				<ion-card-content class="card-content">
+  					<br>
+  					<p class="card-text">1. You can edit your entry from either the Home and View Entries page. Select the "My Home" or "View Entries" option using the side menu. The list of your entries will displayed.</p>
+  					<br>
+  					<p class="card-text">2. Select the entry you wish to edit and you will be navigated to View Entry page.</p>
+  					<br>
+  					<p class="card-text">3. Click the Edit button on the top right of the page and you will be navigated to Edit Entry page.</p>
+  					<br>
+  					<p class="card-text">4. On the Edit Entry page, you can edit the title and the content of your entry. You can also delete or add images to your current images. Once finished, click the save button on the top right of the page.</p>
+  				</ion-card-content>
+			</ion-card>
+
+			<ion-card class="card">
+  				<ion-card-header color="secondary">
+    				<ion-card-title>How to view an entry in Journey4Life Digital Journal?</ion-card-title>
+  				</ion-card-header>
+  				<ion-card-content class="card-content">
+  					<br>
+  					<p class="card-text">1. You can view your entries from either the Home and View Entries page. Select the "My Home" or "View Entries" option using the side menu. The list of your entries will displayed.</p>
+  					<br>
+  					<p class="card-text">2. To view an entry, simply select the entry from the list displayed in Home Page and View Entries Page. Home Page only displays your two(2) most recent entries.</p>
+  				</ion-card-content>
+			</ion-card>
+
+			<ion-card class="card">
+  				<ion-card-header color="secondary">
+    				<ion-card-title>How to delete an entry in Journey4Life Digital Journal?</ion-card-title>
+  				</ion-card-header>
+  				<ion-card-content class="card-content">
+  					<br>
+  					<p class="card-text">1. You can delete your entries from the View Entry page. Select the "My Home" or "View Entries" option using the side menu. The list of your entries will displayed.</p>
+  					<br>
+  					<p class="card-text">2. Select the entry from the list displayed in Home Page and View Entries Page. Home Page only displays your two(2) most recent entries.</p>
+  					<br>
+  					<p class="card-text">3. Select the entry from the list displayed in Home Page and View Entries Page. Home Page only displays your two(2) most recent entries.</p>
+  					<br>
+  					<p class="card-text">4. To delete an entry, click the delete icon on the top right of the page.</p>
+  				</ion-card-content>
+			</ion-card>
+
+			<ion-card class="card">
+  				<ion-card-header color="secondary">
+    				<ion-card-title>How to update your profile details in Journey4Life Digital Journal?</ion-card-title>
+  				</ion-card-header>
+  				<ion-card-content class="card-content">
+  					<br>
+  					<p class="card-text">1. You can update your profile details from the My Profile page. Select the "My Profile" option using the side menu. You will be navigated to My Profile page.</p>
+  					<br>
+  					<p class="card-text">2. If you wish to change your profile picture, click the "Update Profile Picture" from the "My Photo" section. The image selection prompt will be displayed. Select the image you want as your profile picture. JPEG (.jpeg) and PNG (.png) files are supported by Journal4Life Digital Journal. Click the "Save" button to finish updating your profile picture.</p>
+  					<br>
+  					<p class="card-text">3. If you wish to change your profile information, click the edit button from the top right of the "About Me" section. Edit the information you wish to change then click the save button to update your information.</p>
+  				</ion-card-content>
+			</ion-card>
+
+			<ion-button class="logout" fill="clear" (click)="test()">Test</ion-button>
+		</ion-col>
+  </ion-row> 
+</ion-grid>
 
 </ion-content>

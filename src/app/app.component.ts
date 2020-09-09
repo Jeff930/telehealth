@@ -38,9 +38,9 @@ export class AppComponent implements OnInit {
       icon: 'add-circle'
     // },
     // {
-    //   title: 'Logout',
-    //   url: '/login',
-    //   icon: 'log-out'
+    //   title: 'FAQs',
+    //   url: '/faq',
+    //   icon: 'help-circle'
     }
    
   ];
@@ -89,6 +89,10 @@ export class AppComponent implements OnInit {
     if (path !== undefined) {
       this.userService.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+
+  help(){
+    this.router.navigateByUrl('/faq');
   }
 
   getUsername(){
