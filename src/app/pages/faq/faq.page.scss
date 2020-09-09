@@ -18,10 +18,15 @@
 }
 
 .card{
-	margin:20px;
+	margin:30px 25px;
 }
 
 .card-text{
   text-align: justify;
   text-justify: inter-word;
+}
+
+.create-entry{
+  --background:#E74C3C;	
+  margin: 0px 20px;
 }
