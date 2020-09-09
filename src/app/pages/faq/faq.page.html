@@ -8,8 +8,13 @@
 </ion-header>
 
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar *ngIf="platform.width()<501">
+    <ion-title>FAQs</ion-title>
+    <ion-button (click)="saveChanges()" class="create-entry" slot="end"><ion-icon name="save-outline" class="util-icon"></ion-icon> </ion-button>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="platform.width()>501">
     <ion-title>Frequently Asked Questions</ion-title>
+    <ion-button (click)="saveChanges()" class="create-entry" slot="end"><ion-icon name="save-outline" class="util-icon" ></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -44,15 +49,17 @@
 
 			<ion-card class="card">
   				<ion-card-header color="secondary">
-    				<ion-card-title>How to create an entry in Journey4Life Digital Journal?</ion-card-title>
+    				<ion-card-title>I forgot my password. How can I recover my account?</ion-card-title>
   				</ion-card-header>
   				<ion-card-content class="card-content">
+  					<br> 
+  					<p class="card-text">1. From the Login page, click the forgot password on the bottom part of the page.</p>
   					<br>
-  					<p class="card-text">1. You can access the Create Entry page using the side menu. Select the "Create Entry" option. You will be navigated to Create Entry page.</p>
+  					<p class="card-text">2. Provide your email address associated with your account and select "Recover Account" button. An email containing your verification number will be sent to your email address.</p>
   					<br>
-  					<p class="card-text">2. On the page, provide the details of your entry including the title and content. You can also add images by clicking the image button on the top right of the Create Entry area.</p>
+  					<p class="card-text">3. Check your mailbox for the verification number. Insert the sent verification number and click "Verify" button. For your security, it is recommended that you do not share this verification number to anyone.</p>
   					<br>
-  					<p class="card-text">3. Once finished, you can save your entry by clicking the save button on the top right. You will be prompted after your entry is successfully created.</p>
+  					<p class="card-text">4. After your verification number has been verified, you can now change the password to your account.</p>
   				</ion-card-content>
 			</ion-card>
 
