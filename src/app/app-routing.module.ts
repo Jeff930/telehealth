@@ -48,7 +48,16 @@ const routes: Routes = [
   {
     path: 'social',
     loadChildren: () => import('./pages/social/social.module').then( m => m.SocialPageModule)
+  },
+  {
+    path: 'faq',
+    loadChildren: () => import('./pages/faq/faq.module').then( m => m.FaqPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   }
+
 
 
 ];
