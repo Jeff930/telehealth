@@ -15,10 +15,11 @@
 		</ion-col>
   </ion-row>
   <ion-row *ngIf="userService.entries.length == 0">
-    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="6" size-xl="6" >
-      <ion-item>
-      <ion-label>No Entries found.</ion-label>
-    </ion-item>
+    <ion-col size-xs="12" size-sm="12" size-md="12" size-lg="12" size-xl="12" >
+		  <div class="no-entry">
+			<p class="icon"><ion-icon name="newspaper-outline"></ion-icon></p>
+			<p class="no-entry-text">No Entries found.</p>
+		  </div>
     </ion-col>
 	</ion-row> 
 </ion-grid>

@@ -18,41 +18,41 @@
                 
 
                 <h1>Register</h1>
-
+                
                 <ion-item>
-                  <ion-label class="label-desktop" position="floating">First Name<span class="red">*</span></ion-label>
+                  <ion-label class="label-desktop" position="floating">First Name <span class="red" *ngIf="!signup_form.controls.firstname.valid">*</span></ion-label>
                   <ion-input type="text" formControlName="firstname" required></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label class="label-desktop" position="floating">Last Name<span class="red">*</span></ion-label>
+                  <ion-label class="label-desktop" position="floating">Last Name <span class="red" *ngIf="!signup_form.controls.lastname.valid">*</span></ion-label>
                   <ion-input type="text" formControlName="lastname" required></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label class="label-desktop" position="floating">Username<span class="red">*</span></ion-label> 
+                  <ion-label class="label-desktop" position="floating">Username <span class="red" *ngIf="!signup_form.controls.username.valid">*</span></ion-label> 
                   <ion-input type="text" formControlName="username" required></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label class="label-desktop" position="floating">Email Address<span class="red">*</span></ion-label> 
+                  <ion-label class="label-desktop" position="floating">Email Address <span class="red" *ngIf="!signup_form.controls.email.valid">*</span></ion-label> 
                   <ion-input type="email" formControlName="email" required></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label class="label-desktop" position="floating">Birthdate<span class="red">*</span></ion-label> 
+                  <ion-label class="label-desktop" position="floating">Birthdate <span class="red" *ngIf="!signup_form.controls.birthdate.touched">*</span></ion-label> 
                   <ion-datetime displayFormat="MMMM DD, YYYY" pickerFormat="MMMM DD, YYYY"
                              required formControlName="birthdate">
                             </ion-datetime>
                 </ion-item>              
 
                 <ion-item>
-                  <ion-label class="label-desktop" position="floating">Password<span class="red">*</span></ion-label> 
+                  <ion-label class="label-desktop" position="floating">Password<span class="red" *ngIf="!signup_form.controls.password.valid">*</span></ion-label> 
                   <ion-input type="password" formControlName="password" required></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label class="label-desktop" position="floating">Re-type Password<span class="red">*</span></ion-label>
+                  <ion-label class="label-desktop" position="floating">Re-type Password <span class="red" *ngIf="signup_form.controls.password.value === signup_form.controls.confirmpassword.value">*</span></ion-label>
                   <ion-input type="password" formControlName="confirmpassword" required></ion-input>
                 </ion-item>
 
@@ -62,7 +62,7 @@
                 <p *ngIf="showSuccess" class="black" text-center>SIGNUP SUCCESSFUL!</p>
                 <p *ngIf="showSuccess" class="black" text-center>Please access your account from the login page</p>
               
-                <ion-button class="signup-button" size="large" expand="full" (click)="signup(signup_form.value)" [disabled]="!signup_form.valid" type="submit">Register</ion-button>
+                <ion-button class="signup-button" size="large" expand="full" (click)="signup(signup_form.value)" [disabled]="!signup_form.valid && !signup_form.controls.birthdate.touched" type="submit">Register</ion-button>
 
                 <button class="recover-button help" text-center>Need help?</button>
               </ion-col>
