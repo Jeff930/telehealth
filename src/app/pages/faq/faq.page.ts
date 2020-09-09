@@ -31,4 +31,8 @@ export class FaqPage implements OnInit {
       this.showHeader = true;
     }
   }
+
+  test(){
+    this.router.navigateByUrl('/chat');
+  }
 }
