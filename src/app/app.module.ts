@@ -20,7 +20,7 @@ import { ApiService } from './services/api.service';
 import { DatePipe } from '@angular/common';
 
 import { QuillModule } from 'ngx-quill';
-
+import { FacebookModule } from 'ngx-facebook';
 
 import { SocialPageModule } from './pages/social/social.module';
 
@@ -35,7 +35,8 @@ import { SocialPageModule } from './pages/social/social.module';
     ReactiveFormsModule,
     HttpClientModule,
     SocialPageModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    FacebookModule.forRoot()
   ],
   providers: [
     StatusBar,
