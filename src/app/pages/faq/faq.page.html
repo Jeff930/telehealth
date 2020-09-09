@@ -1,4 +1,4 @@
-<ion-header class="main-header">
+<ion-header class="main-header" *ngIf="showHeader">
   <ion-toolbar>
     <ion-title>
       <img class="logo" src="assets/imgs/logo.png">
@@ -10,11 +10,11 @@
 <ion-header>
   <ion-toolbar *ngIf="platform.width()<501">
     <ion-title>FAQs</ion-title>
-    <ion-button (click)="saveChanges()" class="create-entry" slot="end"><ion-icon name="save-outline" class="util-icon"></ion-icon> </ion-button>
+    <ion-button (click)="back()" class="create-entry" slot="end"><ion-icon name="arrow-back-outline" class="util-icon"></ion-icon> </ion-button>
   </ion-toolbar>
   <ion-toolbar *ngIf="platform.width()>501">
     <ion-title>Frequently Asked Questions</ion-title>
-    <ion-button (click)="saveChanges()" class="create-entry" slot="end"><ion-icon name="save-outline" class="util-icon" ></ion-icon></ion-button>
+    <ion-button (click)="back()" class="create-entry" slot="end"><ion-icon name="arrow-back-outline" class="util-icon" ></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
