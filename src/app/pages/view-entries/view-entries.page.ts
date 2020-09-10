@@ -22,6 +22,7 @@ export class ViewEntriesPage implements OnInit {
   dateInput = "";
   dateDisplay = "";
   pages;
+  showSearchForMobile = false;
   constructor(public loadingCtrl: LoadingController,
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
@@ -130,8 +131,10 @@ export class ViewEntriesPage implements OnInit {
     console.log(this.platform.width());
     if (this.platform.width() > 850) {
       this.userService.showSidebar = true;
+      this.showSearchForMobile = false;
     } else {
       this.userService.showSidebar = false;
+      this.showSearchForMobile = true;
     }
     console.log(this.userService.showMenubar, this.userService.showSidebar);
     this.loadingCtrl.create({
