@@ -7,6 +7,7 @@ import { UserService } from './services/user.service';
 import { ApiService } from './services/api.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
+import { FacebookService, InitParams } from "ngx-facebook";
 
 @Component({
   selector: 'app-root',
@@ -52,6 +53,7 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private apiService: ApiService,
     private router: Router,
+    private facebookService: FacebookService,
     public alertCtrl: AlertController,
     private authenticationService: AuthenticationService
   ) {
@@ -85,10 +87,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initFacebookService();
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
       this.userService.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
+  }
+
+  private initFacebookService(): void {
+    const initParams: InitParams = { xfbml:true, version:'v3.2'};
+    this.facebookService.init(initParams);
   }
 
   help(){
