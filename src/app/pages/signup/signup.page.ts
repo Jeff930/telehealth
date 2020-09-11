@@ -36,7 +36,7 @@ export class SignupPage implements OnInit {
         username: new FormControl('', Validators.compose([Validators.required])),
         password: new FormControl('', Validators.required),
         birthdate: new FormControl( new Date, Validators.required),
-        confirmpassword: new FormControl('', Validators.required),
+        confirmpassword: new FormControl(null, Validators.required),
       });
       console.log(this.signup_form.controls.birthdate)
       
@@ -141,4 +141,9 @@ export class SignupPage implements OnInit {
       await alert.present();
     }
 
+    regValidation() {
+      console.log(this.signup_form.controls.password.value !== this.signup_form.controls.confirmpassword.value)
+      const validate = !this.signup_form.valid || !this.signup_form.controls.birthdate.touched || this.signup_form.controls.password.value !== this.signup_form.controls.confirmpassword.value
+      return validate
+    }
 }
