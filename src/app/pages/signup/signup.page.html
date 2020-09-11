@@ -6,6 +6,7 @@
             <ion-row>
               <ion-col size="6" class="left-content">
                 <img class="logo-desktop" src="assets/imgs/logo-white.png">
+                <ion-title class="title">Gather the Journey</ion-title>
 
               <!--   <ion-button class="social-login" size="large" expand="full" (click)="login(login_form.value)" >Sign in with Google+</ion-button> 
 
@@ -73,7 +74,7 @@
       <ion-row *ngIf="platform.width()<1201">
           <ion-col size-sm="12" size-md="8" offset-md="2" size-lg="6" offset-lg="3" size-xl="4" offset-xl="4" text-center  class="signup-content" >
             <img class="logo" src="assets/imgs/logo-white.png"> 
-
+            <ion-title class="title">Gather the Journey</ion-title>
             <p *ngIf="showError" class="error" text-center>Error encountered. Please try again.</p>
             <p *ngIf="showShortPassword" class="error" text-center>Password should be atleast 6 characters.</p>
             <p *ngIf="showPasswordMismatch" class="error" text-center>Error encountered. Passwords do not match.</p>
