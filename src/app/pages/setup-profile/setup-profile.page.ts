@@ -51,8 +51,6 @@ export class SetupProfilePage implements OnInit {
     }).then((res) => {
       res.present();
       this.getUserDetails();
-      
-    // console.log(this.profileImage);
       this.profile_form.valueChanges.subscribe(
       result => {
         if(this.profile_form.status == 'VALID'){
@@ -70,15 +68,12 @@ export class SetupProfilePage implements OnInit {
     }else{
       this.profileImage = this.userService.profileImage;
     }
-    console.log(this.profileImage);
     this.userService.showMenubar = true;
-    console.log(this.platform.width());
     if (this.platform.width()>850) {
       this.userService.showSidebar = true;
     } else {
       this.userService.showSidebar = false;
     }
-    console.log(this.userService.showMenubar,this.userService.showSidebar);
   }
 
   editForm() {
@@ -86,12 +81,8 @@ export class SetupProfilePage implements OnInit {
     this.piTitle = "Edit";
     let date =  new Date(this.profile_form.value.birthdate);
     //date.setDate(date.getDate() + 2);
-    console.log(date);
     let date2 = new Date(date).toISOString();
     this.profile_form.value.birthdate = date2;
-    console.log(this.profile_form.value.birthdate);
-    console.log(date);
-    console.log(date2);
   }
 
   saveFormChanges() {
@@ -100,7 +91,6 @@ export class SetupProfilePage implements OnInit {
       spinner:'circles'
     }).then((res) => {
       res.present();
-      console.log(this.profile_form.value);
       this.apiService.updateUserDetails(this.profile_form.value).subscribe( res => {
         if (res.affectedRows==1){
           this.isReadonly = true;
@@ -130,7 +120,6 @@ export class SetupProfilePage implements OnInit {
   }
 
   getUserDetails() {
-    console.log(JSON.parse(localStorage.getItem('authenticated')));
     let userDetails = JSON.parse(localStorage.getItem('authenticated'));
     let userId = userDetails[0].UserId;
     this.apiService.getUserDetails(userId).subscribe(res => {
@@ -138,10 +127,8 @@ export class SetupProfilePage implements OnInit {
       localStorage.setItem('authenticated' , JSON.stringify(res));
       this.userService.username = JSON.parse(localStorage.getItem('authenticated'))[0].UserName;
       this.userService.email = JSON.parse(localStorage.getItem('authenticated'))[0].EmailAddress;
-      console.log(res);
       this.profileCopy = res;
       //let date = this.datepipe.transform(res[0].Birthdate, 'longDate');
-      //console.log(date);
       this.profile_form.patchValue({
         username: res[0].UserName,
         userid: res[0].UserId,
@@ -155,18 +142,13 @@ export class SetupProfilePage implements OnInit {
   }
 
   acceptImage(image){
-    console.log(image);
       var file:File = image.files[0];
       const reader = new FileReader();
-      console.log(image.files.length);
-      console.log("entered")
       reader.onload = (event: any) => {
         var imagePath = event.target.result;
         var image = btoa(imagePath).replace("+", "-").replace("/", "_");
-        console.log(this.userService.entryImages);
         this.profileImage = imagePath;
         this.btoaImage = image;
-        console.log(this.profileImage);
         this.view = false;
       };
       reader.readAsDataURL(file);      
@@ -184,7 +166,6 @@ export class SetupProfilePage implements OnInit {
     }).then((res) => {
       res.present();
     this.apiService.updateProfileImage(this.btoaImage).subscribe(res =>{
-      console.log(res);
       if (res == "success"){
         this.loadingCtrl.dismiss();
         this.userService.profileImage = this.profileImage;
@@ -193,7 +174,6 @@ export class SetupProfilePage implements OnInit {
       }else{
         this.loadingCtrl.dismiss();
         this.presentImageError();
-        console.log(res);
       }
     });});
   }

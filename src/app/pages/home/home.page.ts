@@ -30,7 +30,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.getEntries();
     this.userService.showMenubar = true;
-    console.log(this.userService.showMenubar,this.userService.showSidebar);
     this.userService.selectedIndex = 0;
     if (this.platform.width()>850) {
       this.userService.showSidebar = true;
@@ -41,8 +40,6 @@ export class HomePage implements OnInit {
 
   ionViewWillEnter(){
     this.userService.showMenubar = true;
-    console.log(this.platform.width());
-    console.log(this.userService.showMenubar,this.userService.showSidebar);
     this.userService.selectedIndex = 0;
     if (this.platform.width()>850) {
       this.userService.showSidebar = true;
@@ -60,7 +57,6 @@ export class HomePage implements OnInit {
       res.present();
       this.apiService.getEntries(this.page).subscribe( res=> {
         this.userService.entries = res.rows.slice(0,2);
-        console.log(this.userService.entries);
         this.loadingCtrl.dismiss();
       },err =>{
         console.log(err);
@@ -69,11 +65,9 @@ export class HomePage implements OnInit {
   }
 
   presentModal(){
-    console.log("Modal");
     this.present();
   }
   async present() {
-    console.log("Modal called");
       const modal = await this.modalCtrl.create({
       component: SocialPage,
       cssClass: 'social'

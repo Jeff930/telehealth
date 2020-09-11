@@ -47,7 +47,6 @@ export class LoginPage implements OnInit {
         this.clearAuthenticatedUser();
       this.userService.showMenubar = false;
       this.userService.showSidebar = false;
-      console.log(this.userService.showMenubar,this.userService.showSidebar);
       if (localStorage.getItem('suggestion')){
         this.login_form.value.email = JSON.parse(localStorage.getItem('suggestion')).email;
         this.login_form.value.password = JSON.parse(localStorage.getItem('suggestion')).password;
@@ -66,21 +65,15 @@ export class LoginPage implements OnInit {
       }).then((res) => {
         res.present();
         localStorage.setItem('suggestion' , JSON.stringify(formData));
-        console.log(JSON.parse(localStorage.getItem('suggestion')));
-        console.log(JSON.parse(localStorage.getItem('suggestion')).email);
         this.apiService.loginUser(formData).subscribe(res => {
-          console.log(res);
-          console.log(res[0]);
           if (res[0]!=undefined){
             if (res[0].UserId!=undefined){
-              console.log("true");
               this.showError=false;
               this.authService.login(res);
               this.login_form.reset()
               this.loadingCtrl.dismiss();
             }else{
               this.loadingCtrl.dismiss();
-              console.log("false");
               this.presentError();
               this.showError=true;
             }
@@ -110,7 +103,6 @@ export class LoginPage implements OnInit {
     ionViewWillEnter(){
       this.userService.showMenubar = false;
       this.userService.showSidebar = false;
-      console.log(this.userService.showMenubar,this.userService.showSidebar);
       if (localStorage.getItem('suggestion')){
         this.login_form.value.email = JSON.parse(localStorage.getItem('suggestion')).email;
         this.login_form.value.password = JSON.parse(localStorage.getItem('suggestion')).password;

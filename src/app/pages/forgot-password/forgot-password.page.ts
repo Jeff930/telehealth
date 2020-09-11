@@ -47,7 +47,6 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   submitRecovery(num_input) {
-    console.log("called");
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles'
@@ -68,7 +67,6 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   submitEmail(emailInput) {
-    console.log("called");
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles'
@@ -87,7 +85,6 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   changePassword() {
-    console.log("called");
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles'
