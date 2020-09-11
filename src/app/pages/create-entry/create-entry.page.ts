@@ -34,11 +34,7 @@ export class CreateEntryPage implements OnInit {
   }
 
   saveEntry(){
-    console.log(this.userService.title);
-    console.log(this.userService.content);
-    console.log(this.userService.entryImages);
     this.apiService.createEntry(this.userService.title,this.userService.content,this.userService.entryImages).subscribe(res => {
-      console.log(res['Success']);
       if (res['Success']==true){
         this.showError = false;
         this.userService.selectedIndex = 2;
@@ -60,17 +56,14 @@ export class CreateEntryPage implements OnInit {
 
   ionViewWillEnter(){
     this.userService.showMenubar = true;
-    console.log(this.platform.width());
     if (this.platform.width()>850) {
       this.userService.showSidebar = true;
     } else {
       this.userService.showSidebar = false;
     }
-    console.log(this.userService.showMenubar,this.userService.showSidebar);
     this.userService.title = "";
     this.userService.content = "";
     this.userService.journalMode = "Create";
-    console.log(this.userService.journalMode);
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles',

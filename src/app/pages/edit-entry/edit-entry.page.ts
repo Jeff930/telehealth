@@ -29,13 +29,10 @@ export class EditEntryPage implements OnInit {
   }
 
   saveChanges(){
-    console.log(this.userService.entryImages);
     this.apiService.updateEntry(this.userService.title,this.userService.content,this.userService.viewedEntry.EntryNo,this.userService.entryImages).subscribe(res => {
-      console.log(res);
       if (res.affectedRows==1){
         this.showError = false;
         this.presentAlert();
-        // this.router.navigateByUrl('/view-entries');
       }else{
         this.presentError();
         this.showError = true;
@@ -49,15 +46,12 @@ export class EditEntryPage implements OnInit {
 
   ionViewWillEnter(){
     this.userService.showMenubar = true;
-    console.log(this.platform.width());
     if (this.platform.width()>850) {
       this.userService.showSidebar = true;
     } else {
       this.userService.showSidebar = false;
     }
-    console.log(this.userService.showMenubar,this.userService.showSidebar);
     this.userService.journalMode = "Edit";
-    console.log(this.userService.journalMode);
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles',

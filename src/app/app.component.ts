@@ -66,15 +66,11 @@ export class AppComponent implements OnInit {
       this.splashScreen.hide();
 
       this.authenticationService.authState.subscribe(state => {
-        console.log(state);
         if (state) {
           this.apiService.getProfileImage(JSON.parse(localStorage.getItem('authenticated'))[0].UserId).subscribe(res => {
-            console.log(res);
             if (res=="error"){
-              console.log("here");
               this.userService.profileImage = "https://journal4life.com/images/placeholder.jpg";
             }else{
-              console.log(res);
               this.userService.profileImage = res;
             }
             this.router.navigateByUrl('/home');
@@ -133,12 +129,11 @@ export class AppComponent implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+            console.log('Cancelled');
           }
         }, {
           text: 'Okay',
           handler: () => {
-            console.log('Confirm Okay');
             this.authenticationService.logout();
           }
         }

@@ -33,13 +33,11 @@ export class JournalConstructComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.userService.content);
     if (this.userService.journalMode == "Create"){
       this.imagePaths = [];
       this.images = [];
     }else{
       this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
-        console.log(res);
         this.imagePaths = res;
         this.userService.imagePaths = res;
         for (var i=0;i<this.imagePaths.length;i++){
@@ -48,35 +46,21 @@ export class JournalConstructComponent implements OnInit {
         }
       });
     }
-    console.log(this.imagePaths);
   }
 
   ionViewWillEnter(){}
 
   acceptImage(image){
-    console.log(image);
-    console.log(this.userService.entryImages);
     for (var i=0;i<image.files.length;i++){ 
       var file:File = image.files[i];
       const reader = new FileReader();
-      console.log(image.files.length);
-      console.log("entered")
       reader.onload = (event: any) => {
-        console.log(this.userService.entryImages);
-        console.log("entered")
         var tempImage = event.target.result;
-        console.log(tempImage);
         this.imagePaths.push(tempImage);
         this.userService.imagePaths = this.imagePaths;
         var image = btoa(tempImage).replace("+", "-").replace("/", "_");
-        console.log(this.userService.entryImages);
         this.images.push(image);
-        console.log(this.userService.entryImages);
-        //this.userService.entryImages.push(image);
-        console.log(this.images);
-        console.log(this.imagePaths);
         this.userService.entryImages = this.images;
-        console.log(this.userService.entryImages);
       };
       reader.readAsDataURL(file);      
     }
@@ -86,8 +70,5 @@ export class JournalConstructComponent implements OnInit {
     this.imagePaths.splice(index,1);
     this.images.splice(index,1);
     this.userService.entryImages = this.images;
-    console.log(this.imagePaths);
-    console.log(this.images);
-    console.log(this.userService.entryImages);
   }
 }
