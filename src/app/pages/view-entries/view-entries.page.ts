@@ -54,7 +54,6 @@ export class ViewEntriesPage implements OnInit {
     this.hasSearched = false;
     this.hasFiltered = false;
     this.apiService.getEntries(this.page).subscribe(res => {
-      console.log(res);
       this.userService.entries = res.rows;
     }, err => {
       console.log(err);
@@ -67,7 +66,6 @@ export class ViewEntriesPage implements OnInit {
     this.hasFiltered = false;
     this.apiService.getEntries(this.page).subscribe(res => {
       this.loadingCtrl.dismiss();
-      console.log(res);
       this.userService.entries = res.rows;
       this.pages = res.totalPages;
       this.userService.totalPages = Array.from({ length: res.totalPages }, (v, i) => i + 1);
@@ -84,7 +82,6 @@ export class ViewEntriesPage implements OnInit {
     this.page++;
     if (this.hasSearched == false && this.hasFiltered == false) {
       this.apiService.getEntries(this.page).subscribe(res => {
-        console.log(res);
         this.userService.entries = res.rows;
       }, err => {
         console.log(err);
@@ -128,7 +125,6 @@ export class ViewEntriesPage implements OnInit {
 
   ionViewWillEnter() {
     this.userService.showMenubar = true;
-    console.log(this.platform.width());
     if (this.platform.width() > 850) {
       this.userService.showSidebar = true;
       this.showSearchForMobile = false;
@@ -136,7 +132,6 @@ export class ViewEntriesPage implements OnInit {
       this.userService.showSidebar = false;
       this.showSearchForMobile = true;
     }
-    console.log(this.userService.showMenubar, this.userService.showSidebar);
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles'
@@ -148,8 +143,6 @@ export class ViewEntriesPage implements OnInit {
 
   search(event) {
     this.page = 1;
-    console.log(event);
-    console.log(this.searchInput);
     if (this.searchInput.length > 2) {
       this.upsertSearch();
     }
@@ -177,9 +170,7 @@ export class ViewEntriesPage implements OnInit {
 
   filter() {
     this.page = 1;
-    console.log(this.dateInput);
     this.dateInput = this.dateInput.split('T')[0];
-    console.log(this.dateInput);
     this.upsertFilter();
   }
 
@@ -189,7 +180,6 @@ export class ViewEntriesPage implements OnInit {
       this.hasSearched = false;
       this.hasFiltered = true;
       this.userService.entries = res.rows;
-      console.log(res)
     }, err => {
       console.log(err);
     });

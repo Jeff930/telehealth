@@ -23,7 +23,5 @@ export class UserService {
   username;
   profileImage = "https://journal4life.com/images/placeholder.jpg";
 
-  constructor() {  
-    //console.log(this.email) 
-  }
+  constructor() {}
 }

@@ -37,9 +37,7 @@ export class SignupPage implements OnInit {
         password: new FormControl('', Validators.required),
         birthdate: new FormControl( new Date, Validators.required),
         confirmpassword: new FormControl(null, Validators.required),
-      });
-      console.log(this.signup_form.controls.birthdate)
-      
+      });      
     }
 
     ngOnInit(){}
@@ -60,7 +58,6 @@ export class SignupPage implements OnInit {
           this.showPasswordMismatch = false;
         } else {
           this.apiService.signupUser(formData).subscribe( res => {
-            console.log(res);
             if (res.affectedRows==1){
               this.loadingCtrl.dismiss();
               this.presentAlert();
@@ -96,7 +93,6 @@ export class SignupPage implements OnInit {
     ionViewWillEnter(){
       this.userService.showMenubar = false;
       this.userService.showSidebar = false;
-      console.log(this.userService.showMenubar,this.userService.showSidebar);
     }
 
     async presentAlert() {
@@ -142,7 +138,6 @@ export class SignupPage implements OnInit {
     }
 
     regValidation() {
-      console.log(this.signup_form.controls.password.value !== this.signup_form.controls.confirmpassword.value)
       const validate = !this.signup_form.valid || !this.signup_form.controls.birthdate.touched || this.signup_form.controls.password.value !== this.signup_form.controls.confirmpassword.value
       return validate
     }

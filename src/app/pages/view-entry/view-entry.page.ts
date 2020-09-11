@@ -51,12 +51,11 @@ export class ViewEntryPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+            console.log('Cancelled');
           }
         }, {
           text: 'Okay',
           handler: () => {
-            console.log('Confirm Okay');
             this.apiService.deleteEntry(this.userService.viewedEntry.EntryNo).subscribe(res => {
               this.userService.selectedIndex = 2;
               this.presentDelete();
@@ -95,17 +94,13 @@ export class ViewEntryPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    console.log(this.userService.viewedEntry);
     this.imagePaths =[];
     this.userService.showMenubar = true;
-    console.log(this.platform.width());
     if (this.platform.width()>850) {
       this.userService.showSidebar = true;
     } else {
       this.userService.showSidebar = false;
     }
-    console.log(this.userService.showMenubar,this.userService.showSidebar);
-    console.log(this.userService.viewedEntry.EntryNo);
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles',
@@ -114,7 +109,6 @@ export class ViewEntryPage implements OnInit {
       res.present();
       this.getViewedEntry();
       this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
-        console.log(res);
         this.imagePaths = res;
         this.loadingCtrl.dismiss();
       });
@@ -123,6 +117,5 @@ export class ViewEntryPage implements OnInit {
 
   getViewedEntry(){
     this.viewedEntry = this.userService.viewedEntry;
-    console.log(this.viewedEntry)
   }
 }
