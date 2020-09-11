@@ -6,7 +6,13 @@ ion-toolbar {
   --background: transparent;
   --ion-color-base: transparent;
 }
-
+::ng-deep {
+  @media only screen and (max-width: 1201px)    {
+    .datetime-placeholder {
+      padding-left: 10px !important;
+    }
+  } 
+}
 .recover-button{
   background-color:#ffffff;
   margin-top:50px;

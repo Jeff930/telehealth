@@ -52,7 +52,7 @@
                 </ion-item>
 
                 <ion-item>
-                  <ion-label class="label-desktop" position="floating">Re-type Password <span class="red" *ngIf="signup_form.controls.password.value === signup_form.controls.confirmpassword.value">*</span></ion-label>
+                  <ion-label class="label-desktop" position="floating">Re-type Password <span class="red" *ngIf="signup_form.controls.password.value !== signup_form.controls.confirmpassword.value">*</span></ion-label>
                   <ion-input type="password" formControlName="confirmpassword" required></ion-input>
                 </ion-item>
 
@@ -62,7 +62,7 @@
                 <p *ngIf="showSuccess" class="black" text-center>SIGNUP SUCCESSFUL!</p>
                 <p *ngIf="showSuccess" class="black" text-center>Please access your account from the login page</p>
               
-                <ion-button class="signup-button" size="large" expand="full" (click)="signup(signup_form.value)" [disabled]="!signup_form.valid && !signup_form.controls.birthdate.touched" type="submit">Register</ion-button>
+                <ion-button class="signup-button" size="large" expand="full" (click)="signup(signup_form.value)" [disabled]="regValidation()" type="submit">Register</ion-button>
 
                 <button class="recover-button help" text-center>Need help?</button>
               </ion-col>
@@ -100,6 +100,13 @@
                   <ion-input type="text" placeholder="Email Address" formControlName="email" required></ion-input>
               </ion-item>
 
+              <ion-item style="position: relative">
+                <ion-icon name="calendar-outline"></ion-icon>
+                <ion-datetime placeholder="Birthdate" displayFormat="MMMM DD, YYYY" pickerFormat="MMMM DD, YYYY"
+                           required formControlName="birthdate">
+                          </ion-datetime>
+              </ion-item> 
+
               <ion-item>
                 <ion-label> </ion-label> <ion-icon name="lock-closed-outline"></ion-icon> 
                 <ion-input placeholder="Password" type="password" formControlName="password" required></ion-input>
@@ -110,7 +117,7 @@
                 <ion-input placeholder="Retype Password" type="password" formControlName="confirmpassword" required></ion-input>
               </ion-item>
 
-              <ion-button class="signup-button" expand="full" (click)="signup(signup_form.value)" [disabled]="!signup_form.valid" type="submit">CREATE ACCOUNT</ion-button>
+              <ion-button class="signup-button" expand="full" (click)="signup(signup_form.value)" [disabled]="regValidation()"  type="submit">CREATE ACCOUNT</ion-button>
 
               <p class="white margin-top" text-center>Already have an account? Login here!</p>
 
