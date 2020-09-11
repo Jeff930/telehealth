@@ -112,5 +112,4 @@ export class ForgotPasswordPage implements OnInit {
   goBackToLogin(){
     this.router.navigateByUrl('/login');
   }
-
 }
