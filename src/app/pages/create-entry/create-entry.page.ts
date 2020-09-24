@@ -34,20 +34,28 @@ export class CreateEntryPage implements OnInit {
   }
 
   saveEntry(){
-    this.apiService.createEntry(this.userService.title,this.userService.content,this.userService.entryImages).subscribe(res => {
-      if (res['Success']==true){
-        this.showError = false;
-        this.userService.selectedIndex = 2;
-        this.userService.title = "";
-        this.userService.content = "";
-        this.userService.entryImages = [];
-        this.userService.imagePaths = [];
-        this.presentAlert();
-      }else{
-        this.showError = true;
-        this.presentError();
-      }
-    });
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
+      this.apiService.createEntry(this.userService.title,this.userService.content,this.userService.entryImages).subscribe(res => {
+        if (res['Success']==true){
+          this.showError = false;
+          this.userService.selectedIndex = 2;
+          this.userService.title = "";
+          this.userService.content = "";
+          this.userService.entryImages = [];
+          this.userService.imagePaths = [];
+          this.loadingCtrl.dismiss();
+          this.presentAlert();
+        }else{
+          this.showError = true;
+          this.loadingCtrl.dismiss();
+          this.presentError();
+        }
+      });
+    })
   }
 
   cancelEntry(){
