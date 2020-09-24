@@ -60,6 +60,8 @@ export class HomePage implements OnInit {
         this.loadingCtrl.dismiss();
       },err =>{
         console.log(err);
+        this.loadingCtrl.dismiss();
+        this.presentError();
       });
     });   
   }
@@ -73,5 +75,15 @@ export class HomePage implements OnInit {
       cssClass: 'social'
     });
     return await modal.present();
+  }
+
+  async presentError() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Error!',
+      message: 'Fetching Entry list failed.',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 }
