@@ -18,16 +18,15 @@
 			<ion-grid>
 				<ion-row *ngIf="option==1 ">
 					<ion-col size-xs="12" size-sm="10" size-md="7" size-lg="5" size-xl="5">
-						<ion-text>SEARCH</ion-text>
+						<!-- <ion-text>SEARCH</ion-text> -->
 						<ion-searchbar class="searchbar" (keyup.enter)="search($event)" [(ngModel)]="searchInput"
-							showCancelButton="focus" cancelButtonText="Custom Cancel" placeholder=""></ion-searchbar>
+							showCancelButton="focus" cancelButtonText="Custom Cancel" placeholder="Search here..." (ionClear)="clearInput()"></ion-searchbar>
 					</ion-col>
 				</ion-row>
 				<ion-row *ngIf="showSearchForMobile">
 					<ion-col size-xs="12" size-sm="10" size-md="7" size-lg="5" size-xl="5">
-						<ion-text>SEARCH</ion-text>
 						<ion-searchbar class="searchbar" (keyup.enter)="search($event)" [(ngModel)]="searchInput"
-							showCancelButton="focus" cancelButtonText="Custom Cancel" placeholder=""></ion-searchbar>
+							showCancelButton="focus" cancelButtonText="Custom Cancel" placeholder="Search Here..."></ion-searchbar>
 					</ion-col>
 				</ion-row>
 				<ion-row *ngIf="option==2">
@@ -45,10 +44,10 @@
 		<ion-card-content class="filter">
 			<ion-grid>
 				<ion-row >
-					<ion-col size-xs="12" size-sm="10" size-md="7" size-lg="5" size-xl="5">
-						<ion-text>SEARCH</ion-text>
+					<ion-col size-xs="12" size-sm="12" size-md="7" size-lg="5" size-xl="5">
+						<!-- <ion-text>SEARCH</ion-text> -->
 						<ion-searchbar class="searchbar" (keyup.enter)="search($event)" [(ngModel)]="searchInput"
-							showCancelButton="focus" cancelButtonText="Custom Cancel" placeholder=""></ion-searchbar>
+							showCancelButton="focus" (ionClear)="clearInput()" cancelButtonText="Custom Cancel" placeholder="Search Here..."></ion-searchbar>
 					</ion-col>
 				</ion-row>
 			</ion-grid>
@@ -57,8 +56,8 @@
 	<ion-grid>
 		<div class="searchResults" *ngIf="hasSearched">
 			<p>Showing search results for "{{searchDisplay}}".</p>
-			<ion-button fill="clear" (click)="clearInput()">Clear Search</ion-button>
-		</div>
+			<!-- <ion-button fill="clear" (click)="clearInput()">Clear Search</ion-button>
+ -->		</div>
 		<div class="searchResults" *ngIf="hasFiltered">
 			<p>Showing filter results for "{{dateDisplay}}".</p>
 			<ion-button fill="clear" (click)="clearInput()">Clear Filter</ion-button>
