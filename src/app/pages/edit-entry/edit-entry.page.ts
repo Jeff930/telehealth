@@ -29,14 +29,22 @@ export class EditEntryPage implements OnInit {
   }
 
   saveChanges(){
-    this.apiService.updateEntry(this.userService.title,this.userService.content,this.userService.viewedEntry.EntryNo,this.userService.entryImages).subscribe(res => {
-      if (res.affectedRows==1){
-        this.showError = false;
-        this.presentAlert();
-      }else{
-        this.presentError();
-        this.showError = true;
-      }
+    this.loadingCtrl.create({
+      cssClass: 'yellow',
+      spinner:'circles'
+    }).then((res) => {
+      res.present();
+      this.apiService.updateEntry(this.userService.title,this.userService.content,this.userService.viewedEntry.EntryNo,this.userService.entryImages).subscribe(res => {
+        if (res.affectedRows==1){
+          this.showError = false;
+          this.loadingCtrl.dismiss();
+          this.presentAlert();
+        }else{
+          this.presentError();
+          this.showError = true;
+          this.loadingCtrl.dismiss();
+        }
+      });
     });
   }
 
