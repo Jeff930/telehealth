@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { LoadingController , AlertController, MenuController , Platform  } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { LoadingController , AlertController, MenuController , Platform,NavController } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { ApiService } from '../../services/api.service';
+import { JournalConstructComponent } from '../../components/journal-construct/journal-construct.component';
 
 @Component({
   selector: 'app-create-entry',
@@ -13,6 +14,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class CreateEntryPage implements OnInit {
 
+  @ViewChild(JournalConstructComponent,null)journal: JournalConstructComponent;
   showError=false;
 
   constructor(private router: Router,
@@ -23,7 +25,8 @@ export class CreateEntryPage implements OnInit {
     public platform : Platform,
     public http : HttpClient,
     public userService : UserService,
-    public apiService : ApiService) {
+    public apiService : ApiService,
+    public navctrl : NavController) {
     }
 
   ngOnInit() {
@@ -72,13 +75,15 @@ export class CreateEntryPage implements OnInit {
     this.userService.title = "";
     this.userService.content = "";
     this.userService.journalMode = "Create";
+    this.journal.ionViewWillEnter();
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles',
       duration:1000
     }).then((res) => {
       res.present();
-  });}
+    });
+  }
 
   async presentAlert() {
     const alert = await this.alertCtrl.create({
@@ -90,7 +95,8 @@ export class CreateEntryPage implements OnInit {
     await alert.present();
 
     const { role, data } = await alert.onDidDismiss();
-    this.router.navigateByUrl('/view-entries');
+    this.journal.ionViewWillEnter();
+    this.navctrl.navigateRoot('/view-entries');
   }
 
   async presentError() {

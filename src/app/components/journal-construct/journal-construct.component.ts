@@ -32,10 +32,13 @@ export class JournalConstructComponent implements OnInit {
     ) {
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter(){
     if (this.userService.journalMode == "Create"){
       this.imagePaths = [];
       this.images = [];
+      console.log("called");
     }else{
       this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
         this.imagePaths = res;
@@ -47,8 +50,6 @@ export class JournalConstructComponent implements OnInit {
       });
     }
   }
-
-  ionViewWillEnter(){}
 
   acceptImage(image){
     for (var i=0;i<image.files.length;i++){ 
