@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LoadingController , AlertController, MenuController , Platform,NavController } from '@ionic/angular';
+import { LoadingController , AlertController, MenuController , Platform } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpErrorResponse , HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -25,8 +25,7 @@ export class CreateEntryPage implements OnInit {
     public platform : Platform,
     public http : HttpClient,
     public userService : UserService,
-    public apiService : ApiService,
-    public navctrl : NavController) {
+    public apiService : ApiService) {
     }
 
   ngOnInit() {
@@ -96,7 +95,7 @@ export class CreateEntryPage implements OnInit {
 
     const { role, data } = await alert.onDidDismiss();
     this.journal.ionViewWillEnter();
-    this.navctrl.navigateRoot('/view-entries');
+    this.router.navigateByUrl('/view-entries');
   }
 
   async presentError() {

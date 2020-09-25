@@ -38,7 +38,6 @@ export class JournalConstructComponent implements OnInit {
     if (this.userService.journalMode == "Create"){
       this.imagePaths = [];
       this.images = [];
-      console.log("called");
     }else{
       this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
         this.imagePaths = res;
