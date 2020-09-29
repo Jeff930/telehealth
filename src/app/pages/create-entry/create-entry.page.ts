@@ -78,7 +78,7 @@ export class CreateEntryPage implements OnInit {
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles',
-      duration:1000
+      duration:1500
     }).then((res) => {
       res.present();
     });
