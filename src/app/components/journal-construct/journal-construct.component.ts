@@ -32,9 +32,24 @@ export class JournalConstructComponent implements OnInit {
     ) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.userService.journalMode);
+    if (this.userService.journalMode == "Create"){
+      this.imagePaths = [];
+      this.images = [];
+    }else{
+      this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
+        this.imagePaths = res;
+        this.userService.imagePaths = res;
+        for (var i=0;i<this.imagePaths.length;i++){
+          this.images.push(btoa(this.imagePaths[i]).replace("+", "-").replace("/", "_"));
+          this.userService.entryImages = this.images;
+        }
+      });
+    }}
 
   ionViewWillEnter(){
+    console.log(this.userService.journalMode);
     if (this.userService.journalMode == "Create"){
       this.imagePaths = [];
       this.images = [];
