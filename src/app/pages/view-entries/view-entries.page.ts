@@ -1,11 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoadingController, AlertController, MenuController, Platform } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { ApiService } from '../../services/api.service';
-import { JournalCardComponent } from '../../components/journal-card/journal-card.component';
 
 @Component({
   selector: 'app-view-entries',
@@ -13,8 +12,6 @@ import { JournalCardComponent } from '../../components/journal-card/journal-card
   styleUrls: ['./view-entries.page.scss'],
 })
 export class ViewEntriesPage implements OnInit {
-
-  @ViewChild(JournalCardComponent,null)card: JournalCardComponent;
 
   option = 0;
   page = 1;
@@ -37,7 +34,6 @@ export class ViewEntriesPage implements OnInit {
   }
 
   ngOnInit() {
-    //this.getEntries();
     this.userService.firstPage = 1;
   }
 
@@ -73,7 +69,6 @@ export class ViewEntriesPage implements OnInit {
       this.userService.entries = res.rows;
       this.pages = res.totalPages;
       this.userService.totalPages = Array.from({ length: res.totalPages }, (v, i) => i + 1);
-      this.card.ionViewWillEnter();
       if (res.totalPages == 1) {
         this.userService.firstPage = 1;
         this.userService.lastPage = 1;
