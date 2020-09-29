@@ -29,6 +29,7 @@ export class ForgotPasswordPage implements OnInit {
     public fb: FormBuilder,
     public apiService: ApiService,
     public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController
   ) {
     this.password_form = this.fb.group({
       new_password: new FormControl('', Validators.required),
@@ -60,6 +61,7 @@ export class ForgotPasswordPage implements OnInit {
           this.loadingCtrl.dismiss();
         }else{
           this.wrong_num = true;
+          this.presentWrong();
           this.loadingCtrl.dismiss();
         }
       });
@@ -79,10 +81,32 @@ export class ForgotPasswordPage implements OnInit {
           this.step2 = true;
         }else{
           this.loadingCtrl.dismiss();
+          this.presentInvalid();
         }
       });
     });
   }
+
+  async presentInvalid() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Invalid Email!',
+      message: 'Please check your email.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  async presentWrong() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Invalid Number!',
+      message: 'Please check the verification number.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
 
   changePassword() {
     this.loadingCtrl.create({
