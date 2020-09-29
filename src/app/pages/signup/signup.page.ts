@@ -103,7 +103,6 @@ export class SignupPage implements OnInit {
         buttons: ['OK']
       });
       await alert.present();
-      const { role, data } = await alert.onDidDismiss();
     }
 
     async presentInvalid() {

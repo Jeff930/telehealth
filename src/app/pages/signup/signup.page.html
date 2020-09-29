@@ -14,7 +14,7 @@
               </ion-col>
 
               <ion-col size="6" class="right-content">
-                <ion-button class="signup-nav" (click)="signup()" disabled="true">Register</ion-button>
+                <ion-button class="signup-nav" disabled="true">Register</ion-button>
                 <ion-button class="login-nav" (click)="login()">Log In</ion-button>
                 
 
@@ -57,7 +57,7 @@
                   <ion-input type="password" formControlName="confirmpassword" required></ion-input>
                 </ion-item>
 
-                <<!-- p *ngIf="showError" class="error" text-center>Error encountered. Please try again.</p>
+                <!-- p *ngIf="showError" class="error" text-center>Error encountered. Please try again.</p>
                 <p *ngIf="showShortPassword" class="error" text-center>Password should be atleast 6 characters.</p>
                 <p *ngIf="showPasswordMismatch" class="error" text-center>Error encountered. Passwords do not match.</p> -->
                 <p *ngIf="showSuccess" class="black" text-center>SIGNUP SUCCESSFUL!</p>
