@@ -26,8 +26,8 @@
 						<!-- <img class="uploads" *ngFor="let imagePath of imagePaths; let i = index" [src]="imagePath" (click)="removeImage(i)"> -->
 					</ion-card-content>
 					<!-- <img class="card-image" src="assets/imgs/placeholder-image.jpg"/> -->
-					<ion-card-content>
-						<quill-editor class="journal-content" rows="25" [(ngModel)]="userService.content"
+					<ion-card-content class="journal-content">
+						<quill-editor rows="25" [(ngModel)]="userService.content"
     [placeholder]="editorPlaceholder"
     [modules]="editorOptions"></quill-editor>
 						<!-- <ion-textarea class="journal-content" rows="25"
