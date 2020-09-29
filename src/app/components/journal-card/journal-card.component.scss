@@ -6,7 +6,6 @@ ion-card{
 ion-card:hover{
 	--background:#2C3E50;
 	--color:white;
-
 	ion-card-title, ion-card-subtitle {
 	--color:white;
 	}
@@ -24,9 +23,7 @@ ion-card:hover{
 
 .image-div{
 	height:300px;
-	width:auto;
-	background-size:cover !important;
-	overflow:hidden;
+	object-fit:cover;
 }
 .no-entry {
 	display: block;
