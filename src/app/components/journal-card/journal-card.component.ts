@@ -14,35 +14,15 @@ export class JournalCardComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService
-    ) {
-      for (var i = 0; i< this.userService.entries.length;i++){
-        this.image.push('https://journal4life.com/api/v1/images/entries/'+ this.userService.entries[i].EntryNo + '/' + this.userService.entries[i].EntryNo + '-0.jpeg');
-        console.log(this.image)
-      }
-     }
+    ) {}
 
-  ngOnInit() {
-    for (var i = 0; i< this.userService.entries.length;i++){
-      this.image.push('https://journal4life.com/api/v1/images/entries/'+ this.userService.entries[i].EntryNo + '/' + this.userService.entries[i].EntryNo + '-0.jpeg');
-      console.log(this.image)
-    }
-  }
+  ngOnInit() {  }
 
-  ionViewWillEnter(){
-    for (var i = 0; i< this.userService.entries.length;i++){
-      this.image.push('https://journal4life.com/api/v1/images/entries/'+ this.userService.entries[i].EntryNo + '/' + this.userService.entries[i].EntryNo + '-0.jpeg');
-      console.log(this.image)
-    }
-    
-  }
+  ionViewWillEnter(){  }
 
   date(){
     return Date.now();
   }
-
-  // getImage(entry){
-  //   return 'https://journal4life.com/api/v1/images/entries/'+ entry + '/' + entry + '-0.jpeg'
-  // }
 
   goToEntry(entry){
     this.userService.viewedEntry = entry;
