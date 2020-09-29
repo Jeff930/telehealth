@@ -38,7 +38,7 @@ export class SetupProfilePage implements OnInit {
       username: new FormControl(''),
       firstname: new FormControl('', Validators.required),
       lastname: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required),
+      phone: new FormControl(''),
       birthdate: new FormControl(new Date, Validators.required),
       email: new FormControl('', Validators.compose([Validators.required]))
     });

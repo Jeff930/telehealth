@@ -63,7 +63,7 @@
                             <ion-icon name="create-outline"></ion-icon><!-- &nbsp; -->
                           </ion-button>
                           <ion-button *ngIf="isReadonly == false" slot="end" (click)="cancelChanges()"
-                            [disabled]="formStatus" class="btn-save ripple-style">
+                            class="btn-save ripple-style">
                             <ion-icon name="close-outline"></ion-icon>&nbsp;
                           </ion-button>
                           <ion-button *ngIf="isReadonly == false" slot="end" (click)="saveFormChanges()"
