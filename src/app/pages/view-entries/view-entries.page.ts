@@ -34,7 +34,7 @@ export class ViewEntriesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getEntries();
+    //this.getEntries();
     this.userService.firstPage = 1;
   }
 
@@ -66,13 +66,22 @@ export class ViewEntriesPage implements OnInit {
     this.hasFiltered = false;
     this.apiService.getEntries(this.page).subscribe(res => {
       this.loadingCtrl.dismiss();
+      this.loadingCtrl.dismiss();
       this.userService.entries = res.rows;
       this.pages = res.totalPages;
       this.userService.totalPages = Array.from({ length: res.totalPages }, (v, i) => i + 1);
+      this.card.ionViewWillEnter();
       if (res.totalPages == 1) {
         this.userService.firstPage = 1;
         this.userService.lastPage = 1;
       }
+      this.loadingCtrl.create({
+        cssClass: 'yellow',
+        spinner:'circles',
+        duration:500
+        }).then((res) => {
+          res.present();
+        })
     }, err => {
       console.log(err);
     });
