@@ -36,6 +36,7 @@ export class EditEntryPage implements OnInit {
       res.present();
       this.apiService.updateEntry(this.userService.title,this.userService.content,this.userService.viewedEntry.EntryNo,this.userService.entryImages).subscribe(res => {
         if (res.affectedRows==1){
+          this.userService.selectedIndex = 2;
           this.showError = false;
           this.loadingCtrl.dismiss();
           this.presentAlert();
