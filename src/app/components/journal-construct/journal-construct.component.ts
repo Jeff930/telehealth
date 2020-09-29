@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { LoadingController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import Quill from "quill";
@@ -29,6 +30,7 @@ export class JournalConstructComponent implements OnInit {
     public userService: UserService,
     public apiService: ApiService,
     public formBuilder: FormBuilder,
+    public loadingCtrl: LoadingController,
     ) {
   }
 
@@ -54,14 +56,20 @@ export class JournalConstructComponent implements OnInit {
       this.imagePaths = [];
       this.images = [];
     }else{
-      this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
-        this.imagePaths = res;
-        this.userService.imagePaths = res;
-        for (var i=0;i<this.imagePaths.length;i++){
-          this.images.push(btoa(this.imagePaths[i]).replace("+", "-").replace("/", "_"));
-          this.userService.entryImages = this.images;
-        }
-      });
+      this.loadingCtrl.create({
+        cssClass: 'yellow',
+        spinner:'circles',
+        duration:1500
+      }).then((res) => {
+        this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
+          this.imagePaths = res;
+          this.userService.imagePaths = res;
+          for (var i=0;i<this.imagePaths.length;i++){
+            this.images.push(btoa(this.imagePaths[i]).replace("+", "-").replace("/", "_"));
+            this.userService.entryImages = this.images;
+          }
+        });
+      })
     }
   }
 
