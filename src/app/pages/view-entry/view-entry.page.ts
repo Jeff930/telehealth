@@ -93,6 +93,16 @@ export class ViewEntryPage implements OnInit {
     await alert.present();
   }
 
+  async fetchError() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Error!',
+      message: 'Fetching images failed.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
   ionViewWillEnter(){
     this.imagePaths =[];
     this.userService.showMenubar = true;
@@ -104,13 +114,17 @@ export class ViewEntryPage implements OnInit {
     this.loadingCtrl.create({
       cssClass: 'yellow',
       spinner:'circles',
-      duration:1500
     }).then((res) => {
       res.present();
       this.getViewedEntry();
       this.apiService.getTotalImage(this.userService.viewedEntry.EntryNo).subscribe(res => {
-        this.imagePaths = res;
-        this.loadingCtrl.dismiss();
+        if (res){
+          this.imagePaths = res;
+          this.loadingCtrl.dismiss();
+        }else{
+          this.loadingCtrl.dismiss();
+          this.fetchError();
+        }
       });
   });
   }
