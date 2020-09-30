@@ -29,11 +29,11 @@ export class ApiService {
   updateUserDetails(formData) {
     var date = formData.birthdate.substr(0,10);
     const body = new HttpParams()
-      .set('firstname', formData.firstname)
-      .set('lastname', formData.lastname)
+      .set('firstname', formData.firstname.replaceAll("'", "''"))
+      .set('lastname', formData.lastname.replaceAll("'", "''"))
       .set('birthdate', date)
       .set('userid', formData.userid)
-      .set('username', formData.username)
+      .set('username', formData.username.replaceAll("'", "''"))
       .set('email', formData.email)
       .set('phone',formData.phone)
       //.set('profile',image)
@@ -54,9 +54,9 @@ export class ApiService {
   signupUser(formData) {
     var hashedPassword = JSON.stringify(Md5.hashStr(formData.password));
     const body = new HttpParams()
-      .set('firstname', formData.firstname)
-      .set('lastname', formData.lastname)
-      .set('username', formData.username)
+      .set('firstname', formData.firstname.replaceAll("'", "''"))
+      .set('lastname', formData.lastname.replaceAll("'", "''"))
+      .set('username', formData.username.replaceAll("'", "''"))
       .set('email', formData.email)
       .set('birthdate',formData.birthdate)
       .set('password', hashedPassword.substring(1,hashedPassword.length-1));
@@ -66,8 +66,8 @@ export class ApiService {
 
   createEntry(title,content,images) {
     const body = new HttpParams()
-      .set('title', title)
-      .set('content', content)
+      .set('title', title.replaceAll("'", "''"))
+      .set('content', content.replaceAll("'", "''"))
       .set('images',JSON.stringify(images))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     return this.http.post<any>('https://journal4life.com:5000/create-entry', body.toString(),
@@ -76,8 +76,8 @@ export class ApiService {
 
   updateEntry(title,content,entryNo,images) {
     const body = new HttpParams()
-      .set('title', title)
-      .set('content', content)
+      .set('title', title.replaceAll("'", "''"))
+      .set('content', content.replaceAll("'", "''"))
       .set('entryNo', entryNo)
       .set('images',JSON.stringify(images))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
@@ -120,7 +120,7 @@ export class ApiService {
     const body = new HttpParams()
       .set('id', JSON.parse(localStorage.getItem('authenticated'))[0].UserId)
       .set('page', page)
-      .set('searchKey',searchKey);
+      .set('searchKey',searchKey.replaceAll("'", "''"));
     return this.http.post<any>('https://journal4life.com:5000/search-entries', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
