@@ -10,7 +10,7 @@
 								</ion-col>
 								<ion-col size="1">
 									<label class="add-image" for="file"><ion-icon name="images-outline" class="util-icon"></ion-icon></label>
-									<input #image (change)="acceptImage(image)" name="file" id="file" class="image-input" type="file" accept="image/gif, image/jpeg, image/png" multiple/>
+									<input #image (change)="acceptImage(image)" onclick="this.value = null" name="file" id="file" class="image-input" type="file" accept="image/gif, image/jpeg, image/png" multiple/>
 								</ion-col>
 							</ion-row>
 						</ion-card-title>
