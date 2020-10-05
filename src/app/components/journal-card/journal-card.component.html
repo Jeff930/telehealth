@@ -9,7 +9,9 @@
          <!--  <div class="image-div" [ngStyle]="{'background': 'url(https://journal4life.com/api/v1/images/entries/'+ entry.EntryNo + '/' + entry.EntryNo + '-0.jpeg' + ') no-repeat center'}">
           </div> -->
 
-          <ion-img class="image-div" src="{{'https://journal4life.com/api/v1/images/entries/'+ entry.EntryNo + '/' + entry.EntryNo + '-0.jpeg?' + date()}}"></ion-img>
+          <ion-img *ngIf="entry.hasImage == 1" class="image-div" src="{{'https://journal4life.com/api/v1/images/entries/'+ entry.EntryNo + '/' + entry.EntryNo + '-0.jpeg?' + date()}}"></ion-img>
+
+          <ion-img *ngIf="entry.hasImage == 0" class="image-div" src="assets/imgs/no-image.jpg"></ion-img>
 
   				<ion-card-content class="card-content">
   					<p class="card-text">{{getContent(entry.Content)}}</p>
