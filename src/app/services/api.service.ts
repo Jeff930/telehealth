@@ -65,21 +65,37 @@ export class ApiService {
   }
 
   createEntry(title,content,images) {
+    var hasImage = 1;
+    if (images.length > 0)
+      hasImage = 1;
+    else
+      hasImage = 0;
+    
+    console.log(images.length);
     const body = new HttpParams()
       .set('title', title.replaceAll("'", "''"))
       .set('content', content.replaceAll("'", "''"))
       .set('images',JSON.stringify(images))
+      .set('hasImage',JSON.stringify(hasImage))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     return this.http.post<any>('https://journal4life.com:5000/create-entry', body.toString(),
     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
   }
 
   updateEntry(title,content,entryNo,images) {
+    var hasImage = 1;
+    if (images.length > 0)
+      hasImage = 1;
+    else
+      hasImage = 0;
+    
+    console.log(images.length);
     const body = new HttpParams()
       .set('title', title.replaceAll("'", "''"))
       .set('content', content.replaceAll("'", "''"))
       .set('entryNo', entryNo)
       .set('images',JSON.stringify(images))
+      .set('hasImage',JSON.stringify(hasImage))
       .set('userId', JSON.parse(localStorage.getItem('authenticated'))[0].UserId);
     return this.http.post<any>('https://journal4life.com:5000/update-entry', body.toString(),
      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }});
