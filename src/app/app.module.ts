@@ -5,9 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { Crop } from '@ionic-native/crop/ngx';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import {NgxImageCompressService} from 'ngx-image-compress';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -45,9 +43,7 @@ import { SocialPageModule } from './pages/social/social.module';
     AuthenticationService,
     ApiService,
     DatePipe,
-    ImagePicker,
-    Crop,
-    FileTransfer,
+    NgxImageCompressService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
