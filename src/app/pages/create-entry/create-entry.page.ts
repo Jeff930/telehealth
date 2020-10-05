@@ -36,28 +36,32 @@ export class CreateEntryPage implements OnInit {
   }
 
   saveEntry(){
-    this.loadingCtrl.create({
-      cssClass: 'yellow',
-      spinner:'circles'
-    }).then((res) => {
-      res.present();
-      this.apiService.createEntry(this.userService.title,this.userService.content,this.userService.entryImages).subscribe(res => {
-        if (res['Success']==true){
-          this.showError = false;
-          this.userService.selectedIndex = 2;
-          this.userService.title = "";
-          this.userService.content = "";
-          this.userService.entryImages = [];
-          this.userService.imagePaths = [];
-          this.loadingCtrl.dismiss();
-          this.presentAlert();
-        }else{
-          this.showError = true;
-          this.loadingCtrl.dismiss();
-          this.presentError();
-        }
-      });
-    })
+    if (this.userService.title == "" || this.userService.title == "" ){
+      this.empty();
+    }else{
+      this.loadingCtrl.create({
+        cssClass: 'yellow',
+        spinner:'circles'
+      }).then((res) => {
+        res.present();
+        this.apiService.createEntry(this.userService.title,this.userService.content,this.userService.entryImages).subscribe(res => {
+          if (res['Success']==true){
+            this.showError = false;
+            this.userService.selectedIndex = 2;
+            this.userService.title = "";
+            this.userService.content = "";
+            this.userService.entryImages = [];
+            this.userService.imagePaths = [];
+            this.loadingCtrl.dismiss();
+            this.presentAlert();
+          }else{
+            this.showError = true;
+            this.loadingCtrl.dismiss();
+            this.presentError();
+          }
+        });
+      })
+    }
   }
 
   cancelEntry(){
@@ -92,11 +96,21 @@ export class CreateEntryPage implements OnInit {
       buttons: ['OK']
     });
     await alert.present();
-
     const { role, data } = await alert.onDidDismiss();
     this.journal.ionViewWillEnter();
     this.router.navigateByUrl('/view-entries');
   }
+
+  async empty() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Invalid!',
+      message: 'Title and content are required.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
 
   async presentError() {
     const alert = await this.alertCtrl.create({
