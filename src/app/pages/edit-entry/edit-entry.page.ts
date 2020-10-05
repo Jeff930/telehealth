@@ -29,24 +29,28 @@ export class EditEntryPage implements OnInit {
   }
 
   saveChanges(){
-    this.loadingCtrl.create({
-      cssClass: 'yellow',
-      spinner:'circles'
-    }).then((res) => {
-      res.present();
-      this.apiService.updateEntry(this.userService.title,this.userService.content,this.userService.viewedEntry.EntryNo,this.userService.entryImages).subscribe(res => {
-        if (res.affectedRows==1){
-          this.userService.selectedIndex = 2;
-          this.showError = false;
-          this.loadingCtrl.dismiss();
-          this.presentAlert();
-        }else{
-          this.presentError();
-          this.showError = true;
-          this.loadingCtrl.dismiss();
-        }
+    if (this.userService.title == "" || this.userService.title == "" ){
+      this.empty();
+    }else{
+      this.loadingCtrl.create({
+        cssClass: 'yellow',
+        spinner:'circles'
+      }).then((res) => {
+        res.present();
+        this.apiService.updateEntry(this.userService.title,this.userService.content,this.userService.viewedEntry.EntryNo,this.userService.entryImages).subscribe(res => {
+          if (res.affectedRows==1){
+            this.userService.selectedIndex = 2;
+            this.showError = false;
+            this.loadingCtrl.dismiss();
+            this.presentAlert();
+          }else{
+            this.presentError();
+            this.showError = true;
+            this.loadingCtrl.dismiss();
+          }
+        });
       });
-    });
+    }
   }
 
   cancelEdit(){
@@ -81,6 +85,16 @@ export class EditEntryPage implements OnInit {
 
     const { role, data } = await alert.onDidDismiss();
     this.router.navigateByUrl('/view-entries');
+  }
+
+  async empty() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'alert',
+      header: 'Invalid!',
+      message: 'Title and content are required.',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   async presentError() {
