@@ -36,7 +36,7 @@ export class CreateEntryPage implements OnInit {
   }
 
   saveEntry(){
-    if (this.userService.title == "" || this.userService.title == "" ){
+    if (this.userService.title == "" || this.userService.content == "" ){
       this.empty();
     }else{
       this.loadingCtrl.create({
