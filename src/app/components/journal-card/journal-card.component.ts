@@ -41,5 +41,12 @@ export class JournalCardComponent implements OnInit {
     else 
       return content;
   }
+
+  getTitle(title){
+    if (title.length>=30)
+      return title.substring(0,30)+"...";
+    else 
+      return title;
+  }
   
 }

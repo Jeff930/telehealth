@@ -4,7 +4,7 @@
 			<ion-card (click)="goToEntry(entry)">
   				<ion-card-header>
     				<ion-card-subtitle>{{entry.CreatedTimestamp | date:'medium'}}</ion-card-subtitle>
-    				<ion-card-title>{{entry.Title}}</ion-card-title>
+    				<ion-card-title>{{getTitle(entry.Title)}}</ion-card-title>
   				</ion-card-header>
          <!--  <div class="image-div" [ngStyle]="{'background': 'url(https://journal4life.com/api/v1/images/entries/'+ entry.EntryNo + '/' + entry.EntryNo + '-0.jpeg' + ') no-repeat center'}">
           </div> -->
