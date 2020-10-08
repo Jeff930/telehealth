@@ -5,10 +5,10 @@
 					<ion-card-header>
 						<ion-card-title>
 							<ion-row>
-								<ion-col size="11">
-									<ion-input placeholder="Place Title Here..." [(ngModel)]="userService.title"></ion-input>
+								<ion-col size="9">
+									<ion-input placeholder="Place Title Here..." [(ngModel)]="userService.title" class="title" maxlength="71"></ion-input>
 								</ion-col>
-								<ion-col size="1">
+								<ion-col offset="2" size="1">
 									<label class="add-image" for="file"><ion-icon name="images-outline" class="util-icon"></ion-icon></label>
 									<input #image (change)="acceptImage(image)" onclick="this.value = null" name="file" id="file" class="image-input" type="file" accept="image/gif, image/jpeg, image/png" multiple/>
 								</ion-col>
