@@ -22,44 +22,13 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'create-entry',
-    loadChildren: () => import('./pages/create-entry/create-entry.module').then( m => m.CreateEntryPageModule)
-  },
-  {
-    path: 'setup-profile',
-    loadChildren: () => import('./pages/setup-profile/setup-profile.module').then( m => m.SetupProfilePageModule)
-  },
-  {
-    path: 'view-entry',
-    loadChildren: () => import('./pages/view-entry/view-entry.module').then( m => m.ViewEntryPageModule)
-  },
-  {
-    path: 'view-entries',
-    loadChildren: () => import('./pages/view-entries/view-entries.module').then( m => m.ViewEntriesPageModule)
-  },
-  {
-    path: 'edit-entry',
-    loadChildren: () => import('./pages/edit-entry/edit-entry.module').then( m => m.EditEntryPageModule)
-  },
-  {
     path: 'forgot-password',
     loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
-    path: 'social',
-    loadChildren: () => import('./pages/social/social.module').then( m => m.SocialPageModule)
-  },
-  {
     path: 'faq',
     loadChildren: () => import('./pages/faq/faq.module').then( m => m.FaqPageModule)
-  },
-  {
-    path: 'chat',
-    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
   }
-
-
-
 ];
 
 @NgModule({
