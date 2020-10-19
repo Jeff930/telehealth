@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,QAAQ,CAAA;EACP,YAAY,CAAA,OAAC;CACb;;AAED,AAAA,WAAW,CAAA;EACV,KAAK,EAAC,IAAI;EACV,MAAM,EAAC,KAAK;CACZ",
-    "sources": [
-        "journal-card.component.scss"
-    ],
-    "names": [],
-    "file": "journal-card.component.css"
-}
